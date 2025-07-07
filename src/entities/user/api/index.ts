@@ -1,2 +1,2 @@
-export { authApi } from "./auth";
-export type { ILoginRequest, ILoginResponse } from "./types/auth";
+export * from "./auth";
+export type * from "./types/auth";

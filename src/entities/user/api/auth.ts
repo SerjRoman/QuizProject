@@ -1,12 +1,16 @@
 import { baseApi } from "@/shared/api";
 import { USER_API_MAP } from "@/shared/model/constants";
-import { login, setUser, type IUser } from "../model";
-import type { ILoginRequest, ILoginResponse } from "./types/auth";
+import { setTokens, setUser, type IUser } from "../model";
+import type {
+	ILoginRequest,
+	ILoginResponse,
+	IRegisterRequest,
+	IRegisterResponse,
+} from "./types/auth";
 
-export const authApi = baseApi.injectEndpoints({
+export const userApi = baseApi.injectEndpoints({
 	endpoints: (build) => ({
 		login: build.mutation<ILoginResponse, ILoginRequest>({
-			invalidatesTags: ["User"],
 			query: (credentials) => ({
 				url: USER_API_MAP.login,
 				body: credentials,
@@ -15,14 +19,29 @@ export const authApi = baseApi.injectEndpoints({
 			onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
 				try {
 					const data = (await queryFulfilled).data;
-					dispatch(login(data));
+					dispatch(setTokens(data));
 				} catch (e) {
 					console.error(e);
 				}
 			},
 		}),
+		register: build.mutation<IRegisterResponse, IRegisterRequest>({
+			query: (credentials) => ({
+				method: "POST",
+				body: credentials,
+				url: USER_API_MAP.register,
+			}),
+			onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
+				try {
+					const data = (await queryFulfilled).data;
+					dispatch(setTokens(data));
+				} catch (e) {
+					console.error(e);
+				}
+			},
+		}),
+
 		me: build.query<IUser, void>({
-			providesTags: ["User"],
 			query: () => ({
 				url: USER_API_MAP.me,
 			}),
@@ -38,4 +57,10 @@ export const authApi = baseApi.injectEndpoints({
 	}),
 });
 
-export const { useLoginMutation, useMeQuery, useLazyMeQuery } = authApi;
+export const {
+	useLoginMutation,
+	useMeQuery,
+	useLazyMeQuery,
+	useRegisterMutation,
+} = userApi;
+

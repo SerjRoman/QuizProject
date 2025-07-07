@@ -1,4 +1,9 @@
+export type UserProfile = "Teacher" | "Student";
+
 export interface IUser {
-    email: string,
-    
+    id: string
+	email: string;
+	role: UserProfile;
+	username: string;
+	createdAt: Date;
 }

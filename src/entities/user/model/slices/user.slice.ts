@@ -2,8 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { ILoginResponse } from "../../api/types/auth";
 import type { IUser } from "../types/user";
 
-const token = localStorage.getItem("token");
-const refreshToken = localStorage.getItem("refreshToken");
 
 interface IUserState {
 	user: IUser | null;
@@ -13,16 +11,16 @@ interface IUserState {
 }
 const initialState: IUserState = {
 	user: null,
-	token: token,
-	refreshToken: refreshToken,
-	isAuthenticated: !!token,
+	token: null,
+	refreshToken: null,
+	isAuthenticated: false,
 };
 
 export const userSlice = createSlice({
 	name: "user",
 	initialState: initialState,
 	reducers: {
-		login: (state, { payload }: { payload: ILoginResponse }) => {
+		setTokens: (state, { payload }: { payload: ILoginResponse }) => {
 			state.token = payload.token;
 			state.refreshToken = payload.refreshToken;
 			localStorage.setItem("token", payload.token);
@@ -43,4 +41,4 @@ export const userSlice = createSlice({
 	},
 });
 
-export const { login, setUser, logout } = userSlice.actions;
+export const { setTokens, setUser, logout } = userSlice.actions;

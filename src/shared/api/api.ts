@@ -1,13 +1,11 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi } from "@reduxjs/toolkit/query/react";
 
-import { queryHeaders } from "./headers";
+import { customBaseQuery } from "./query";
 
 export const baseApi = createApi({
 	reducerPath: "baseApi",
-	tagTypes: ["User"],
-	baseQuery: fetchBaseQuery({
-		prepareHeaders: queryHeaders,
-		baseUrl: import.meta.env.VITE_API_URL,
-	}),
+	baseQuery: customBaseQuery,
 	endpoints: () => ({}),
 });
+
+

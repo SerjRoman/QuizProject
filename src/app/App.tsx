@@ -1,14 +1,23 @@
 import { useEffect } from "react";
-import { useLazyMeQuery } from "@/entities/user";
+import {
+	useGetAllQuizzesQuery,
+	useLazyGetAllQuizzesQuery,
+} from "@/entities/quiz/api/quiz";
+import { setTokens, useLoginMutation } from "@/entities/user";
+import { useAppDispatch } from "@/shared/lib";
 import styles from "./App.module.css";
-import { useAppSelector } from "./store";
 
 function App() {
-	const [trigger] = useLazyMeQuery();
-	const { token } = useAppSelector((state) => state.user);
+	// const [register] = useRegisterMutation();
+	const [login] = useLoginMutation();
+	const dispatch = useAppDispatch();
+	const { data, isLoading } = useGetAllQuizzesQuery();
+	const [fetchQuizzes] = useLazyGetAllQuizzesQuery();
 	useEffect(() => {
-		if (!token) return;
-		trigger();
+		const token = localStorage.getItem("token");
+		const refreshToken = localStorage.getItem("refreshToken");
+		if (!token || !refreshToken) return;
+		dispatch(setTokens({ token, refreshToken }));
 	}, []);
 	return (
 		<>
@@ -19,14 +28,33 @@ function App() {
 				</a>
 			</div>
 			<h1 className={styles.red}>Vite + React</h1>
-			<div className="card">
-				<p>
-					Edit <code>src/App.tsx</code> and save to test HMR
-				</p>
+			<button
+				onClick={() => {
+					login({
+						email: "abcd@gmail.com",
+						password: "123456",
+					});
+				}}
+			>
+				Login
+			</button>
+			<button
+				onClick={() => {
+					fetchQuizzes();
+				}}
+			>
+				Quizzes
+			</button>
+			<p>{isLoading}</p>
+			<div>
+				{data?.map((quiz) => {
+					return (
+						<div>
+							<h1>{quiz.title}</h1>
+						</div>
+					);
+				})}
 			</div>
-			<p className="read-the-docs">
-				Click on the Vite and React logos to learn more
-			</p>
 		</>
 	);
 }
