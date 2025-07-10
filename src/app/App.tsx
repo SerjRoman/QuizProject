@@ -48,10 +48,9 @@ function App() {
 				Quizzes
 			</button>
 			<MenuButton
-				color="var(--buttonColor)"
-				hoverColor="var(--buttonHover)"
 				title={"button"}
-				disabled={true}
+				// disabled={true}
+				// enabled={false}
 				iconRight={
 					<svg viewBox="0 0 20 20" fill="none">
 						<path

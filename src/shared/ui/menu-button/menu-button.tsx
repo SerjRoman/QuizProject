@@ -6,13 +6,13 @@ export function MenuButton({
 	iconLeft,
 	iconRight,
 	title,
-	color,
-	hoverColor,
+    className,
+    enabled,
 	...rest
 }: IMenuButtonProps) {
 	return (
 		<button
-			className={clsx(styles.button, styles[color], styles[hoverColor])}
+			className={clsx(enabled ? styles.enabled :styles.button, className)}
 			{...rest}
 		>
 			<div className={iconLeft? styles.icon : ""}>{iconLeft}</div>
