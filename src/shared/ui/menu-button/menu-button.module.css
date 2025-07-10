@@ -1,0 +1,22 @@
+.button{
+    display: flex;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin: 2px;
+    gap: 2px;
+    border-radius: 20px;
+}
+.title{
+    align-self: center;
+    font-size: 20px;
+}
+.dropDown{
+    display: flex;
+    width: 20px;
+    height: 20px;
+    border: none;
+    align-self: center;
+    background-color: none;
+}

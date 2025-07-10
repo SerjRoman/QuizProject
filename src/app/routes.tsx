@@ -1,5 +1,4 @@
 import { LoginLayout, AdminLayout } from "@/pages/layouts";
-// import {  AdminLayout } from "@/pages/layouts";
 import App from "./App";
 
 export const routes = [
@@ -14,11 +13,11 @@ export const routes = [
 	},
 	{
 		element: <AdminLayout />,
-		children : [
-            {
-                path: "/admin",
-                element: <App/>
-            }
-        ]
-	}
+		children: [
+			{
+				path: "/admin",
+				element: <App />,
+			},
+		],
+	},
 ];

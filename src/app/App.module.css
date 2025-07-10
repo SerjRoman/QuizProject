@@ -1,5 +1,6 @@
 :root{
-    --mainBg: #EDEDED
+    --mainBg: #EDEDED;
+    --buttonColor:#FFDD73;
 }
 
 * {
