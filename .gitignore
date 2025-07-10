@@ -25,4 +25,4 @@ dist-ssr
 
 .env
 .prettierrc
-./package-lock.json
+package-lock.json
