@@ -1,6 +1,8 @@
 :root{
     --mainBg: #EDEDED;
     --buttonColor:#FFDD73;
+    --buttonHover:#D9D9D9;
+    --black:#000000;
 }
 
 * {

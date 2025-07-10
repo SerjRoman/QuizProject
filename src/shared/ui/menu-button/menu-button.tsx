@@ -1,34 +1,23 @@
-import type { CSSProperties, ReactNode } from "react";
+import { clsx } from "clsx";
 import styles from "./menu-button.module.css";
+import type { IMenuButtonProps } from "./menu-button.types";
 
-interface IMenuButtonProps {
-	title: string;
-	icon?: ReactNode;
-	color: string;
-	dropDown?: boolean;
-}
-
-export function MenuButton(props: IMenuButtonProps) {
+export function MenuButton({
+	iconLeft,
+	iconRight,
+	title,
+	color,
+	hoverColor,
+	...rest
+}: IMenuButtonProps) {
 	return (
 		<button
-			className={styles.button}
-            style={{ backgroundColor: props.color } as CSSProperties}
+			className={clsx(styles.button, styles[color], styles[hoverColor])}
+			{...rest}
 		>
-			<div>{props.icon}</div>
-			<p className={styles.title}>{props.title}</p>
-			<span className={styles.dropDown}>
-				{props.dropDown ? (
-					<svg viewBox="0 0 20 20" fill="none">
-						<path
-							d="M5 7.5L10 12.5L15 7.5"
-							stroke="#383435"
-							strokeWidth="2"
-							strokeLinecap="round"
-							strokeLinejoin="round"
-						/>
-					</svg>
-				) : null}
-			</span>
+			<div className={iconLeft? styles.icon : ""}>{iconLeft}</div>
+			<p className={styles.title}>{title}</p>
+			<span className={iconRight? styles.icon : ""}>{iconRight}</span>
 		</button>
 	);
 }

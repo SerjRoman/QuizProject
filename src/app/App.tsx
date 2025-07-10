@@ -49,12 +49,22 @@ function App() {
 			</button>
 			<MenuButton
 				color="var(--buttonColor)"
+				hoverColor="var(--buttonHover)"
 				title={"button"}
-				dropDown={true}
-				icon={
+				disabled={true}
+				iconRight={
+					<svg viewBox="0 0 20 20" fill="none">
+						<path
+							d="M5 7.5L10 12.5L15 7.5"
+							stroke="#383435"
+							strokeWidth="2"
+							strokeLinecap="round"
+							strokeLinejoin="round"
+						/>
+					</svg>
+				}
+				iconLeft={
 					<svg
-						width="20"
-						height="20"
 						viewBox="0 0 20 20"
 						fill="none"
 						xmlns="http://www.w3.org/2000/svg"
