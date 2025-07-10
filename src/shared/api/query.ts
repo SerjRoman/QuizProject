@@ -4,10 +4,11 @@ import {
 	type FetchArgs,
 	type FetchBaseQueryError,
 } from "@reduxjs/toolkit/query/react";
+import { ENV } from "@/shared/config";
 import { USER_API_MAP } from "../model/constants";
 import { queryHeaders } from "./headers";
 export const baseQuery = fetchBaseQuery({
-	baseUrl: import.meta.env.VITE_API_URL,
+	baseUrl: ENV.VITE_API_URL,
 	prepareHeaders: queryHeaders,
 });
 
