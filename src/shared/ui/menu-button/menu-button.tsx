@@ -15,9 +15,9 @@ export function MenuButton({
 			className={clsx(styles.button, enabled && styles.enabled, className)}
 			{...rest}
 		>
-			<div className={iconLeft? styles.icon : ""}>{iconLeft}</div>
+			<div className={clsx(iconLeft && styles.icon)}>{iconLeft}</div>
 			<p className={styles.title}>{title}</p>
-			<div className={iconRight? styles.icon : ""}>{iconRight}</div>
+			<div className={clsx(iconRight && styles.icon)}>{iconRight}</div>
 		</button>
 	);
 }
