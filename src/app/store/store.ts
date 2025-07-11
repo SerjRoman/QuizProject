@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { baseApi } from "@/shared/api";
+import { ENV } from "@/shared/config";
 import { loginListenerMiddleware } from "./middleware";
 import { AppReducers } from "./reducers";
 
@@ -9,5 +10,5 @@ export const AppStore = configureStore({
 		getDefaultMiddleware({ serializableCheck: false })
 			.concat(baseApi.middleware)
 			.concat(loginListenerMiddleware.middleware),
-	devTools: import.meta.env.VITE_MODE !== "production",
+	devTools: ENV.VITE_MODE !== "production",
 });
