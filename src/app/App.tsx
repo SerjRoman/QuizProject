@@ -5,8 +5,8 @@ import {
 } from "@/entities/quiz/api/quiz";
 import { setTokens, useLoginMutation } from "@/entities/user";
 import { useAppDispatch } from "@/shared/lib";
-import styles from "./App.module.css";
 import { Images } from "@/shared/ui";
+import styles from "./App.module.css";
 function App() {
 	// const [register] = useRegisterMutation();
 	const [login] = useLoginMutation();
