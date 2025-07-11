@@ -1,1 +1,0 @@
-export {TeacherHeader} from "./admin/teacher"
