@@ -1,0 +1,10 @@
+.main {
+	display: flex;
+    justify-content: space-between;
+	background-color: var(--white);
+}
+.tabs {
+	display: flex;
+	gap: 50px;
+}
+

@@ -1,13 +1,14 @@
-:root{
-    --mainBg: #EDEDED;
-    --yellow5:#FFDD73;
-    --buttonHover:#D9D9D9;
-    --black:#000000;
-    --white:#ffff;
+:root {
+	--mainBg: #ededed;
+	--yellow5: #ffdd73;
+	--buttonHover: #d9d9d9;
+	--black: #000000;
+	--white: #ffff;
+  --pink4: #F33D6E
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }

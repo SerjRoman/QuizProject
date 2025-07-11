@@ -13,7 +13,7 @@ const initialState: IUserState = {
 	user: null,
 	token: null,
 	refreshToken: null,
-	isAuthenticated: false,
+	isAuthenticated: true,
 };
 
 export const userSlice = createSlice({
