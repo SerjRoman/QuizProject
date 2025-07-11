@@ -1,0 +1,54 @@
+.enterCodeForm {
+	display: flex;
+	gap: 100px;
+	flex-direction: column;
+}
+
+.selectUserTypeBlock {
+	display: flex;
+	gap: 42px;
+	padding: 16px 0;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.selectUserField {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 10px;
+	font-size: 30px;
+}
+.selectUserField input {
+	width: 24px;
+	height: 24px;
+}
+.enterCodeField {
+	font-size: 20px;
+	padding-left: 15px;
+}
+.enterCodeInput {
+	display: flex;
+	text-align: center;
+
+	width: 400px;
+	height: 60px;
+
+	font-size: 30px;
+
+	letter-spacing: 10px;
+
+	background-color: var(--white);
+	border: 3px solid var(--black);
+	border-radius: 20px;
+
+	padding: 15px 70px;
+}
+
+.SubmitBlock {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 30px;
+}
