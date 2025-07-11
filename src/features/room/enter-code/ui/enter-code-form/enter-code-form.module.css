@@ -6,7 +6,7 @@
 
 .selectUserTypeBlock {
 	display: flex;
-	gap: 42px;
+	gap: 30px;
 	padding: 16px 0;
 	flex-direction: column;
 	align-items: center;
@@ -46,7 +46,7 @@
 	padding: 15px 70px;
 }
 
-.SubmitBlock {
+.submitBlock {
 	display: flex;
 	flex-direction: column;
 	align-items: center;

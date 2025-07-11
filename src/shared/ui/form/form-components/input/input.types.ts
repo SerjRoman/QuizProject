@@ -1,7 +1,11 @@
-import type { HTMLAttributes } from "react";
+import type { DetailedHTMLProps, InputHTMLAttributes } from "react";
 
-export interface IFormInput extends HTMLAttributes<HTMLInputElement> {
+export interface IFormInput
+	extends DetailedHTMLProps<
+		InputHTMLAttributes<HTMLInputElement>,
+		HTMLInputElement
+	> {
 	name: string;
 	label?: string;
-	labelClassname?: string;
+	labelClassName?: string;
 }

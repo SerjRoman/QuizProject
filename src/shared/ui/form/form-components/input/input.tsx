@@ -5,7 +5,7 @@ import styles from "./input.module.css";
 import type { IFormInput } from "./input.types";
 
 export function FormInput(props: IFormInput) {
-	const { name, label, labelClassname, className, ...restProps } = props;
+	const { name, label, labelClassName, className, ...restProps } = props;
 	const {
 		register,
 		formState: { errors },
@@ -15,7 +15,7 @@ export function FormInput(props: IFormInput) {
 			{label && (
 				<label
 					htmlFor={name}
-					className={clsx(styles.label, labelClassname)}
+					className={clsx(styles.label, labelClassName)}
 				>
 					{label}
 				</label>

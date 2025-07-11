@@ -1,3 +1,4 @@
+import { clsx } from "clsx";
 import { createContext, useContext } from "react";
 import { useFormContext } from "react-hook-form";
 import styles from "./radio.module.css";
@@ -17,11 +18,16 @@ const useRadioContext = () => {
 };
 
 export function Radio(props: IRadioProps) {
-	const { label, value, ...restProps } = props;
+	const { label, labelClassName, value, ...restProps } = props;
 	const { getRadioProps } = useRadioContext();
 	return (
-		<label className={styles.label}>
-			<input value={value} type="radio" {...getRadioProps()} {...restProps} />
+		<label className={clsx(styles.label, labelClassName)}>
+			<input
+				value={value}
+				type="radio"
+				{...getRadioProps()}
+				{...restProps}
+			/>
 			{label}
 		</label>
 	);

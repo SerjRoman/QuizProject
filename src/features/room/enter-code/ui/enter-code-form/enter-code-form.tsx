@@ -5,6 +5,7 @@ import {
 	useVerifyCodeMutation,
 } from "@/entities/room";
 import { useAppSelector } from "@/shared/lib";
+import { Form, Radio, RadioGroup } from "@/shared/ui";
 import { MAX_LENGTH, type IEnterCodeFormData } from "../../model";
 import styles from "./enter-code-form.module.css";
 
@@ -14,7 +15,7 @@ export function EnterCodeForm() {
 
 	const [verifyCode] = useVerifyCodeMutation();
 
-	const { register, handleSubmit } = useForm<IEnterCodeFormData>({
+	const methodsForm = useForm<IEnterCodeFormData>({
 		defaultValues: {
 			entryCode: searchParams.get("code") ?? entryCode,
 			participantType: "GUEST",
@@ -30,47 +31,42 @@ export function EnterCodeForm() {
 	}
 
 	return (
-		<form
-			className={styles.enterCodeForm}
-			onSubmit={handleSubmit(onEntryCodeSubmit)}
+		<Form<IEnterCodeFormData>
+			formProps={{ className: styles.enterCodeForm }}
+			methods={methodsForm}
+			onSubmit={onEntryCodeSubmit}
 		>
 			<div className={styles.selectUserTypeBlock}>
-				<label className={styles.selectUserField}>
-					<input
-						type="radio"
-						{...register("participantType")}
+				<RadioGroup name={"participantType"}>
+					<Radio
 						value={ParticipantTypeConstant.STUDENT}
+						labelClassName={styles.selectUserField}
+						label={
+							user
+								? `Continue as ${user.firstName} ${user.lastName}`
+								: "I have an account"
+						}
 					/>
-					{user
-						? `Continue as ${user.firstName} ${user.lastName}`
-						: "I have an account"}
-				</label>
-				<label className={styles.selectUserField}>
-					<input
-						type="radio"
-						{...register("participantType", {})}
+					<Radio
 						value={ParticipantTypeConstant.GUEST}
+						labelClassName={styles.selectUserField}
+						label="Continue as a guest"
 					/>
-					Join as a guest
-				</label>
+				</RadioGroup>
 			</div>
-			<div className={styles.SubmitBlock}>
+			<div className={styles.submitBlock}>
 				<div className={styles.enterCodeBlock}>
-					<label className={styles.enterCodeField}>
-						Session code
-						<input
-							className={styles.enterCodeInput}
-							type="text"
-							{...register("entryCode", {
-								maxLength: MAX_LENGTH,
-							})}
-							placeholder="123456789"
-							maxLength={MAX_LENGTH}
-						/>
-					</label>
+					<Form.Input
+						name="participantType"
+						label={"Session code"}
+						placeholder="123456789"
+						maxLength={MAX_LENGTH}
+						className={styles.enterCodeInput}
+						labelClassName={styles.enterCodeField}
+					/>
 				</div>
 				<button type="submit">Submit</button>
 			</div>
-		</form>
+		</Form>
 	);
 }
