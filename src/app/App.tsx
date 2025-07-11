@@ -8,7 +8,6 @@ import { useAppDispatch } from "@/shared/lib";
 import { MenuButton } from "@/shared/ui";
 
 import styles from "./App.module.css";
-
 function App() {
 	// const [register] = useRegisterMutation();
 	const [login] = useLoginMutation();
@@ -29,6 +28,7 @@ function App() {
 					<img className="logo react" alt="React logo" />
 				</a>
 			</div>
+
 			<h1 className={styles.red}>Vite + React</h1>
 			<button
 				onClick={() => {
