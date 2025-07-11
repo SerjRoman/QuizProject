@@ -6,7 +6,7 @@ import styles from "./admin.module.css"
 export function AdminLayout(){
     return(
         <div className={styles.main}>
-            <header><TeacherHeader/></header>
+            <TeacherHeader/>
             <main><Outlet/></main>
         </div>
     )

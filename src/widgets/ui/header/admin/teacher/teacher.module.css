@@ -7,16 +7,4 @@
 	display: flex;
 	gap: 50px;
 }
-.profileBlock{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-.text{
-    font-family: 'Krona One';
-    color: var(--pink4);
-    /* font-size: 20px; */
-}
+
