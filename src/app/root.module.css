@@ -4,7 +4,8 @@
 	--buttonHover: #d9d9d9;
 	--black: #000000;
 	--white: #ffff;
-  --pink4: #F33D6E
+	--error: #ff0000;
+	--pink4: #f33d6e;
 }
 
 * {

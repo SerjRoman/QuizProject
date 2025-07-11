@@ -1,16 +1,11 @@
-import {
-	createContext,
-	useContext,
-	type ChangeEvent,
-	type PropsWithChildren,
-} from "react";
+import { createContext, useContext } from "react";
+import { useFormContext } from "react-hook-form";
 import styles from "./radio.module.css";
-import type { IRadioProps } from "./radio.types";
-
-interface IRadioContext {
-	name: string;
-	onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-}
+import type {
+	IRadioContext,
+	IRadioGroupProps,
+	IRadioProps,
+} from "./radio.types";
 
 const RadioContext = createContext<IRadioContext | null>(null);
 
@@ -23,25 +18,38 @@ const useRadioContext = () => {
 
 export function Radio(props: IRadioProps) {
 	const { label, value, ...restProps } = props;
-	const ctx = useRadioContext();
+	const { getRadioProps } = useRadioContext();
 	return (
 		<label className={styles.label}>
-			<input value={value} type="radio" {...ctx} {...restProps} />
+			<input value={value} type="radio" {...getRadioProps()} {...restProps} />
 			{label}
 		</label>
 	);
 }
-interface IRadioGroupProps extends PropsWithChildren {
-	name: string;
-	onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-}
 
 export function RadioGroup(props: IRadioGroupProps) {
+	const { name, onChange } = props;
+	const methods = useFormContext();
+
+	function getRadioProps() {
+		if (methods && !onChange) {
+			return { ...methods.register(name) };
+		} else if (!methods && onChange) {
+			return { name, onChange };
+		} else if (methods && onChange) {
+			throw new Error(
+				"RadioGroup in FormContext, but onChange was given"
+			);
+		} else {
+			throw new Error(
+				"RadioGroup did not receive onChange and is not witihn FormContext"
+			);
+		}
+	}
 	return (
 		<RadioContext
 			value={{
-				name: props.name,
-				onChange: props.onChange,
+				getRadioProps,
 			}}
 		>
 			{props.children}
