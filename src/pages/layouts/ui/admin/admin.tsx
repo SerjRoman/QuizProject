@@ -4,7 +4,7 @@ import styles from "./admin.module.css"
 export function AdminLayout(){
     return(
         <div className={styles.main}>
-            <header></header>
+            <header>HEADER</header>
             <main><Outlet/></main>
         </div>
     )
