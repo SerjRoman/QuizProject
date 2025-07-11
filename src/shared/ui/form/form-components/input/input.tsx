@@ -1,5 +1,6 @@
 import { clsx } from "clsx";
 import { useFormContext } from "react-hook-form";
+import { Input } from "@/shared/ui";
 import styles from "./input.module.css";
 import type { IFormInput } from "./input.types";
 
@@ -19,10 +20,11 @@ export function FormInput(props: IFormInput) {
 					{label}
 				</label>
 			)}
-			<input
+			<Input
 				className={clsx(styles.input, className)}
 				{...register(name)}
 				{...restProps}
+				aria-invalid={!!errors[name]?.message}
 				id={name}
 			/>
 			{errors[name]?.message && <p>{errors[name]?.message.toString()}</p>}

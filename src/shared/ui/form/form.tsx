@@ -1,5 +1,6 @@
 import { clsx } from "clsx";
 import { FormProvider, type FieldValues } from "react-hook-form";
+import { FormInput } from "./form-components";
 import styles from "./form.module.css";
 import type { IFormProps } from "./form.types";
 
@@ -17,3 +18,4 @@ export function Form<T extends FieldValues>(props: IFormProps<T>) {
 		</FormProvider>
 	);
 }
+Form.Input = FormInput;
