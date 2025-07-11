@@ -1,2 +1,1 @@
-export { PrivateRoute } from "./private-route";
 export { ProfileBlock } from "./profile-block";
