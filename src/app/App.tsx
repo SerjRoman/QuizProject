@@ -6,7 +6,7 @@ import {
 import { setTokens, useLoginMutation } from "@/entities/user";
 import { useAppDispatch } from "@/shared/lib";
 import styles from "./App.module.css";
-
+import { Images } from "@/shared/ui";
 function App() {
 	// const [register] = useRegisterMutation();
 	const [login] = useLoginMutation();
@@ -27,6 +27,7 @@ function App() {
 					<img className="logo react" alt="React logo" />
 				</a>
 			</div>
+
 			<h1 className={styles.red}>Vite + React</h1>
 			<button
 				onClick={() => {
@@ -45,6 +46,7 @@ function App() {
 			>
 				Quizzes
 			</button>
+			<img src={Images.loginBackground} />
 			<p>{isLoading}</p>
 			<div>
 				{data?.map((quiz) => {

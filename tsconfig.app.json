@@ -30,8 +30,9 @@
 			"@features/*": ["./src/features/*"],
 			"@entities/*": ["./src/entities/*"],
 			"@widgets/*": ["./src/widgets/*"],
-			"@pages/*": ["./src/pages/*"]
-		}
+			"@pages/*": ["./src/pages/*"],
+			"@assets/*": ["./src/assets/*"]
+		},
 	},
-	"include": ["src"]
+	"include": ["src"],
 }
