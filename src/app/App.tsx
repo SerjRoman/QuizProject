@@ -50,7 +50,7 @@ function App() {
 			<MenuButton
 				title={"button"}
 				// disabled={true}
-				// enabled={false}
+				enabled={true}
 				iconRight={
 					<svg viewBox="0 0 20 20" fill="none">
 						<path
