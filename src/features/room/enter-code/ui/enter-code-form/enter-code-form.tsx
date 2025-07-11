@@ -5,7 +5,7 @@ import {
 	useVerifyCodeMutation,
 } from "@/entities/room";
 import { useAppSelector } from "@/shared/lib";
-import { MAX_LENGTH, type IEnterCodeFormData } from "../../lib";
+import { MAX_LENGTH, type IEnterCodeFormData } from "../../model";
 import styles from "./enter-code-form.module.css";
 
 export function EnterCodeForm() {
