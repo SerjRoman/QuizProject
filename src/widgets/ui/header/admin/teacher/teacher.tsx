@@ -13,27 +13,26 @@ export function TeacherHeader() {
 			<div className={styles.tabs}>
 				{ADMIN_TABS_MAP.map((tab) => {
 					return (
-						<Dropdown
-							showOn="hover"
-							trigger={(dropdownProps) => (
-								<MenuButton
-									{...dropdownProps}
-									title={tab.title}
-									// disabled={true}
-									enabled={tab.path === location.pathname}
-									onClick={() => navigate(`${tab.path}`)}
-									iconRight={
+						<MenuButton
+							title={tab.title}
+							// disabled={true}
+							enabled={tab.path === location.pathname}
+							onClick={() => navigate(`${tab.path}`)}
+							iconRight={
+								<Dropdown
+									showOn="hover"
+									trigger={() =>
 										tab.path.endsWith(
 											"/community"
 										) ? undefined : (
 											<Icons.ArrowDown />
 										)
 									}
-									iconLeft={<tab.icon />}
+									dataSoruce={tab.dataSoruce ?? []}
+									renderItem={(item) => <div>{item}</div>}
 								/>
-							)}
-							dataSoruce={tab.dataSoruce ?? []}
-							renderItem={(item) => <div>{item}</div>}
+							}
+							iconLeft={<tab.icon />}
 						/>
 					);
 				})}
