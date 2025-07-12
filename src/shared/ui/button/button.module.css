@@ -1,0 +1,56 @@
+.button {
+	display: flex;
+
+	align-items: center;
+	justify-content: center;
+
+	width: 150px;
+	height: 50px;
+
+	border-radius: 10px;
+
+	font-size: 30px;
+	font-family: "Kulim Park";
+}
+
+.button-red {
+	background-color: var(--button-red);
+	color: var(--white);
+	border: none;
+}
+.button-red:hover {
+	background-color: var(--button-red3);
+	color: var(--white);
+	border: none;
+}
+.button-red:active {
+	border: 5px solid var(--button-red);
+	color: var(--button-red-text);
+	background-color: var(--white);
+}
+.button-red:disabled {
+	background-color: var(--button-red2);
+	color: var(--white);
+	border: none;
+}
+
+.button-gray {
+	background-color: var(--button-gray);
+	color: var(--white);
+	border: none;
+}
+.button-gray:hover {
+	background-color: var(--button-gray3);
+	color: var(--white);
+	border: none;
+}
+.button-gray:active {
+	border: 5px solid var(--button-gray);
+	color: var(--button-gray-text);
+	background-color: var(--white);
+}
+.button-gray:disabled {
+	background-color: var(--button-gray2);
+	color: var(--white);
+	border: none;
+}
