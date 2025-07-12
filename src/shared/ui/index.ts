@@ -5,3 +5,4 @@ export { Images } from "./images";
 export { MenuButton } from "./menu-button";
 export { RadioGroup, Radio } from "./radio";
 export { Form } from "./form";
+export { Button } from "./button";
