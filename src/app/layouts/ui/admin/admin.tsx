@@ -5,12 +5,10 @@ import { BaseLayout } from "../base";
 export function AdminLayout() {
 	return (
 		<BaseLayout bgImage="/src/assets/logininBg.png">
-			<div>
 				<TeacherHeader />
 				<main>
 					<Outlet />
 				</main>
-			</div>
 		</BaseLayout>
 	);
 }
