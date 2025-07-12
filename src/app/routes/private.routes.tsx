@@ -12,47 +12,49 @@ export const PrivateRoutes: RouteObject = {
 				{
 					path: "dashboard",
 					element: <App />,
+					children: [
+						{
+							path: "libraries",
+							children: [
+								{
+									path: "dashboard",
+									element: <App />,
+								},
+							],
+						},
+						{
+							path: "reports",
+							children: [
+								{
+									path: "dashboard",
+									element: <App />,
+								},
+							],
+						},
+						{
+							path: "classes",
+							children: [
+								{
+									path: "dashboard",
+									element: <App />,
+								},
+							],
+						},
+						{
+							path: "community",
+							children: [
+								{
+									path: "dashboard",
+									element: <App />,
+								},
+							],
+						},
+					],
 				},
 			],
 		},
 		{
 			path: "student",
-			children: [
-				{
-					path: "dashboard",
-					element: <App />,
-				},
-			],
-		},
-		{
-			path: "libraries",
-			children: [
-				{
-					path: "dashboard",
-					element: <App />,
-				},
-			],
-		},
-		{
-			path: "reports",
-			children: [
-				{
-					path: "dashboard",
-					element: <App />,
-				},
-			],
-		},
-		{
-			path: "classes",
-			children: [
-				{
-					path: "dashboard",
-					element: <App />,
-				},
-			],
-		},
-		{
-			path: "community",
 			children: [
 				{
 					path: "dashboard",
