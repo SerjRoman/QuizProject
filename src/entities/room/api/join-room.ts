@@ -1,5 +1,5 @@
 import { baseApi } from "@/shared/api";
-import { setCodeEntryStepData, setStep } from "../model";
+import { setParticipantType, setStep } from "../model";
 import type {
 	IVerifyCodeRequest,
 	IVerifyCodeResponse,
@@ -14,15 +14,13 @@ export const joinProcessApi = baseApi.injectEndpoints({
 			}),
 			onQueryStarted: async function (arg, { dispatch, queryFulfilled }) {
 				try {
-					const { data } = await queryFulfilled;
+					await queryFulfilled;
 					dispatch(setStep("profile-setup"));
 					dispatch(
-						setCodeEntryStepData({
-							entryCode: data.code,
+						setParticipantType({
 							participantType: arg.participantType,
 						})
 					);
-					localStorage.setItem("entryCode", data.code);
 				} catch (error) {
 					console.error(error);
 				}

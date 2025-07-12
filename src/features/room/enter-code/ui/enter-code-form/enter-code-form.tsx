@@ -5,19 +5,18 @@ import {
 	useVerifyCodeMutation,
 } from "@/entities/room";
 import { useAppSelector } from "@/shared/lib";
-import { Form, Radio, RadioGroup } from "@/shared/ui";
+import { Button, Form, Radio, RadioGroup } from "@/shared/ui";
 import { MAX_LENGTH, type IEnterCodeFormData } from "../../model";
 import styles from "./enter-code-form.module.css";
 
 export function EnterCodeForm() {
 	const [searchParams] = useSearchParams();
-	const { entryCode } = useAppSelector((state) => state["join-room"]);
 
 	const [verifyCode] = useVerifyCodeMutation();
 
 	const methodsForm = useForm<IEnterCodeFormData>({
 		defaultValues: {
-			entryCode: searchParams.get("code") ?? entryCode,
+			entryCode: searchParams.get("code") ?? "",
 			participantType: "GUEST",
 		},
 	});
@@ -57,7 +56,7 @@ export function EnterCodeForm() {
 			<div className={styles.submitBlock}>
 				<div className={styles.enterCodeBlock}>
 					<Form.Input
-						name="participantType"
+						name="entryCode"
 						label={"Session code"}
 						placeholder="123456789"
 						maxLength={MAX_LENGTH}
@@ -65,7 +64,7 @@ export function EnterCodeForm() {
 						labelClassName={styles.enterCodeField}
 					/>
 				</div>
-				<button type="submit">Submit</button>
+				<Button variant="gray" title="JOIN" />
 			</div>
 		</Form>
 	);
