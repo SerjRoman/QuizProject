@@ -1,1 +1,1 @@
-export {TeacherHeader} from "./admin"
+export { TeacherHeader } from "./ui";

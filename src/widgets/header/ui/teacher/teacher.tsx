@@ -19,9 +19,7 @@ export function TeacherHeader() {
 									enabled={tab.path === location.pathname}
 									onClick={() => navigate(`${tab.path}`)}
 									iconRight={
-										tab.path.endsWith(
-											"/community"
-										) ? undefined : (
+										!tab.path.endsWith("/community") && (
 											<Icons.ArrowDown />
 										)
 									}
@@ -31,7 +29,7 @@ export function TeacherHeader() {
 							style={{ backgroundColor: "black", width: "100%" }}
 							dataSoruce={tab.dataSoruce ?? []}
 							renderItem={(item) => <div>{item}</div>}
-						/> 
+						/>
 					);
 				})}
 			</div>

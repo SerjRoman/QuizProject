@@ -8,7 +8,7 @@ export const AppRoutes: RouteObject[] = [
 		children: [PublicRoutes],
 	},
 	{
-		path: "/admin",
+		path: "/dashboard",
 		element: <PrivateRoute />,
 		children: [PrivateRoutes],
 	},
