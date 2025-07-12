@@ -16,7 +16,6 @@ export function TeacherHeader() {
 							trigger={() => (
 								<MenuButton
 									title={tab.title}
-									// disabled={true}
 									enabled={tab.path === location.pathname}
 									onClick={() => navigate(`${tab.path}`)}
 									iconRight={
