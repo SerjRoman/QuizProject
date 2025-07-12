@@ -1,6 +1,6 @@
 import type { RouteObject } from "react-router-dom";
+import { LoginLayout } from "@/app/layouts";
 import { JoinRoomPage } from "@/pages/join-room";
-import { LoginLayout } from "@/pages/layouts";
 import App from "../App";
 
 export const PublicRoutes: RouteObject = {

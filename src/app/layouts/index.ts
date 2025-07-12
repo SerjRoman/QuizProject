@@ -1,2 +1,2 @@
-export { LoginLayout } from "./ui/login";
-export { TeacherLayout } from "./ui/teacher";
+export { LoginLayout } from "./login";
+export { TeacherLayout } from "./teacher";
