@@ -1,5 +1,5 @@
 import type { RouteObject } from "react-router-dom";
-import { LoginLayout } from "@/app/layouts";
+import { RoomLayout } from "@/app/layouts";
 import { JoinRoomPage } from "@/pages/join-room";
 import App from "../App";
 
@@ -12,12 +12,12 @@ export const PublicRoutes: RouteObject = {
 		},
 		{
 			path: "login",
-			element: <LoginLayout />,
+			element: <RoomLayout />,
 			children: [{ path: "", element: (() => <h1>Login</h1>)() }],
 		},
 		{
 			path: "join",
-			element: <LoginLayout />,
+			element: <RoomLayout />,
 			children: [{ path: "", element: <JoinRoomPage /> }],
 		},
 	],

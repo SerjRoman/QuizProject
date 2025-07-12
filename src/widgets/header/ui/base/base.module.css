@@ -1,0 +1,15 @@
+.main {
+	display: flex;
+	justify-content: space-between;
+	background-color: var(--white);
+	box-shadow: 0 0 16px 0 var(--black);
+	padding: 8px 20px;
+}
+.tabs {
+	display: flex;
+	gap: 50px;
+}
+.dropdown{
+    width: "100%" ;
+    background-color: var(--white);
+}

@@ -1,28 +1,88 @@
 import { TEACHER_HEADER_NAVIGATION_MAP } from "@/shared/model/constants";
 import { Icons } from "@/shared/ui";
+import type { INavBarButton } from "../types/nav-bar-button";
 
-export const TEACHER_HEADER_MAP = [
+
+export const TEACHER_HEADER_MAP: INavBarButton[] = [
 	{
 		path: TEACHER_HEADER_NAVIGATION_MAP.libraries,
 		title: "Libraries",
-		icon: Icons.Library,
-		dataSoruce: ["All", "Created", "Copied", "Folders", "Favourite"],
+		iconLeft: Icons.Library,
+		iconRight: Icons.ArrowDown,
+		dataSource: [
+			{
+				path: "",
+				title: "All",
+			},
+			{
+				path: "",
+				title: "Created",
+			},
+			{
+				path: "",
+				title: "Copied",
+			},
+			{
+				path: "",
+				title: "Folders",
+			},
+			{
+				path: "",
+				title: "Favourite",
+			},
+		],
 	},
 	{
 		path: TEACHER_HEADER_NAVIGATION_MAP.reports,
 		title: "Reports",
-		icon: Icons.Library,
-		dataSoruce: ["All", "Class", "Room", "Quiz", "Favourite", "Custom"],
+		iconLeft: Icons.Library,
+		iconRight: Icons.ArrowDown,
+		dataSource: [{
+				path: "",
+				title: "All",
+			},
+			{
+				path: "",
+				title: "Class",
+			},
+			{
+				path: "",
+				title: "Room",
+			},
+			{
+				path: "",
+				title: "Quiz",
+			},
+			{
+				path: "",
+				title: "Favourite",
+			},
+			{
+				path: "",
+				title: "Custom",
+			},
+		],
 	},
 	{
 		path: TEACHER_HEADER_NAVIGATION_MAP.classes,
 		title: "Classes",
-		icon: Icons.Library,
-		dataSoruce: ["All", "Favourite"],
+		iconLeft: Icons.Library,
+		iconRight: Icons.ArrowDown,
+		dataSource: [
+			{
+				path: "",
+				title: "All",
+			},
+			{
+				path: "",
+				title: "Created",
+			},
+		],
 	},
 	{
 		path: TEACHER_HEADER_NAVIGATION_MAP.community,
 		title: "Community",
-		icon: Icons.Library,
+		iconLeft: Icons.Library,
+		dataSource:[{path: "", title: ""}]
 	},
 ];
