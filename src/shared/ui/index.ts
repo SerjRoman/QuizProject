@@ -1,3 +1,4 @@
+export { Modal } from "./modal";
 export { Input } from "./input";
 export { Icons } from "./icons";
 export { Dropdown } from "./dropdown";
