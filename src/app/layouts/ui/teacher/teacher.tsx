@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import { TeacherHeader } from "@/widgets/header";
 import { BaseLayout } from "../base";
 
-export function AdminLayout() {
+export function TeacherLayout() {
 	return (
 		<BaseLayout bgImage="/src/assets/logininBg.png">
 				<TeacherHeader />

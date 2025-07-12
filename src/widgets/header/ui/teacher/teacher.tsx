@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { ProfileBlock, ADMIN_HEADER_MAP } from "@/entities/user";
+import { ProfileBlock, TEACHER_HEADER_MAP } from "@/entities/user";
 import { Dropdown, Icons, MenuButton } from "@/shared/ui";
 import styles from "./teacher.module.css";
 
@@ -9,7 +9,7 @@ export function TeacherHeader() {
 	return (
 		<header className={styles.main}>
 			<div className={styles.tabs}>
-				{ADMIN_HEADER_MAP.map((tab) => {
+				{TEACHER_HEADER_MAP.map((tab) => {
 					return (
 						<Dropdown
 							showOn="hover"

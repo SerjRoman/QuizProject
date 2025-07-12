@@ -1,7 +1,7 @@
 import { ADMIN_HEADER_NAVIGATION_MAP } from "@/shared/model/constants";
 import { Icons } from "@/shared/ui";
 
-export const ADMIN_HEADER_MAP = [
+export const TEACHER_HEADER_MAP = [
 	{
 		path: ADMIN_HEADER_NAVIGATION_MAP.libraries,
 		title: "Libraries",
