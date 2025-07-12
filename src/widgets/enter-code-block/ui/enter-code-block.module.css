@@ -1,0 +1,12 @@
+.joinRoomBlock {
+	display: flex;
+	flex-direction: column;
+	gap: 100px;
+	align-items: center;
+	justify-content: center;
+}
+
+.title {
+    font-family: 'Krona One';
+    font-size: 60px;
+}

@@ -1,0 +1,24 @@
+.page {
+	flex: 1;
+	display: flex;
+}
+.logoSegment {
+	width: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.formSegment {
+	width: 50%;
+
+	display: flex;
+
+	align-items: center;
+	justify-content: center;
+
+	font-family: "Kulim Park";
+}
+.logo {
+	width: 576px;
+	height: 464px;
+}
