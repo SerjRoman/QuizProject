@@ -1,10 +1,12 @@
 import { Outlet } from "react-router-dom";
-import styles from "./login.module.css";
+import { BaseLayout } from "../base";
 
 export function LoginLayout() {
 	return (
-		<div className={styles.main}>
+		<BaseLayout bgImage="/src/assets/logininBg.png">
+		<div>
 			<Outlet />
 		</div>
+		</BaseLayout>
 	);
 }

@@ -1,13 +1,16 @@
 import { Outlet } from "react-router-dom";
-import { TeacherHeader } from "@/widgets/ui";
+import { TeacherHeader } from "@/widgets/header";
+import { BaseLayout } from "../base";
 
-import styles from "./admin.module.css"
-
-export function AdminLayout(){
-    return(
-        <div className={styles.main}>
-            <TeacherHeader/>
-            <main><Outlet/></main>
-        </div>
-    )
+export function AdminLayout() {
+	return (
+		<BaseLayout bgImage="/src/assets/logininBg.png">
+			<div>
+				<TeacherHeader />
+				<main>
+					<Outlet />
+				</main>
+			</div>
+		</BaseLayout>
+	);
 }
