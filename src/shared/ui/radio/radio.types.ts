@@ -5,6 +5,7 @@ export interface IRadioProps
 	extends Omit<HTMLAttributes<HTMLInputElement>, "type"> {
 	label?: string;
 	value: string;
+	labelClassName?: string;
 }
 type FormGetRadioProps = UseFormRegisterReturn;
 type GetRadioProps = {
