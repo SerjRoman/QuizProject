@@ -1,6 +1,6 @@
 export const ADMIN_HEADER_NAVIGATION_MAP = {
-	libraries: "/dashboard/teacher/libraries",
-	reports: "/dashboard/teacher/reports",
-	classes: "/dashboard/teacher/classes",
-	community: "/dashboard/teacher/community",
+	libraries: "/teacher/dashboard/libraries",
+	reports: "/teacher/dashboard/reports",
+	classes: "/teacher/dashboard/classes",
+	community: "/teacher/dashboard/community",
 };
