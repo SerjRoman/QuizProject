@@ -27,7 +27,7 @@ export function Dropdown<T>(props: IDropdownProps<T>) {
 		onMouseEnter: handleOpen,
 		onMouseLeave: handleClose,
 	};
-
+    
 	return (
 		<div className={clsx(styles.container, className)} {...handleHover}>
 			{trigger(renderProps)}
