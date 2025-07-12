@@ -7,7 +7,7 @@ import { setTokens, useLoginMutation } from "@/entities/user";
 import { useAppDispatch } from "@/shared/lib";
 import { MenuButton } from "@/shared/ui";
 
-import styles from "./App.module.css";
+import styles from "./root.module.css";
 function App() {
 	// const [register] = useRegisterMutation();
 	const [login] = useLoginMutation();

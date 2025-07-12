@@ -1,0 +1,16 @@
+.container {
+	display: flex;
+	flex-direction: column;
+    gap: 5px;
+}
+
+.label {
+    
+}
+.input {
+    
+}
+
+.error {
+	color: var(--error);
+}
