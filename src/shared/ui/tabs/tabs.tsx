@@ -1,11 +1,29 @@
 import { clsx } from "clsx";
-import { createContext, useContext, useState, type PropsWithChildren, type ReactNode } from "react";
-import type { ITabProps, ITabsContext, ITabsProps } from "./tabs.types";
+import {
+	createContext,
+	useContext,
+	useState,
+	type ReactNode,
+} from "react";
+import type {
+	IActiveContext,
+	ITabPanelProps,
+	ITabProps,
+	ITabsContext,
+	ITabsProps,
+} from "./tabs.types";
 
 const TabsContext = createContext<ITabsContext | null>(null);
+const ActiveContext = createContext<IActiveContext | null>(null);
 
 const useTabsContext = () => {
 	const ctx = useContext(TabsContext);
+	if (!ctx) throw new Error("TabsContext is not provided");
+	return ctx;
+};
+
+const useActiveContext = () => {
+	const ctx = useContext(ActiveContext);
 	if (!ctx) throw new Error("TabsContext is not provided");
 	return ctx;
 };
@@ -14,40 +32,42 @@ export function Tabs({ defaultTab, children }: ITabsProps) {
 	const [activeTab, setActiveTab] = useState(defaultTab);
 
 	return (
-		<TabsContext.Provider value={{ activeTab, setActiveTab }}>
-			<>{children}</>
-		</TabsContext.Provider>
+		<TabsContext value={{ activeTab, setActiveTab }}>
+			{children}
+		</TabsContext>
 	);
 }
 
-export function TabList({ children }: PropsWithChildren) {
-	return <div>{children}</div>;
+export function TabList({
+	activeClassName,
+	defaultClassName,
+    children
+}: IActiveContext & { children: ReactNode }) {
+	return (
+		<ActiveContext value={{ activeClassName, defaultClassName }}>
+			{children}
+		</ActiveContext>
+	);
 }
 
 export function Tab({ name, title }: ITabProps) {
 	const { activeTab, setActiveTab } = useTabsContext();
+    const {activeClassName, defaultClassName} = useActiveContext()
 	const isActive = activeTab === name;
 
 	return (
 		<div
 			onClick={() => setActiveTab(name)}
-			className={clsx("tab", isActive && "active")}
+			className={clsx(isActive ? activeClassName: defaultClassName)}
 		>
 			{title}
 		</div>
 	);
 }
 
-export function TabPanel({
-	name,
-	children,
-}: {
-	name: string;
-	children: ReactNode;
-}) {
+export function TabPanel({ name, children }: ITabPanelProps) {
 	const { activeTab } = useTabsContext();
 
 	if (activeTab !== name) return null;
 	return <>{children}</>;
 }
-
