@@ -22,21 +22,23 @@ export function Dropdown<T>(props: IDropdownProps<T>) {
 	function handleClose() {
 		setIsOpen(false);
 	}
-	function handleClick() {
+	function handleToggle() {
 		setIsOpen(!isOpen);
 	}
 	const renderProps = {
 		isOpen,
 		open: handleOpen,
 		close: handleClose,
-		toggle: handleClick,
+		toggle: handleToggle,
 	};
 	const handleHover = showOn === "hover" && {
 		onMouseEnter: handleOpen,
 		onMouseLeave: handleClose,
 	};
 	useClickOutside(dropdownRef, () => {
-		if (doCloseOnClickOutside) handleClose();
+		if (doCloseOnClickOutside) {
+			handleClose();
+		}
 	});
 
 	return (
