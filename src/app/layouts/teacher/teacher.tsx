@@ -5,7 +5,7 @@ import { BaseLayout } from "../base";
 
 export function TeacherLayout() {
 	return (
-		<BaseLayout bgImage="/src/assets/adminBg.png">
+		<BaseLayout bgImage="/src/assets/authBg.png">
 			<div >
 				<TeacherHeader />
 				<main>
