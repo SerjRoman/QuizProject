@@ -1,0 +1,6 @@
+.defaulf{
+    background-color: var(--button-gray2);
+}
+.active{
+    background-color: var(--pink4);
+}

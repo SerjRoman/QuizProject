@@ -1,115 +1,75 @@
+import { clsx } from "clsx";
 import {
+	Children,
+	cloneElement,
 	createContext,
+	isValidElement,
 	useContext,
 	useState,
-	type PropsWithChildren,
 	type ReactNode,
 } from "react";
-
-// <Tabs >
-//     <Tab.List>
-//         <Tab name="created">Created</Tab>
-//         <Tab name="all">All</Tab>
-//         <Tab name="all">All</Tab>
-//         <Tab name="all">All</Tab>
-//     </Tab.List>
-//     <TabPanel name="all"><AllPanel / ></TabPanel>
-//     <TabPanel name="created"><AllPanel / ></TabPanel>
-// </Tabs>
-
-// interface Tab {
-//   activeTabClassName: string;
-// }
-
-// function TabList({
-//   children,
-//   activeTabClassName,
-//   className,
-// }: {
-//   children: ReactNode;
-//   activeTabClassName: string;
-//   defaultTabClassName: string;
-//   className: string;
-// }) {
-//   const mappedChildren =
-// Children.map
-// (children, (child) => {
-//     return isValidElement(child)
-//       ? cloneElement(child, { className: activeTabClassName } as {
-//           className: string;
-//         })
-//       : undefined;
-//   });
-//   return <div className={className}></div>;
-// }
-
-// <TabList>
-//   <Tab></Tab>
-// </TabList>;
-
-export interface ITabProps {
-	title: string;
-	name: string;
-	panel: ReactNode;
-}
-
-export interface ITabsProps extends PropsWithChildren {
-	defaultTab?: string;
-	onChange: () => void;
-}
-
-// context
-type getTabsProps = {
-	onChange: () => void;
-};
-
-export interface ITabsContext {
-	getTabsProps: () => getTabsProps;
-}
+import styles from "./tabs.module.css"
+import type { ITabProps, ITabsContext, ITabsProps } from "./tabs.types";
 
 const TabsContext = createContext<ITabsContext | null>(null);
 
 const useTabsContext = () => {
 	const ctx = useContext(TabsContext);
-	if (!ctx) {
-		throw new Error("Ctx is not provided");
-		return ctx;
-	}
+	if (!ctx) throw new Error("TabsContext  is not provided");
+	return ctx;
 };
 
-export function Tabs({ defaultTab, children }: ITabsProps) {
+export function Tabs({ defaultTab, children, onChange }: ITabsProps) {
 	const [activeTab, setActiveTab] = useState(defaultTab);
 
-	const { getRadioProps } = useTabsContext();
+	const getTabsProps = () => ({
+		activeTab,
+		setActiveTab: (tab: string) => {
+			setActiveTab(tab);
+			onChange?.();
+		},
+		onChange,
+	});
 
-	return <div></div>;
+	return (
+		<TabsContext.Provider value={{ getTabsProps }}>
+			<div>{children}</div>
+		</TabsContext.Provider>
+	);
 }
 
-export function Tab(props: ITabProps) {
-	// const { title, name, ...restProps } = props;
-	// return (
-	// 	<div>
-	// 		<h2>{title}</h2>
-	// 	</div>
-	// );
+export function Tab({ name, title }: ITabProps) {
 	const { getTabsProps } = useTabsContext();
 	const { activeTab, setActiveTab } = getTabsProps();
 
 	return (
 		<button
 			onClick={() => setActiveTab(name)}
-			className={clsx(name === activeTab && "active")}
+			className={clsx(styles.default, name === activeTab && "active")}
 		>
 			{title}
 		</button>
 	);
 }
 
-// context
-export function TabList() {
-	return <div></div>;
+export function TabList({
+	children,
+	activeTabClassName,
+	className,
+}: {
+	children: ReactNode;
+	activeTabClassName: string;
+	className: string;
+}) {
+	const mappedChildren = Children.map(children, (child) => {
+		return isValidElement(child)
+			? cloneElement(child, { className: activeTabClassName } as {
+					className: string;
+			  })
+			: undefined;
+	});
+	return <div className={className}>{mappedChildren}</div>;
 }
-
 export function TabPanel({
 	name,
 	children,
