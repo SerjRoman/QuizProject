@@ -56,6 +56,7 @@ export default tseslint.config([
 			],
 			"no-unused-vars": "off",
 			"import/no-unresolved": "off",
+			"no-console": ["warn", { allow: ["warn", "error"] }],
 		},
 	},
 ]);
