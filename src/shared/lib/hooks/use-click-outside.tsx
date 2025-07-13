@@ -12,10 +12,10 @@ export function useClickOutside(
 			if (target == elem || elem.contains(target)) return;
 			handler();
 		}
-		document.body.addEventListener("mousedown", handleClickOutside);
+		document.addEventListener("mousedown", handleClickOutside);
 
 		return () => {
-			document.body.removeEventListener("mousedown", handleClickOutside);
+			document.removeEventListener("mousedown", handleClickOutside);
 		};
 	}, [handler, ref]);
 }
