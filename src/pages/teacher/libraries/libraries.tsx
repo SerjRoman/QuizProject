@@ -1,23 +1,27 @@
-import { ViewAllPanel, ViewCopiedPanel, ViewCreatedPanel, ViewFavouritePanel, ViewFoldersPanel } from "@/features/teacher";
+import {
+	ViewAllPanel,
+	ViewCopiedPanel,
+	ViewCreatedPanel,
+	ViewFavouritePanel,
+	ViewFoldersPanel,
+} from "@/features/teacher";
 import { Tab, TabList, Tabs } from "@/shared/ui/tabs/tabs";
 
 export function Libraries() {
 	return (
-		<Tabs onChange={function (): void {
-            throw new Error("Function not implemented.");
-        } }>
-			<TabList activeTabClassName={"active"} className={""}>
-				<Tab title={"All"} name={"all"}></Tab>
-                <Tab title={"Created"} name={"created"} ></Tab>
-                <Tab title={"Copied"} name={"copied"} ></Tab>
-                <Tab title={"Folders"} name={"folders"} ></Tab>
-                <Tab title={"Favourite"} name={"favourite"} ></Tab>
+		<Tabs>
+			<TabList>
+				<Tab title={"All"} name={"all"} />
+				<Tab title={"Created"} name={"created"} />
+				<Tab title={"Copied"} name={"copied"} />
+				<Tab title={"Folders"} name={"folders"} />
+				<Tab title={"Favourite"} name={"favourite"} />
 			</TabList>
-            <ViewAllPanel/>
-            <ViewCreatedPanel/>
-            <ViewCopiedPanel/>
-            <ViewFoldersPanel/>
-            <ViewFavouritePanel/>
+			<ViewAllPanel />
+			<ViewCreatedPanel />
+			<ViewCopiedPanel />
+			<ViewFoldersPanel />
+			<ViewFavouritePanel />
 		</Tabs>
 	);
 }
