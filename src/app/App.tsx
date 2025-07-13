@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { SortQuizzesHeaderCell } from "@/features/library";
 import { QuizTableRow, useLazyGetMyQuizzesQuery } from "@/entities/quiz";
 import { setTokens, useLoginMutation } from "@/entities/user";
 import { useAppDispatch, useAppSelector } from "@/shared/lib";
@@ -11,7 +12,7 @@ function App() {
 	const [login] = useLoginMutation();
 	const dispatch = useAppDispatch();
 	const user = useAppSelector((state) => state.user.user);
-	const { quizzes } = useAppSelector((state) => state.quizLlibrary);
+	const { filteredQuizzes } = useAppSelector((state) => state.quizLlibrary);
 	const [getQuizzes] = useLazyGetMyQuizzesQuery();
 	useEffect(() => {
 		const token = localStorage.getItem("token");
@@ -64,9 +65,16 @@ function App() {
 					/>
 				)}
 			></Dropdown>
-			{quizzes?.map((quiz) => {
-				return <QuizTableRow quiz={quiz} actions={<></>}></QuizTableRow>;
-			})}
+			<table style={{ width: "100%" }}>
+				<thead>
+					<SortQuizzesHeaderCell />
+				</thead>
+				<tbody>
+					{filteredQuizzes?.map((quiz) => {
+						return <QuizTableRow quiz={quiz} actions={<></>} />;
+					})}
+				</tbody>
+			</table>
 		</>
 	);
 }

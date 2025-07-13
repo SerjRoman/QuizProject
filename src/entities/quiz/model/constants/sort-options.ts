@@ -1,12 +1,15 @@
-import type { SortOptions } from "../types";
+import type { OrderOptions, SortOptions } from "../types";
 
-export const SORT_OPTIONS: Record<SortOptions & "title", string>[] = [
-	{
-		title: "Activity name",
-		type: "name",
+export const SORT_OPTIONS: Record<
+	SortOptions,
+	Record<"order", OrderOptions>
+> = {
+	date: {
+		order: "desc",
 	},
-	{
-		title: "Creation time",
-		type: "date",
+	name: {
+		order: "desc",
 	},
-];
+};
+
+export const ORDER_OPTIONS = ["desc", "asc"];

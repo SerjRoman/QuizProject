@@ -1,21 +1,21 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import type { SORT_OPTIONS } from "../constants";
 import type { QuizLibrary, SortOptions } from "../types";
 
 interface IQuizLibraryState {
 	quizzes: QuizLibrary[];
 	filteredQuizzes: QuizLibrary[];
-	filter: {
-		search: string;
-		sort: SortOptions;
-	};
+	search: string;
+	sort: typeof SORT_OPTIONS;
 }
 
 const initialState: IQuizLibraryState = {
 	quizzes: [],
 	filteredQuizzes: [],
-	filter: {
-		search: "",
-		sort: "date",
+	search: "",
+	sort: {
+		date: { order: "desc" },
+		name: { order: "desc" },
 	},
 };
 
@@ -23,30 +23,42 @@ export const quizLibrarySlice = createSlice({
 	initialState,
 	name: "quizLlibrary",
 	reducers: {
-		filter: (
-			state,
-			{ payload }: PayloadAction<{ search?: string; sort?: SortOptions }>
-		) => {
-			if (!payload.search && !payload.sort) return;
-			if (typeof payload.search === "string") {
-				const search = payload.search.toLowerCase();
-				state.filter.search = search;
-				state.filteredQuizzes = state.quizzes.filter((quiz) =>
-					quiz.title.includes(search)
-				);
-			}
-			if (typeof payload.sort === "string") {
-				state.filteredQuizzes = state.quizzes.sort((q1, q2) => {
-					if (q1 > q2) return 1;
-					else if (q1 < q2) return -1;
-					else return 0;
-				});
-			}
+		search: (state, { payload }: PayloadAction<{ search?: string }>) => {
+			if (!payload.search) return;
+			const search = payload.search.toLowerCase();
+			state.search = search;
+			state.filteredQuizzes = state.quizzes.filter((quiz) =>
+				quiz.title.includes(search)
+			);
+		},
+		sort: (state, { payload }: PayloadAction<SortOptions>) => {
+			const field = payload;
+			const currentOrder = state.sort[field].order;
+
+			const newOrder = currentOrder === "asc" ? "desc" : "asc";
+			state.sort[field] = { order: newOrder };
+
+			const sortMultiplier = newOrder === "asc" ? 1 : -1;
+
+			state.filteredQuizzes.sort((a, b) => {
+				let comparison = 0;
+
+				if (field === "name") {
+					comparison = a.title.localeCompare(b.title);
+				} else if (field === "date") {
+					const dateA = new Date(a.createdAt).getTime();
+					const dateB = new Date(b.createdAt).getTime();
+					comparison = dateA - dateB;
+				}
+
+				return comparison * sortMultiplier;
+			});
 		},
 		setQuizzes: (state, { payload }: PayloadAction<QuizLibrary[]>) => {
 			state.quizzes = payload;
+			state.filteredQuizzes = payload;
 		},
 	},
 });
 
-export const { filter, setQuizzes } = quizLibrarySlice.actions;
+export const { search, sort, setQuizzes } = quizLibrarySlice.actions;
