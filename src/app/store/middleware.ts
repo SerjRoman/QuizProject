@@ -7,7 +7,6 @@ export const loginListenerMiddleware = createListenerMiddleware();
 loginListenerMiddleware.startListening.withTypes<RootState, AppDispatch>()({
 	actionCreator: setTokens,
 	effect: (_, listenerApi) => {
-        console.log('dasdasds')
 		listenerApi.dispatch(userApi.endpoints.me.initiate());
 		listenerApi.cancelActiveListeners();
 	},
