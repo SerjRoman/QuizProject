@@ -1,11 +1,5 @@
-import type { ReactNode } from "react";
-
 import styles from "./base.module.css";
-
-export interface IBaseLayoutProps {
-	bgImage?: string;
-	children?: ReactNode;
-}
+import type { IBaseLayoutProps } from "./base.types";
 
 export function BaseLayout({ bgImage, children }: IBaseLayoutProps) {
 	return (

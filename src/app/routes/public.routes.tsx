@@ -17,7 +17,6 @@ export const PublicRoutes: RouteObject = {
 		},
 		{
 			path: "join",
-			element: <RoomLayout />,
 			children: [{ path: "", element: <JoinRoomPage /> }],
 		},
 	],
