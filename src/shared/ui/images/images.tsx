@@ -1,11 +1,11 @@
-import privateBackground from "@assets/adminBg.png";
+import privateBackground from "@assets/authBg.png";
 import avatar from "@assets/avatar.png"
-import loginBackground from "@assets/loginBg.png";
+import colorBubblesBackground from "@assets/colorBubblesBg.png";
 import logo from "@assets/logo.png";
 
 export const Images = {
 	privateBackground,
-	loginBackground,
+	colorBubblesBackground,
 	logo,
 	avatar
 };

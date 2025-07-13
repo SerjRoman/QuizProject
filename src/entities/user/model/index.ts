@@ -1,3 +1,4 @@
 export * from "./slices/user.slice";
 export type { IUser, UserProfile } from "./types/user";
-export {ADMIN_HEADER_MAP} from "./constants/admin-header-map"
+export { TEACHER_HEADER_MAP } from "./constants/teacher-header-map";
+export type {INavBarButton} from "./types/nav-bar-button"

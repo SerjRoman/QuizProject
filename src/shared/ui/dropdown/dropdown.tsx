@@ -4,7 +4,7 @@ import styles from "./dropdown.module.css";
 import type { IDropdownProps } from "./dropdown.types";
 
 export function Dropdown<T>(props: IDropdownProps<T>) {
-	const { dataSoruce, renderItem, trigger, showOn, className, ...restProps } =
+	const { dataSource, renderItem, trigger, showOn, className, ...restProps } =
 		props;
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -33,7 +33,7 @@ export function Dropdown<T>(props: IDropdownProps<T>) {
 			{trigger(renderProps)}
 			{isOpen && (
 				<div {...restProps} className={styles.dropdownPanel}>
-					{dataSoruce?.map(renderItem)}
+					{dataSource?.map(renderItem)}
 				</div>
 			)}
 		</div>

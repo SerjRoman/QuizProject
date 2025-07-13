@@ -8,7 +8,7 @@ export interface IDropdownRenderProp {
 }
 export interface IDropdownProps<T> extends HTMLAttributes<HTMLDivElement> {
 	trigger: (props: IDropdownRenderProp) => ReactNode;
-	dataSoruce: T[];
+	dataSource: T[];
 	renderItem: (data: T) => ReactNode;
 	showOn?: "hover";
 }
