@@ -1,7 +1,6 @@
-import { TEACHER_HEADER_NAVIGATION_MAP } from "@/shared/model/constants";
+import { TEACHER_HEADER_NAVIGATION_MAP } from "@/shared/model/constants/navigation-map";
 import { Icons } from "@/shared/ui";
 import type { INavBarButton } from "../types/nav-bar-button";
-
 
 export const TEACHER_HEADER_MAP: INavBarButton[] = [
 	{
@@ -37,7 +36,8 @@ export const TEACHER_HEADER_MAP: INavBarButton[] = [
 		title: "Reports",
 		iconLeft: Icons.Library,
 		iconRight: Icons.ArrowDown,
-		dataSource: [{
+		dataSource: [
+			{
 				path: "",
 				title: "All",
 			},
@@ -83,6 +83,6 @@ export const TEACHER_HEADER_MAP: INavBarButton[] = [
 		path: TEACHER_HEADER_NAVIGATION_MAP.community,
 		title: "Community",
 		iconLeft: Icons.Library,
-		dataSource:[{path: "", title: ""}]
+		dataSource: [{ path: "", title: "" }],
 	},
 ];

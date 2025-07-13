@@ -6,6 +6,3 @@ export const USER_API_MAP = {
 	refresh: "/users/refresh",
 };
 
-export const QUIZ_API_MAP = {
-	all: "/quizzes/",
-};
