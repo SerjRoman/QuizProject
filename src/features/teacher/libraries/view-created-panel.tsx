@@ -1,9 +1,8 @@
-import { TabPanel } from "@/shared/ui/tabs/tabs";
 
 export function ViewCreatedPanel() {
     return (
-        <TabPanel name={"created"}>
+        <div>
             <h1>CreatedPanel</h1>
-        </TabPanel>
+        </div>
     );
 }

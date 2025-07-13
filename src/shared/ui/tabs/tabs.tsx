@@ -1,10 +1,5 @@
 import { clsx } from "clsx";
-import {
-	createContext,
-	useContext,
-	useState,
-	type ReactNode,
-} from "react";
+import { createContext, useContext, useState, type ReactNode } from "react";
 import type {
 	IActiveContext,
 	ITabPanelProps,
@@ -28,11 +23,11 @@ const useActiveContext = () => {
 	return ctx;
 };
 
-export function Tabs({ defaultTab, children }: ITabsProps) {
+export function Tabs({ defaultTab, children, className }: ITabsProps) {
 	const [activeTab, setActiveTab] = useState(defaultTab);
 
 	return (
-		<TabsContext value={{ activeTab, setActiveTab }}>
+		<TabsContext value={{ activeTab, setActiveTab, className }}>
 			{children}
 		</TabsContext>
 	);
@@ -41,33 +36,38 @@ export function Tabs({ defaultTab, children }: ITabsProps) {
 export function TabList({
 	activeClassName,
 	defaultClassName,
-    children
+	TabsClassName,
+    className,
+	children,
 }: IActiveContext & { children: ReactNode }) {
 	return (
-		<ActiveContext value={{ activeClassName, defaultClassName }}>
-			{children}
+		<ActiveContext value={{ activeClassName, defaultClassName, TabsClassName, className }}>
+			<div className={TabsClassName}>{children}</div>
 		</ActiveContext>
 	);
 }
 
 export function Tab({ name, title }: ITabProps) {
 	const { activeTab, setActiveTab } = useTabsContext();
-    const {activeClassName, defaultClassName} = useActiveContext()
+	const { activeClassName, defaultClassName, className } = useActiveContext();
 	const isActive = activeTab === name;
 
 	return (
 		<div
 			onClick={() => setActiveTab(name)}
-			className={clsx(isActive ? activeClassName: defaultClassName)}
+			className={clsx(
+				className,
+				isActive ? activeClassName : defaultClassName
+			)}
 		>
 			{title}
 		</div>
 	);
 }
 
-export function TabPanel({ name, children }: ITabPanelProps) {
+export function TabPanel({ name, children, className }: ITabPanelProps) {
 	const { activeTab } = useTabsContext();
 
 	if (activeTab !== name) return null;
-	return <>{children}</>;
+	return <div className={className}>{children}</div>;
 }

@@ -1,9 +1,8 @@
-import { TabPanel } from "@/shared/ui/tabs/tabs";
 
 export function ViewFoldersPanel() {
     return (
-        <TabPanel name={"folders"}>
+        <div>
             <h1>FoldersPanel</h1>
-        </TabPanel>
+        </div>
     );
 }

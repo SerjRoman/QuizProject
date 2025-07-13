@@ -1,6 +1,35 @@
-.active{
-    background-color:var(--button-gray3);
+.container {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	height: 100vh;
 }
-.default{
-    background-color: var(--button-gray2);
+
+.tabs {
+	display: flex;
+	padding: 20px 2% 0 2%;
+	gap: 15px;
+}
+.tabPanel {
+	background-color: var(--white);
+	display: flex;
+	margin: 0 2% 0 2%;
+	border-radius: 0 10px 0 0;
+	flex: 1;
+}
+
+.base {
+	border-radius: 10px 10px 0 0;
+	width: 180px;
+	height: 30px;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+}
+
+.active {
+	background-color: var(--white);
+}
+.default {
+	background-color: var(--tab-gray);
 }
