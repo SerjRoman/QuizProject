@@ -1,13 +1,21 @@
 import { clsx } from "clsx";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { useClickOutside } from "@/shared/lib";
 import styles from "./dropdown.module.css";
 import type { IDropdownProps } from "./dropdown.types";
 
 export function Dropdown<T>(props: IDropdownProps<T>) {
-	const { dataSource, renderItem, trigger, showOn, className, ...restProps } =
-		props;
+	const {
+		dataSource,
+		renderItem,
+		trigger,
+		showOn,
+		className,
+		doCloseOnClickOutside,
+		...restProps
+	} = props;
 	const [isOpen, setIsOpen] = useState<boolean>(false);
-
+	const dropdownRef = useRef<HTMLDivElement>(null);
 	function handleOpen() {
 		setIsOpen(true);
 	}
@@ -27,9 +35,16 @@ export function Dropdown<T>(props: IDropdownProps<T>) {
 		onMouseEnter: handleOpen,
 		onMouseLeave: handleClose,
 	};
-    
+	useClickOutside(dropdownRef, () => {
+		if (doCloseOnClickOutside) handleClose();
+	});
+
 	return (
-		<div className={clsx(styles.container, className)} {...handleHover}>
+		<div
+			className={clsx(styles.container, className)}
+			ref={dropdownRef}
+			{...handleHover}
+		>
 			{trigger(renderProps)}
 			{isOpen && (
 				<div {...restProps} className={styles.dropdownPanel}>
