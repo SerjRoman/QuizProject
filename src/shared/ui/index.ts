@@ -8,3 +8,4 @@ export { RadioGroup, Radio } from "./radio";
 export { Form } from "./form";
 export { Button } from "./button";
 export { Tab, TabPanel, TabList, Tabs } from "./tabs";
+export { FilterBlock } from "./filter-block";
