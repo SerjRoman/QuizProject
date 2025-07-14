@@ -1,1 +1,33 @@
+.inputWrapper {
+	position: relative;
+}
+.label {
+	display: inline-flex;
+	position: relative;
+	flex-direction: column;
+}
+.labelText {
+	font-size: 20px;
+	font-family: "Kulim Park";
+}
+.input {
+	border-radius: 10px;
+	padding: 10px;
+	font-size: 20px;
+	font-family: "Kulim Park";
+	border: 1px solid var(--grey1);
+}
+.icon {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 24px;
+	height: 24px;
+}
 
+.iconRight {
+	right: 10px;
+}
+.iconLeft {
+	left: 10px;
+}
