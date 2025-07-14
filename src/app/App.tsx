@@ -1,25 +1,29 @@
 import { useEffect } from "react";
-import {
-	useGetAllQuizzesQuery,
-	useLazyGetAllQuizzesQuery,
-} from "@/entities/quiz/api/quiz";
+import { QuizTableRow, useLazyGetMyQuizzesQuery } from "@/entities/quiz";
 import { setTokens, useLoginMutation } from "@/entities/user";
-import { useAppDispatch } from "@/shared/lib";
+import { useAppDispatch, useAppSelector } from "@/shared/lib";
 import { Dropdown, Icons, MenuButton } from "@/shared/ui";
 
 import styles from "./root.module.css";
+
 function App() {
 	// const [register] = useRegisterMutation();
 	const [login] = useLoginMutation();
 	const dispatch = useAppDispatch();
-	const { data, isLoading } = useGetAllQuizzesQuery();
-	const [fetchQuizzes] = useLazyGetAllQuizzesQuery();
+	const user = useAppSelector((state) => state.user.user);
+	const { quizzes } = useAppSelector((state) => state.quizLlibrary);
+	const [getQuizzes] = useLazyGetMyQuizzesQuery();
 	useEffect(() => {
 		const token = localStorage.getItem("token");
 		const refreshToken = localStorage.getItem("refreshToken");
 		if (!token || !refreshToken) return;
 		dispatch(setTokens({ token, refreshToken }));
 	}, [dispatch]);
+
+	useEffect(() => {
+		if (!user) return;
+		getQuizzes({ userId: user.id });
+	}, [getQuizzes, user]);
 	return (
 		<>
 			<div className={styles.red}>
@@ -39,13 +43,6 @@ function App() {
 				}}
 			>
 				Login
-			</button>
-			<button
-				onClick={() => {
-					fetchQuizzes();
-				}}
-			>
-				Quizzes
 			</button>
 			<Dropdown
 				doCloseOnClickOutside={true}
@@ -67,16 +64,9 @@ function App() {
 					/>
 				)}
 			></Dropdown>
-			<p>{isLoading}</p>
-			<div>
-				{data?.map((quiz) => {
-					return (
-						<div>
-							<h1>{quiz.title}</h1>
-						</div>
-					);
-				})}
-			</div>
+			{quizzes?.map((quiz) => {
+				return <QuizTableRow quiz={quiz} actions={<></>}></QuizTableRow>;
+			})}
 		</>
 	);
 }

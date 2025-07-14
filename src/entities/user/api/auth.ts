@@ -1,6 +1,6 @@
 import { baseApi } from "@/shared/api";
-import { USER_API_MAP } from "@/shared/model/constants";
 import { setTokens, setUser, type IUser } from "../model";
+import { USER_API_MAP } from "./constants";
 import type {
 	ILoginRequest,
 	ILoginResponse,
@@ -63,4 +63,3 @@ export const {
 	useLazyMeQuery,
 	useRegisterMutation,
 } = userApi;
-

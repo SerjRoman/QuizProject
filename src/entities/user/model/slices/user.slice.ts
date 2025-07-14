@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { ILoginResponse } from "../../api/types/auth";
 import type { IUser } from "../types/user";
 
-
 interface IUserState {
 	user: IUser | null;
 	token: string | null;

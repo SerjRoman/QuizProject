@@ -1,8 +1,10 @@
 import ArrowDown from "@assets/svg/arrow-down.svg";
 import Bell from "@assets/svg/bell.svg";
 import Bin from "@assets/svg/bin.svg";
+import DotsVertical from "@assets/svg/dots-vertical.svg";
 import Edit from "@assets/svg/edit.svg";
 import Library from "@assets/svg/library.svg";
+import Star from "@assets/svg/star.svg";
 
 export const Icons = {
 	Bin,
@@ -10,4 +12,6 @@ export const Icons = {
 	Edit,
 	Library,
 	Bell,
+	Star,
+	DotsVertical,
 };
