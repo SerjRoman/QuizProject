@@ -15,6 +15,26 @@
 	--button-gray3: rgba(52, 52, 53, 0.75);
 	--button-gray-text: #383435;
 	--tab-gray: #f6f6f6;
+
+	--grey1: #808080;
+	--grey2: #b2aeae;
+	--grey3: #bfbfbf;
+	--dark-grey1: #383435;
+	--dark-grey2: #666666;
+	--light-grey1: #cccccc;
+	--light-grey2: #e5e5e5;
+	--light-grey3: #ededed;
+	--light-grey4: #f6f6f6;
+
+	--dark-red: #7f000f;
+	--red: #9f0013;
+	--light-red1: #B7404E;
+	--light-red2: #D7949C;
+
+    --fade-green: #CDF3B1;
+    --fade-pink: #F5B2C4;
+    --fade-white: #F6F6F6;
+    --fade-yellow: #FFF9E6;
 }
 
 * {

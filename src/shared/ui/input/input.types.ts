@@ -1,4 +1,11 @@
-import type { HTMLAttributes } from "react";
+import type { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from "react";
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export interface IInput extends HTMLAttributes<HTMLInputElement> {}
+export interface IInput
+	extends DetailedHTMLProps<
+		InputHTMLAttributes<HTMLInputElement>,
+		HTMLInputElement
+	> {
+	iconLeft?: ReactNode;
+	iconRight?: ReactNode;
+	label?: string;
+}
