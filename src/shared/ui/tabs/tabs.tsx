@@ -37,7 +37,6 @@ export function TabList({
 	activeClassName,
 	defaultClassName,
 	TabsClassName,
-	className,
 	children,
 }: IActiveContext & { children: ReactNode }) {
 	return (
@@ -46,7 +45,6 @@ export function TabList({
 				activeClassName,
 				defaultClassName,
 				TabsClassName,
-				className,
 			}}
 		>
 			<div className={TabsClassName}>{children}</div>

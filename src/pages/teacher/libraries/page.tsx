@@ -16,7 +16,6 @@ export function LibraryPage() {
 					TabsClassName={styles.tabs}
 					activeClassName={styles.active}
 					defaultClassName={styles.base}
-					className={styles.base}
 				>
 					<Tab title={"All"} name={"all"} />
 					<Tab title={"Created"} name={"created"} />

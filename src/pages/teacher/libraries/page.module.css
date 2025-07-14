@@ -10,12 +10,6 @@
 	display: flex;
 	gap: 15px;
 }
-/* .tabPanel {
-	background-color: var(--white);
-	display: flex;
-	border-radius: 0 10px 0 0;
-	flex: 1;
-} */
 
 .base {
 	border-radius: 10px 10px 0 0;
@@ -27,8 +21,11 @@
 	font-family: "Kulim Park";
 	font-size: 18px;
 	background-color: var(--tab-gray);
+	box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
 }
 
 .active {
+	box-shadow: none;
 	background-color: var(--white);
 }

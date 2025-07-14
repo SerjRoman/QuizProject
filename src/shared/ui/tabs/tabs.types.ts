@@ -23,5 +23,4 @@ export interface IActiveContext {
 	activeClassName: string;
 	defaultClassName: string;
 	TabsClassName: string;
-	className: string;
 }
