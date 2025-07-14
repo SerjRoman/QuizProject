@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { SortQuizzesHeaderCell } from "@/features/library";
+import { SortQuizzesHeaderCell } from "@/features/teacher";
 import { QuizTableRow, useLazyGetMyQuizzesQuery } from "@/entities/quiz";
 import { setTokens, useLoginMutation } from "@/entities/user";
 import { useAppDispatch, useAppSelector } from "@/shared/lib";

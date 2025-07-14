@@ -1,1 +1,1 @@
-export { TeacherLayout } from "./teacher";
+export { TeacherLayout } from "./layout";

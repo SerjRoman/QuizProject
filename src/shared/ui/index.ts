@@ -7,3 +7,4 @@ export { MenuButton } from "./menu-button";
 export { RadioGroup, Radio } from "./radio";
 export { Form } from "./form";
 export { Button } from "./button";
+export { Tab, TabPanel, TabList, Tabs } from "./tabs";

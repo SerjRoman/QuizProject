@@ -22,7 +22,7 @@
 	height: 20px;
 	border: none;
 	align-self: center;
-	background-color: none;
+	background-color: transparent;
 }
 
 .enabled {
