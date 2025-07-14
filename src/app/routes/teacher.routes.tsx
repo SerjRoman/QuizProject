@@ -1,18 +1,19 @@
 import type { RouteObject } from "react-router-dom";
+import { LibraryPage } from "@/pages/teacher";
 import App from "../App";
 
 export const TeacherRoutes: RouteObject = {
 	path: "teacher",
 	children: [
 		{
-            path: "dashboard",
+			path: "dashboard",
 			children: [
 				{
 					path: "libraries",
 					children: [
 						{
-                            path:"",
-							element: <App />,
+							path: "",
+							element: <LibraryPage />,
 						},
 					],
 				},
@@ -20,7 +21,7 @@ export const TeacherRoutes: RouteObject = {
 					path: "reports",
 					children: [
 						{
-                            path:"",
+							path: "",
 							element: <App />,
 						},
 					],
@@ -29,7 +30,7 @@ export const TeacherRoutes: RouteObject = {
 					path: "classes",
 					children: [
 						{
-                            path:"",
+							path: "",
 							element: <App />,
 						},
 					],
@@ -38,7 +39,7 @@ export const TeacherRoutes: RouteObject = {
 					path: "community",
 					children: [
 						{
-                            path:"",
+							path: "",
 							element: <App />,
 						},
 					],
