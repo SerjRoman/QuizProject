@@ -14,7 +14,7 @@
 	--button-gray2: #808080;
 	--button-gray3: rgba(52, 52, 53, 0.75);
 	--button-gray-text: #383435;
-	--tab-gray: #F6F6F6
+	--tab-gray: #f6f6f6;
 }
 
 * {
@@ -23,6 +23,6 @@
 	box-sizing: border-box;
 }
 
-body{
+body {
 	overflow: hidden;
 }
