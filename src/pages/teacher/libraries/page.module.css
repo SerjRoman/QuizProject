@@ -3,20 +3,19 @@
 	flex-direction: column;
 	flex: 1;
 	height: 100vh;
+	padding: 15px 2% 0 2%;
 }
 
 .tabs {
 	display: flex;
-	padding: 20px 2% 0 2%;
 	gap: 15px;
 }
-.tabPanel {
+/* .tabPanel {
 	background-color: var(--white);
 	display: flex;
-	margin: 0 2% 0 2%;
 	border-radius: 0 10px 0 0;
 	flex: 1;
-}
+} */
 
 .base {
 	border-radius: 10px 10px 0 0;
@@ -25,13 +24,11 @@
 	justify-content: center;
 	align-items: center;
 	display: flex;
-	font-family: 'Kulim Park';
+	font-family: "Kulim Park";
 	font-size: 18px;
+	background-color: var(--tab-gray);
 }
 
 .active {
 	background-color: var(--white);
-}
-.default {
-	background-color: var(--tab-gray);
 }

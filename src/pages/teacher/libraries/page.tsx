@@ -5,17 +5,17 @@ import {
 	ViewFavouritePanel,
 	ViewFoldersPanel,
 } from "@/features/teacher";
-import { Tab, TabList, TabPanel, Tabs } from "@/shared/ui/tabs/tabs";
-import styles from "./libraries.module.css";
+import { Tab, TabList, TabPanel, Tabs } from "@/shared/ui";
+import styles from "./page.module.css";
 
-export function Libraries() {
+export function LibraryPage() {
 	return (
 		<div className={styles.container}>
-			<Tabs className={styles.container} defaultTab="all">
+			<Tabs defaultTab="all">
 				<TabList
 					TabsClassName={styles.tabs}
 					activeClassName={styles.active}
-					defaultClassName={styles.default}
+					defaultClassName={styles.base}
 					className={styles.base}
 				>
 					<Tab title={"All"} name={"all"} />
@@ -24,19 +24,19 @@ export function Libraries() {
 					<Tab title={"Folders"} name={"folders"} />
 					<Tab title={"Favourite"} name={"favourite"} />
 				</TabList>
-				<TabPanel className={styles.tabPanel} name={"all"}>
+				<TabPanel name={"all"}>
 					<ViewAllPanel />
 				</TabPanel>
-				<TabPanel className={styles.tabPanel} name={"created"}>
+				<TabPanel name={"created"}>
 					<ViewCreatedPanel />
 				</TabPanel>
-				<TabPanel className={styles.tabPanel} name={"copied"}>
+				<TabPanel name={"copied"}>
 					<ViewCopiedPanel />
 				</TabPanel>
-				<TabPanel className={styles.tabPanel} name={"folders"}>
+				<TabPanel name={"folders"}>
 					<ViewFoldersPanel />
 				</TabPanel>
-				<TabPanel className={styles.tabPanel} name={"favourite"}>
+				<TabPanel name={"favourite"}>
 					<ViewFavouritePanel />
 				</TabPanel>
 			</Tabs>

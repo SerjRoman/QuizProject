@@ -1,1 +1,7 @@
-export { ViewAllPanel, ViewCreatedPanel, ViewCopiedPanel, ViewFoldersPanel, ViewFavouritePanel } from "./libraries";
+export {
+    ViewAllPanel,
+    ViewCreatedPanel,
+    ViewCopiedPanel,
+    ViewFoldersPanel,
+    ViewFavouritePanel,
+} from "./libraries";

@@ -9,7 +9,7 @@ import type {
 } from "./tabs.types";
 
 const TabsContext = createContext<ITabsContext | null>(null);
-const ActiveContext = createContext<IActiveContext | null>(null);
+const TabListContext = createContext<IActiveContext | null>(null);
 
 const useTabsContext = () => {
 	const ctx = useContext(TabsContext);
@@ -17,17 +17,17 @@ const useTabsContext = () => {
 	return ctx;
 };
 
-const useActiveContext = () => {
-	const ctx = useContext(ActiveContext);
-	if (!ctx) throw new Error("TabsContext is not provided");
+const useTabListContext = () => {
+	const ctx = useContext(TabListContext);
+	if (!ctx) throw new Error("ActiveTabsContext is not provided");
 	return ctx;
 };
 
-export function Tabs({ defaultTab, children, className }: ITabsProps) {
+export function Tabs({ defaultTab, children }: ITabsProps) {
 	const [activeTab, setActiveTab] = useState(defaultTab);
 
 	return (
-		<TabsContext value={{ activeTab, setActiveTab, className }}>
+		<TabsContext value={{ activeTab, setActiveTab }}>
 			{children}
 		</TabsContext>
 	);
@@ -37,37 +37,41 @@ export function TabList({
 	activeClassName,
 	defaultClassName,
 	TabsClassName,
-    className,
+	className,
 	children,
 }: IActiveContext & { children: ReactNode }) {
 	return (
-		<ActiveContext value={{ activeClassName, defaultClassName, TabsClassName, className }}>
+		<TabListContext
+			value={{
+				activeClassName,
+				defaultClassName,
+				TabsClassName,
+				className,
+			}}
+		>
 			<div className={TabsClassName}>{children}</div>
-		</ActiveContext>
+		</TabListContext>
 	);
 }
 
 export function Tab({ name, title }: ITabProps) {
 	const { activeTab, setActiveTab } = useTabsContext();
-	const { activeClassName, defaultClassName, className } = useActiveContext();
+	const { activeClassName, defaultClassName } = useTabListContext();
 	const isActive = activeTab === name;
 
 	return (
 		<div
 			onClick={() => setActiveTab(name)}
-			className={clsx(
-				className,
-				isActive ? activeClassName : defaultClassName
-			)}
+			className={clsx(defaultClassName, isActive && activeClassName)}
 		>
 			{title}
 		</div>
 	);
 }
 
-export function TabPanel({ name, children, className }: ITabPanelProps) {
+export function TabPanel({ name, children }: ITabPanelProps) {
 	const { activeTab } = useTabsContext();
 
 	if (activeTab !== name) return null;
-	return <div className={className}>{children}</div>;
+	return <>{children}</>;
 }
