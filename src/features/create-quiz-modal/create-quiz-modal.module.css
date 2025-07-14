@@ -1,0 +1,16 @@
+.modal {
+	width: 800px;
+	height: 620px;
+	background-color: var(--light-grey4);
+	border-radius: 10px;
+	position: absolute;
+	z-index: 11;
+
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	display: flex;
+	justify-content: center;
+	/* align-items: center; */
+}
