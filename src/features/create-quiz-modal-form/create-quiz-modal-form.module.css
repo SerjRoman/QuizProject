@@ -1,0 +1,95 @@
+.header {
+	display: flex;
+	align-self: center;
+	font-family: "Kulim Park";
+	font-weight: 200;
+}
+
+.button {
+	display: flex;
+	align-self: center;
+	width: 300px;
+}
+
+.main {
+	display: flex;
+	flex-direction: row;
+}
+
+.block {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 50%;
+	gap: 30px;
+	padding: 20px 0;
+}
+
+.titleInput {
+	display: flex;
+	width: 300px;
+}
+.label {
+	font-family: "Kulim Park";
+	font-size: 20px;
+}
+
+.selectIsPrivate {
+	display: flex;
+	gap: 10px;
+	font-size: 18px;
+}
+
+.selectIsPrivateBlock {
+	display: flex;
+	gap: 30px;
+	justify-content: center;
+	padding-top: 30px;
+}
+
+.imageBlock{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding-top: 30px;
+	gap: 10px;
+	font-family: "Kulim Park";
+	font-size: 20px;
+}
+.image{
+	display: flex;
+	background-color: var(--white);
+	width: 200px;
+	height: 200px;
+	align-items: center;
+	justify-content: center;
+	border-radius: 20px;
+}
+
+
+
+.filterBlock {
+	display: flex;
+	border: dotted 1px var(--grey1);
+	border-radius: 20px;
+	position: relative;
+	padding: 10px;
+	width: 365px;
+	height: 128px;
+}
+
+.filterBlock p {
+	position: absolute;
+	top: -10px;
+	left: 50%;
+	font-size: 14px;
+	font-family: "Kulim Park";
+	transform: translateX(-50%);
+	background-color: var(--light-grey4);
+	padding: 0 5px;
+	margin: 0;
+	font-size: 14px;
+	color: black;
+}

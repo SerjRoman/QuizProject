@@ -3,6 +3,7 @@ import { Modal } from "@/shared/ui";
 
 interface IModalProps {
 	children?: ReactNode;
+	className?:string;
 	doCloseOnClickOutside?: boolean;
 }
 
@@ -16,6 +17,7 @@ export function useModal(): [
 		(props: IModalProps) => {
 			return (
 				<Modal
+					className={props.className ?? ""}
 					isOpen={isOpen}
 					onClose={() => setIsOpen(false)}
 					doCloseOnClickOutside={props.doCloseOnClickOutside}

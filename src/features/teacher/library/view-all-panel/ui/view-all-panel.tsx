@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { CreateQuizModal } from "@/features/create-quiz-modal";
 import { Icons, MenuButton } from "@/shared/ui";
+import { CreateQuizModal } from "../../create-quiz-modal";
 import styles from "./view-all-panel.module.css";
 
 export function ViewAllPanel() {
@@ -15,7 +15,10 @@ export function ViewAllPanel() {
 				enabled
 				onClick={() => setIsModalOpen(true)}
 			/>
-			<CreateQuizModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+			<CreateQuizModal
+				isOpen={isModalOpen}
+				onClose={() => setIsModalOpen(false)}
+			/>
 		</div>
 	);
 }
