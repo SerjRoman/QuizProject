@@ -13,16 +13,16 @@ export function CreateQuizModalForm() {
 		},
 	});
 
-	function onSubmit(data: ICreateQuizFormData){
-		return data
+	function onSubmit(data: ICreateQuizFormData) {
+		return data;
 	}
 
 	return (
 		<>
 			<h1 className={styles.header}>Create your new quiz</h1>
-			<div className={styles.main}>
-				<div className={styles.block}>
-					<Form onSubmit={onSubmit} methods={methodsForm}>
+			<Form onSubmit={onSubmit} methods={methodsForm}>
+				<div className={styles.main}>
+					<div className={styles.block}>
 						<Form.Input
 							name="title"
 							label="Title"
@@ -48,30 +48,29 @@ export function CreateQuizModalForm() {
 							<p>Cover Image</p>
 							<div className={styles.image}>+</div>
 						</div>
-					</Form>
+					</div>
+					<div className={styles.block}>
+						<div className={styles.filterBlock}>
+							<p>Tags</p>
+							<h4>lfdlfdlfdlfd</h4>
+						</div>
+						<div className={styles.filterBlock}>
+							<p>Subject</p>
+							<h4>lfdlfdlfdlfd</h4>
+						</div>
+						<div className={styles.filterBlock}>
+							<p>Languages</p>
+							<h4>lfdlfdlfdlfd</h4>
+						</div>
+					</div>
 				</div>
-				<div className={styles.block}>
-					<div className={styles.filterBlock}>
-						<p>Tags</p>
-						<h4>lfdlfdlfdlfd</h4>
-					</div>
-					<div className={styles.filterBlock}>
-						<p>Subject</p>
-						<h4>lfdlfdlfdlfd</h4>
-					</div>
-					<div className={styles.filterBlock}>
-						<p>Languages</p>
-						<h4>lfdlfdlfdlfd</h4>
-					</div>
-				</div>
-			</div>
-			<MenuButton
-				className={styles.button}
-				title={"Create"}
-				enabled
-				onClick={() => {}}
-			/>
+				<MenuButton
+					className={styles.button}
+					title={"Create"}
+					enabled
+					onClick={() => {}}
+				/>
+			</Form>
 		</>
-		// </Modal>
 	);
 }
