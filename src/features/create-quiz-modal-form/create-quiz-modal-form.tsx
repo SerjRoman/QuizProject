@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { PrivateTypeConstant } from "@/entities/quiz";
+import { VisibilityTypeConstant } from "@/entities/quiz";
 import { Form, MenuButton, Radio, RadioGroup } from "@/shared/ui";
 import styles from "./create-quiz-modal-form.module.css";
 import type { ICreateQuizFormData } from "./create-quiz-modal-form.types";
@@ -30,16 +30,16 @@ export function CreateQuizModalForm() {
 							className={styles.titleInput}
 							labelClassName={styles.label}
 						/>
-						<div className={styles.selectIsPrivateBlock}>
-							<RadioGroup name={"isPrivate"}>
+						<div className={styles.selectVisibilityBlock}>
+							<RadioGroup name={"visibility"}>
 								<Radio
-									value={PrivateTypeConstant.PRIVATE}
-									labelClassName={styles.selectIsPrivate}
+									value={VisibilityTypeConstant.PRIVATE}
+									labelClassName={styles.selectVisibility}
 									label="private"
 								/>
 								<Radio
-									value={PrivateTypeConstant.PUBLIC}
-									labelClassName={styles.selectIsPrivate}
+									value={VisibilityTypeConstant.PUBLIC}
+									labelClassName={styles.selectVisibility}
 									label="public"
 								/>
 							</RadioGroup>

@@ -1,4 +1,4 @@
-export const PrivateTypeConstant = {
+export const VisibilityTypeConstant = {
 	PUBLIC: "PUBLIC",
 	PRIVATE: "PRIVATE",
 };

@@ -35,13 +35,13 @@
 	font-size: 20px;
 }
 
-.selectIsPrivate {
+.selectVisibility {
 	display: flex;
 	gap: 10px;
 	font-size: 18px;
 }
 
-.selectIsPrivateBlock {
+.selectVisibilityBlock {
 	display: flex;
 	gap: 30px;
 	justify-content: center;
