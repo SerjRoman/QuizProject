@@ -1,9 +1,7 @@
-// type QuizStatus = "PUBLISHED" | "DRAFT";
+type QuizIsPrivateStatus = "PUBLIC" | "PRIVATE";
 
 export interface ICreateQuizFormData {
-	// id:number
 	title: string;
-	isPrivate: boolean;
-	// status: QuizStatus;
+	isPrivate: QuizIsPrivateStatus;
 	coverImage?: string;
 }
