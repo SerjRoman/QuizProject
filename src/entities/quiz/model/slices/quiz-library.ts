@@ -26,9 +26,9 @@ export const quizLibrarySlice = createSlice({
 		search: (state, { payload }: PayloadAction<{ search?: string }>) => {
 			if (!payload.search) return;
 			const search = payload.search.toLowerCase();
-			state.search = search;
+			state.search = payload.search;
 			state.filteredQuizzes = state.quizzes.filter((quiz) =>
-				quiz.title.includes(search)
+				quiz.title.toLowerCase().includes(search)
 			);
 		},
 		sort: (state, { payload }: PayloadAction<SortOptions>) => {

@@ -4,6 +4,7 @@ import Bin from "@assets/svg/bin.svg";
 import DotsVertical from "@assets/svg/dots-vertical.svg";
 import Edit from "@assets/svg/edit.svg";
 import Library from "@assets/svg/library.svg";
+import Search from "@assets/svg/search.svg";
 import Star from "@assets/svg/star.svg";
 
 export const Icons = {
@@ -14,4 +15,5 @@ export const Icons = {
 	Bell,
 	Star,
 	DotsVertical,
+	Search,
 };
