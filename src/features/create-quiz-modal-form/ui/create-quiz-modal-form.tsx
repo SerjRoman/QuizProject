@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import { VisibilityTypeConstant } from "@/entities/quiz";
 import { Form, MenuButton, Radio, RadioGroup } from "@/shared/ui";
+import type { ICreateQuizFormData } from "../model";
 import styles from "./create-quiz-modal-form.module.css";
-import type { ICreateQuizFormData } from "./create-quiz-modal-form.types";
 
 export function CreateQuizModalForm() {
 	const methodsForm = useForm<ICreateQuizFormData>({
@@ -68,7 +68,7 @@ export function CreateQuizModalForm() {
 					className={styles.button}
 					title={"Create"}
 					enabled
-					onClick={() => {}}
+					type="submit"
 				/>
 			</Form>
 		</>

@@ -17,7 +17,7 @@ export function useModal(): [
 		(props: IModalProps) => {
 			return (
 				<Modal
-					className={props.className ?? ""}
+					className={props.className}
 					isOpen={isOpen}
 					onClose={() => setIsOpen(false)}
 					doCloseOnClickOutside={props.doCloseOnClickOutside}
