@@ -6,18 +6,18 @@ export const quizFilterByApi = baseApi.injectEndpoints({
 	endpoints: (build) => ({
 		getTags: build.query<FilterByResponse[], void>({
 			query: () => ({
-				url: FILTER_BY_API_MAP.tags,
+				url:`${FILTER_BY_API_MAP.tags}?select=["id", "name", "slug"]`,
 			}),
 		}),
 		getLanguages: build.query<FilterByResponse[], void>({
 			query: () => ({
-				url: FILTER_BY_API_MAP.languages,
+				url: `${FILTER_BY_API_MAP.languages}?select=["id", "name", "slug"]`,
 			}),
 		}),
 
-		getSubject: build.query<FilterByResponse[], void>({
+		getSubjects: build.query<FilterByResponse[], void>({
 			query: () => ({
-				url: FILTER_BY_API_MAP.subject,
+				url: `${FILTER_BY_API_MAP.subjects}?select=["id", "name", "slug"]`,
 			}),
 		}),
 	}),
@@ -26,5 +26,5 @@ export const quizFilterByApi = baseApi.injectEndpoints({
 export const { 
     useGetTagsQuery,
     useGetLanguagesQuery,
-    useGetSubjectQuery
+    useGetSubjectsQuery
 } = quizFilterByApi;
