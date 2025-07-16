@@ -1,1 +1,1 @@
-export {CreateQuizModalForm} from "./create-quiz-modal-form"
+export { CreateQuizModalForm } from "./ui";

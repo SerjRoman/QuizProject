@@ -14,7 +14,7 @@ export function CreateQuizModal({
 			className={styles.modal}
 			isOpen={isOpen}
 			onClose={onClose}
-			doCloseOnClickOutside
+			doCloseOnClickOutside={false}
 		>
 			<div className={styles.closeIcon}>
 				<Icons.Cross onClick={onClose} />

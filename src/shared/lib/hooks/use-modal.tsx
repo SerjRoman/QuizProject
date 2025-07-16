@@ -1,29 +1,54 @@
-import { useCallback, useState, type JSX, type ReactNode } from "react";
+import {
+	useCallback,
+	useState,
+	type FunctionComponent,
+	type JSX,
+	type ReactNode,
+} from "react";
 import { Modal } from "@/shared/ui";
 
 interface IModalProps {
 	children?: ReactNode;
-	className?:string;
 	doCloseOnClickOutside?: boolean;
+	className?: string;
+}
+interface IModalPropsWithCustomModal {
+	children?: ReactNode;
+	doCloseOnClickOutside?: boolean;
+	className?: string;
+	ModalComponent?: FunctionComponent<
+		IModalProps & { isOpen: boolean; onClose: () => void }
+	>;
 }
 
 export function useModal(): [
 	{ open: () => void; close: () => void; isOpen: boolean },
-	(props: IModalProps) => JSX.Element
+	(props: IModalPropsWithCustomModal) => JSX.Element
 ] {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const ModalProvider = useCallback(
-		(props: IModalProps) => {
+		(props: IModalPropsWithCustomModal) => {
+			const { ModalComponent, ...restProps } = props;
+			if (!ModalComponent) {
+				return (
+					<Modal
+						isOpen={isOpen}
+						onClose={() => setIsOpen(false)}
+						{...restProps}
+					>
+						{props.children}
+					</Modal>
+				);
+			}
 			return (
-				<Modal
-					className={props.className}
+				<ModalComponent
 					isOpen={isOpen}
 					onClose={() => setIsOpen(false)}
-					doCloseOnClickOutside={props.doCloseOnClickOutside}
+					{...restProps}
 				>
 					{props.children}
-				</Modal>
+				</ModalComponent>
 			);
 		},
 		[isOpen, setIsOpen]

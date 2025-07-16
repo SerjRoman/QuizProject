@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useModal } from "@/shared/lib";
 import { Icons, MenuButton } from "@/shared/ui";
 import { CreateQuizModal } from "../../create-quiz-modal";
 import styles from "./view-all-panel.module.css";
 
 export function ViewAllPanel() {
-	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [{ open: openModal }, ModalWrapper] = useModal();
 	return (
 		<div className={styles.panel}>
 			<h1>AllPanel</h1>
@@ -13,12 +13,9 @@ export function ViewAllPanel() {
 				title={"Create new quiz"}
 				iconRight={<Icons.Plus />}
 				enabled
-				onClick={() => setIsModalOpen(true)}
+				onClick={openModal}
 			/>
-			<CreateQuizModal
-				isOpen={isModalOpen}
-				onClose={() => setIsModalOpen(false)}
-			/>
+			<ModalWrapper ModalComponent={CreateQuizModal} />
 		</div>
 	);
 }
