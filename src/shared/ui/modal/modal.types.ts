@@ -5,4 +5,5 @@ export interface IModalProps {
 	isOpen: boolean;
 	onClose: () => void;
 	doCloseOnClickOutside?: boolean;
+	className: string
 }

@@ -5,7 +5,7 @@ import styles from "./modal.module.css";
 import type { IModalProps } from "./modal.types";
 
 export function Modal(props: IModalProps) {
-	const { isOpen, onClose, children, doCloseOnClickOutside = false } = props;
+	const { isOpen, onClose, children,className, doCloseOnClickOutside = false } = props;
 
 	const contentRef = useRef<HTMLDivElement | null>(null);
 
@@ -15,7 +15,7 @@ export function Modal(props: IModalProps) {
 	if (!isOpen) return null;
 	return createPortal(
 		<div className={styles.overlay} >
-			<div className={styles.content} ref={contentRef}>
+			<div className={className} ref={contentRef}>
 				{children}
 			</div>
 		</div>,

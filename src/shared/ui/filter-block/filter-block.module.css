@@ -1,0 +1,35 @@
+.filterBlock {
+	height: auto;
+	display: flex;
+
+	flex-direction: column;
+
+	gap: 10px;
+
+	padding: 10px;
+
+	position: relative;
+
+	border-radius: 20px;
+	border: 1px dashed var(--grey1);
+}
+
+.title {
+	position: absolute;
+	right: 50%;
+    top: 0;
+	transform: translateX(-50%);
+	transform: translateY(-50%);
+	background-color: inherit;
+}
+
+.content {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.showMore {
+	font-size: 14px;
+	font-family: "Kulim Park";
+}
