@@ -1,4 +1,4 @@
-import { sort } from "@/entities/quiz";
+import { setSort } from "@/entities/quiz";
 import { useAppDispatch } from "@/shared/lib";
 import styles from "./cell.module.css";
 
@@ -9,7 +9,7 @@ export function SortQuizzesHeaderCell() {
 			<th className={styles.headingOrder}>
 				<button
 					onClick={() => {
-						dispatch(sort("name"));
+						dispatch(setSort("name"));
 					}}
 					className={styles.buttonOrder}
 				>
@@ -19,14 +19,14 @@ export function SortQuizzesHeaderCell() {
 			<th className={styles.headingOrder}>
 				<button
 					onClick={() => {
-						dispatch(sort("date"));
+						dispatch(setSort("date"));
 					}}
 					className={styles.buttonOrder}
 				>
 					Creation date
 				</button>
 			</th>
-            <th></th>
+			<th></th>
 		</tr>
 	);
 }

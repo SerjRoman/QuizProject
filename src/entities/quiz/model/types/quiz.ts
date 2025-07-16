@@ -3,7 +3,7 @@ import type { QuizStatus } from "./quiz-status";
 export interface IQuiz {
 	id: string;
 	title: string;
-	isPrivate: boolean;
+	visibility: boolean;
 	status: QuizStatus;
 	coverImage: string | null;
 	tagsIds: string[];
@@ -20,6 +20,9 @@ export interface IQuiz {
 	folderIds: string[];
 }
 
-export type QuizLibrary = Pick<IQuiz, "id" | "title" | "createdAt"> & {
+export type QuizLibrary = Pick<
+	IQuiz,
+	"id" | "title" | "createdAt" | "tagsIds" | "languagesIds" | "subjectId"
+> & {
 	isFavourite: boolean;
 };

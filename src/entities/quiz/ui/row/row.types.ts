@@ -4,6 +4,7 @@ import type { IQuiz } from "../../model/types";
 type QuizRow = {
 	title: string;
 	createdAt: string;
+	id: string;
 };
 
 export interface IQuizTableRowProps
