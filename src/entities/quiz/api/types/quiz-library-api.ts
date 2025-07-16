@@ -7,4 +7,11 @@ export type QuizLibraryAllResponse = {
 	title: string;
 	favouritedByIds: string[];
 	createdAt: string;
+	tagsIds: string[];
+	languagesIds: string[];
+	subjectId: string;
+};
+
+export type QuizLibraryFavourite = {
+	id: string;
 };
