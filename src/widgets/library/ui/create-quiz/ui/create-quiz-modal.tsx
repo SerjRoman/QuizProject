@@ -1,6 +1,14 @@
 import { useForm } from "react-hook-form";
 import { VisibilityTypeConstant } from "@/entities/quiz";
-import { Form, Icons, MenuButton, Modal, Radio, RadioGroup } from "@/shared/ui";
+import {
+	FilterBlock,
+	Form,
+	Icons,
+	MenuButton,
+	Modal,
+	Radio,
+	RadioGroup,
+} from "@/shared/ui";
 import type { ICreateQuizFormData } from "../model";
 import styles from "./create-quiz-modal.module.css";
 
@@ -11,7 +19,9 @@ export function CreateQuizModal({
 	isOpen: boolean;
 	onClose: () => void;
 }) {
-		const methodsForm = useForm<ICreateQuizFormData>({
+	// const {} = useGet
+	
+	const methodsForm = useForm<ICreateQuizFormData>({
 		defaultValues: {
 			title: "",
 			visibility: "PUBLIC",
@@ -34,38 +44,38 @@ export function CreateQuizModal({
 				<Icons.Cross onClick={onClose} />
 			</div>
 			<>
-			<h1 className={styles.header}>Create your new quiz</h1>
-			<Form onSubmit={onSubmit} methods={methodsForm}>
-				<div className={styles.main}>
-					<div className={styles.block}>
-						<Form.Input
-							name="title"
-							label="Title"
-							placeholder="Type quiz title here"
-							className={styles.titleInput}
-							labelClassName={styles.label}
-						/>
-						<div className={styles.selectVisibilityBlock}>
-							<RadioGroup name={"visibility"}>
-								<Radio
-									value={VisibilityTypeConstant.PRIVATE}
-									labelClassName={styles.selectVisibility}
-									label="private"
-								/>
-								<Radio
-									value={VisibilityTypeConstant.PUBLIC}
-									labelClassName={styles.selectVisibility}
-									label="public"
-								/>
-							</RadioGroup>
+				<h1 className={styles.header}>Create your new quiz</h1>
+				<Form onSubmit={onSubmit} methods={methodsForm}>
+					<div className={styles.main}>
+						<div className={styles.block}>
+							<Form.Input
+								name="title"
+								label="Title"
+								placeholder="Type quiz title here"
+								className={styles.titleInput}
+								labelClassName={styles.label}
+							/>
+							<div className={styles.selectVisibilityBlock}>
+								<RadioGroup name={"visibility"}>
+									<Radio
+										value={VisibilityTypeConstant.PRIVATE}
+										labelClassName={styles.selectVisibility}
+										label="private"
+									/>
+									<Radio
+										value={VisibilityTypeConstant.PUBLIC}
+										labelClassName={styles.selectVisibility}
+										label="public"
+									/>
+								</RadioGroup>
+							</div>
+							<div className={styles.imageBlock}>
+								<p>Cover Image</p>
+								<div className={styles.image}>+</div>
+							</div>
 						</div>
-						<div className={styles.imageBlock}>
-							<p>Cover Image</p>
-							<div className={styles.image}>+</div>
-						</div>
-					</div>
-					<div className={styles.block}>
-						<div className={styles.filterBlock}>
+						<div className={styles.block}>
+							{/* <div className={styles.filterBlock}>
 							<p>Tags</p>
 							<h4>lfdlfdlfdlfd</h4>
 						</div>
@@ -76,17 +86,22 @@ export function CreateQuizModal({
 						<div className={styles.filterBlock}>
 							<p>Languages</p>
 							<h4>lfdlfdlfdlfd</h4>
+						</div> */}
+							<FilterBlock title="Tags">
+
+							</FilterBlock>
+							<FilterBlock title="Subject"></FilterBlock>
+							<FilterBlock title="Languages"></FilterBlock>
 						</div>
 					</div>
-				</div>
-				<MenuButton
-					className={styles.button}
-					title={"Create"}
-					enabled
-					type="submit"
-				/>
-			</Form>
-		</>
+					<MenuButton
+						className={styles.button}
+						title={"Create"}
+						enabled
+						type="submit"
+					/>
+				</Form>
+			</>
 		</Modal>
 	);
 }
