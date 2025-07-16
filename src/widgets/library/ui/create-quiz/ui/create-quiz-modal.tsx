@@ -1,11 +1,17 @@
 import { useForm } from "react-hook-form";
 import { VisibilityTypeConstant } from "@/entities/quiz";
-import { Form, MenuButton, Radio, RadioGroup } from "@/shared/ui";
+import { Form, Icons, MenuButton, Modal, Radio, RadioGroup } from "@/shared/ui";
 import type { ICreateQuizFormData } from "../model";
-import styles from "./create-quiz-modal-form.module.css";
+import styles from "./create-quiz-modal.module.css";
 
-export function CreateQuizModalForm() {
-	const methodsForm = useForm<ICreateQuizFormData>({
+export function CreateQuizModal({
+	isOpen,
+	onClose,
+}: {
+	isOpen: boolean;
+	onClose: () => void;
+}) {
+		const methodsForm = useForm<ICreateQuizFormData>({
 		defaultValues: {
 			title: "",
 			visibility: "PUBLIC",
@@ -18,7 +24,16 @@ export function CreateQuizModalForm() {
 	}
 
 	return (
-		<>
+		<Modal
+			className={styles.modal}
+			isOpen={isOpen}
+			onClose={onClose}
+			doCloseOnClickOutside={false}
+		>
+			<div className={styles.closeIcon}>
+				<Icons.Cross onClick={onClose} />
+			</div>
+			<>
 			<h1 className={styles.header}>Create your new quiz</h1>
 			<Form onSubmit={onSubmit} methods={methodsForm}>
 				<div className={styles.main}>
@@ -72,5 +87,6 @@ export function CreateQuizModalForm() {
 				/>
 			</Form>
 		</>
+		</Modal>
 	);
 }

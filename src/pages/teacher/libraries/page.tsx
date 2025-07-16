@@ -4,7 +4,7 @@ import {
 	ViewCreatedPanel,
 	ViewFavouritePanel,
 	ViewFoldersPanel,
-} from "@/features/teacher";
+} from "@widgets/library";
 import { Tab, TabList, TabPanel, Tabs } from "@/shared/ui";
 import styles from "./page.module.css";
 

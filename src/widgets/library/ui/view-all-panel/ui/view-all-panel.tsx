@@ -1,6 +1,6 @@
 import { useModal } from "@/shared/lib";
 import { Icons, MenuButton } from "@/shared/ui";
-import { CreateQuizModal } from "../../create-quiz-modal";
+import { CreateQuizModal } from "../../create-quiz";
 import styles from "./view-all-panel.module.css";
 
 export function ViewAllPanel() {
