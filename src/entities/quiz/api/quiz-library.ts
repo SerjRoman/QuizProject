@@ -1,12 +1,11 @@
 import { baseApi } from "@/shared/api";
-import { setQuizzes } from "../model/slices/quiz-library";
-import type { QuizLibrary } from "../model/types";
 import { QUIZ_LIBRARY_MY_SELECT, QUIZ_LIBRARY_API_MAP } from "./constants";
 import type {
 	QuizLibraryRequest,
 	QuizLibraryAllResponse,
 	QuizLibraryFavourite,
 } from "./types";
+import type { QuizLibraryAllResponseRaw } from "./types/quiz-library-api";
 
 export const quizLibraryApi = baseApi.injectEndpoints({
 	endpoints: (build) => ({
@@ -27,27 +26,13 @@ export const quizLibraryApi = baseApi.injectEndpoints({
 						arg.from ? `/${arg.from}` : ""
 					}?select=${JSON.stringify(QUIZ_LIBRARY_MY_SELECT)}`,
 				}),
-				onQueryStarted: async function (
-					arg,
-					{ queryFulfilled, dispatch }
-				) {
-					try {
-						const { data } = await queryFulfilled;
-						const quizzesWithFavourite: QuizLibrary[] = data.map(
-							(quiz) => {
-								return {
-									...quiz,
-									createdAt: new Date(quiz.createdAt),
-									isFavourite: quiz.favouritedByIds.includes(
-										arg.userId
-									),
-								};
-							}
-						);
-						dispatch(setQuizzes(quizzesWithFavourite));
-					} catch (error) {
-						console.error(error);
-					}
+				transformResponse(
+					baseQueryReturnValue: QuizLibraryAllResponseRaw[]
+				): QuizLibraryAllResponse[] {
+					return baseQueryReturnValue.map((quiz) => ({
+						...quiz,
+						createdAt: new Date(quiz.createdAt),
+					}));
 				},
 			}
 		),
@@ -72,4 +57,9 @@ export const quizLibraryApi = baseApi.injectEndpoints({
 	}),
 });
 
-export const { useLazyGetMyQuizzesQuery, useRemoveFromFavouriteMutation, useAddToFavouriteMutation } = quizLibraryApi;
+export const {
+	useLazyGetMyQuizzesQuery,
+	useRemoveFromFavouriteMutation,
+	useAddToFavouriteMutation,
+	useGetMyQuizzesQuery,
+} = quizLibraryApi;

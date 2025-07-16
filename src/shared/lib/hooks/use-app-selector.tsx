@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-// !!should not be here
-import type { RootState } from "@/app/store";
+import type { StateSchema } from "@shared/lib";
 
-export const useAppSelector = useSelector.withTypes<RootState>();
+export const useAppSelector = useSelector.withTypes<StateSchema>();

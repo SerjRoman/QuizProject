@@ -1,6 +1,11 @@
 import { useEffect } from "react";
 import { SortQuizzesHeaderCell } from "@/features/teacher";
-import { QuizTableRow, useLazyGetMyQuizzesQuery } from "@/entities/quiz";
+import {
+	QuizTableRow,
+	setFilters,
+	useGetMyQuizzesQuery,
+} from "@/entities/quiz";
+import { selectFilteredQuizzes } from "@/entities/quiz/model/slices/quiz-library.selector";
 import { setTokens, useLoginMutation } from "@/entities/user";
 import { useAppDispatch, useAppSelector } from "@/shared/lib";
 import { Dropdown, Icons, MenuButton } from "@/shared/ui";
@@ -8,23 +13,23 @@ import { Dropdown, Icons, MenuButton } from "@/shared/ui";
 import styles from "./root.module.css";
 
 function App() {
-	// const [register] = useRegisterMutation();
 	const [login] = useLoginMutation();
 	const dispatch = useAppDispatch();
-	const user = useAppSelector((state) => state.user.user);
-	const { filteredQuizzes } = useAppSelector((state) => state.quizLlibrary);
-	const [getQuizzes] = useLazyGetMyQuizzesQuery();
 	useEffect(() => {
 		const token = localStorage.getItem("token");
 		const refreshToken = localStorage.getItem("refreshToken");
 		if (!token || !refreshToken) return;
 		dispatch(setTokens({ token, refreshToken }));
 	}, [dispatch]);
+	const state = useAppSelector((state) => state);
+	const { data } = useGetMyQuizzesQuery(
+		{},
+		{
+			selectFromResult: (queryResult) =>
+				selectFilteredQuizzes(state, queryResult),
+		}
+	);
 
-	useEffect(() => {
-		if (!user) return;
-		getQuizzes({ userId: user.id });
-	}, [getQuizzes, user]);
 	return (
 		<>
 			<div className={styles.red}>
@@ -51,7 +56,16 @@ function App() {
 				renderItem={(item) => <p key={item}>{item}</p>}
 				trigger={({ open, close }) => (
 					<MenuButton
-						onClick={open}
+						onClick={() => {
+							open();
+							dispatch(
+								setFilters({
+									filters: {
+										tagsIds: [prompt() ?? ""],
+									},
+								})
+							);
+						}}
 						title={"button"}
 						enabled={true}
 						iconLeft={
@@ -65,13 +79,38 @@ function App() {
 					/>
 				)}
 			></Dropdown>
+			<MenuButton
+				onClick={() => {
+					dispatch(setFilters({ filters: { tagsIds: [] } }));
+				}}
+				title={"FILTER"}
+				enabled={true}
+				iconLeft={
+					<Icons.ArrowDown
+						onClick={(event) => {
+							event.stopPropagation();
+							close();
+						}}
+					/>
+				}
+			/>
 			<table style={{ width: "100%" }}>
 				<thead>
 					<SortQuizzesHeaderCell />
 				</thead>
 				<tbody>
-					{filteredQuizzes?.map((quiz) => {
-						return <QuizTableRow quiz={quiz} actions={<></>} />;
+					{data?.map((quiz) => {
+						return (
+							<QuizTableRow
+								quiz={{
+									title: quiz.title,
+									isFavourite: quiz.isFavourite,
+									id: quiz.id,
+									createdAt: quiz.createdAt,
+								}}
+								actions={<></>}
+							/>
+						);
 					})}
 				</tbody>
 			</table>
