@@ -6,6 +6,7 @@ export const baseApi = createApi({
 	reducerPath: "baseApi",
 	baseQuery: customBaseQuery,
 	endpoints: () => ({}),
+    tagTypes: ['LibraryQuiz']
 });
 
 

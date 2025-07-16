@@ -1,1 +1,1 @@
-export * from "./quiz-library";
+export * from "./quiz-library.slice";
