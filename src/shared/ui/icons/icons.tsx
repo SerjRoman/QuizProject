@@ -18,5 +18,6 @@ export const Icons = {
 	Star,
 	DotsVertical,
 	Search,
-	Plus
+	Plus,
+	Cross
 };
