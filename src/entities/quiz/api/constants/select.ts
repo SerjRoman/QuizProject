@@ -3,4 +3,7 @@ export const QUIZ_LIBRARY_MY_SELECT = [
 	"title",
 	"createdAt",
 	"favouritedByIds",
+	"subjectId",
+	"tagsIds",
+	"languagesIds",
 ];
