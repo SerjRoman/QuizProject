@@ -1,4 +1,9 @@
 import { useForm } from "react-hook-form";
+import {
+	useGetLanguagesQuery,
+	useGetSubjectsQuery,
+	useGetTagsQuery,
+} from "@/features/quiz-filters";
 import { VisibilityTypeConstant } from "@/entities/quiz";
 import {
 	FilterBlock,
@@ -19,8 +24,10 @@ export function CreateQuizModal({
 	isOpen: boolean;
 	onClose: () => void;
 }) {
-	// const {} = useGet
-	
+	const { data: tags } = useGetTagsQuery();
+	const { data: subjects } = useGetSubjectsQuery();
+	const { data: languages } = useGetLanguagesQuery();
+
 	const methodsForm = useForm<ICreateQuizFormData>({
 		defaultValues: {
 			title: "",
@@ -87,11 +94,43 @@ export function CreateQuizModal({
 							<p>Languages</p>
 							<h4>lfdlfdlfdlfd</h4>
 						</div> */}
-							<FilterBlock title="Tags">
+							<FilterBlock
+								title="Tags"
+								className={styles.filterBlock}
+							>
+								{tags?.map((tag) => (
+									<div key={tag.id}>{tag.name}</div>
+								))}
+								<div>tag1</div>
+								<div>tag2</div>
+								<div>tag3</div>
+								<div>tag4</div>
+								<div>tag5</div>
+								<div>tag6</div>
+								<div>tag7</div>
+								<div>tag8</div>
+								<div>tag9</div>
+								<div>tag10</div>
+								<div>tag11</div>
+								<div>tag12</div>
 
 							</FilterBlock>
-							<FilterBlock title="Subject"></FilterBlock>
-							<FilterBlock title="Languages"></FilterBlock>
+							<FilterBlock
+								title="Subject"
+								className={styles.filterBlock}
+							>
+								{subjects?.map((subject) => (
+									<div key={subject.id}>{subject.name}</div>
+								))}
+							</FilterBlock>
+							<FilterBlock
+								title="Languages"
+								className={styles.filterBlock}
+							>
+								{languages?.map((language) => (
+									<div key={language.id}>{language.name}</div>
+								))}
+							</FilterBlock>
 						</div>
 					</div>
 					<MenuButton

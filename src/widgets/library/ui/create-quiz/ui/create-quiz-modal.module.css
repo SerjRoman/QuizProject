@@ -94,26 +94,22 @@
 
 
 
-/* .filterBlock {
-	display: flex;
-	border: dotted 1px var(--grey1);
-	border-radius: 20px;
-	position: relative;
+.filterBlock {
+	/* display: flex; */
 	padding: 10px;
-	width: 365px;
-	height: 128px;
+	width: 100%;
+	height: fit-content;
 }
 
-.filterBlock p {
-	position: absolute;
-	top: -10px;
-	left: 50%;
+.filterBlock div {
 	font-size: 14px;
 	font-family: "Kulim Park";
-	transform: translateX(-50%);
-	background-color: var(--light-grey4);
 	padding: 0 5px;
 	margin: 0;
-	font-size: 14px;
 	color: black;
-} */
+	background-color: var(--light-grey2);
+	width: fit-content;
+	height: fit-content;
+	border-radius: 15px;
+	padding: 5px 7px;
+}
