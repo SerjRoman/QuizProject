@@ -1,6 +1,7 @@
 import { clsx } from "clsx";
 import styles from "./filter-block.module.css";
 import type { IFilterBlockProps } from "./filter-block.types";
+// TODO actions props
 export function FilterBlock(props: IFilterBlockProps) {
 	const { title, children, onShowMore, className, showMoreClassName } = props;
 	return (

@@ -8,4 +8,5 @@ export interface IInput
 	iconLeft?: ReactNode;
 	iconRight?: ReactNode;
 	label?: string;
+    labelClassName?: string
 }

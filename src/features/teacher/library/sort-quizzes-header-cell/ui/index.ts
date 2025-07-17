@@ -1,1 +1,0 @@
-export { SortQuizzesHeaderCell } from "./cell";

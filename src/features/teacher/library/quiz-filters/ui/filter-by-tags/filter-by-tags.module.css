@@ -1,0 +1,21 @@
+.block {
+	background-color: inherit;
+}
+.label {
+	cursor: pointer;
+	background-color: var(--light-grey2);
+	border-radius: 15px;
+	padding: 5px 7px;
+}
+.input {
+	display: none;
+}
+
+.label:has(.input:checked) {
+	background-color: var(--fade-green);
+}
+.showMore {
+	cursor: pointer;
+	text-decoration: underline;
+	text-decoration-color: var(--fade-green);
+}

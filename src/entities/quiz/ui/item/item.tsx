@@ -4,18 +4,18 @@ import {
 	useAddToFavouriteMutation,
 	useRemoveFromFavouriteMutation,
 } from "../../api";
-import styles from "./row.module.css";
-import type { IQuizTableRowProps } from "./row.types";
+import styles from "./item.module.css";
+import type { IQuizItemProps } from "./item.types";
 
-export function QuizTableRow(props: IQuizTableRowProps) {
+export function QuizItem(props: IQuizItemProps) {
 	const [addToFavourite] = useAddToFavouriteMutation();
 	const [removeFromFavourite] = useRemoveFromFavouriteMutation();
 	const { quiz, actions } = props;
 	return (
-		<tr className={styles.row}>
-			<td className={styles.dataTitle}>{quiz.title}</td>
-			<td className={styles.dataDate}>{quiz.createdAt.toDateString()}</td>
-			<td className={styles.dataAdditionalButtons}>
+		<div className={styles.item}>
+			<p className={styles.dataTitle}>{quiz.title}</p>
+			<p className={styles.dataDate}>{quiz.createdAt.toDateString()}</p>
+			<p className={styles.dataAdditionalButtons}>
 				<div className={styles.buttons}>
 					<Icons.Star
 						className={clsx(
@@ -30,7 +30,7 @@ export function QuizTableRow(props: IQuizTableRowProps) {
 					/>
 					{actions}
 				</div>
-			</td>
-		</tr>
+			</p>
+		</div>
 	);
 }

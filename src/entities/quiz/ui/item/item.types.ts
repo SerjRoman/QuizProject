@@ -1,17 +1,17 @@
 import type { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
 import type { IQuiz } from "../../model/types";
 
-type QuizRow = {
+type QuizItem = {
 	title: string;
 	createdAt: string;
 	id: string;
 };
 
-export interface IQuizTableRowProps
+export interface IQuizItemProps
 	extends DetailedHTMLProps<
 		HTMLAttributes<HTMLTableElement>,
 		HTMLTableElement
 	> {
-	quiz: Pick<IQuiz, keyof QuizRow> & { isFavourite: boolean };
+	quiz: Pick<IQuiz, keyof QuizItem> & { isFavourite: boolean };
 	actions: ReactNode;
 }

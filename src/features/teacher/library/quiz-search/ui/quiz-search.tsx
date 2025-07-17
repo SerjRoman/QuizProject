@@ -10,6 +10,7 @@ export function QuizSearch() {
 			placeholder="Start typing..."
 			iconRight={<Icons.Search className={styles.icon} />}
 			className={styles.search}
+			labelClassName={styles.search}
 			onChange={(e) => {
 				dispatch(setSearch({ search: e.target.value }));
 			}}

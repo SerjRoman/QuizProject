@@ -17,9 +17,8 @@
 .title {
 	position: absolute;
 	right: 50%;
-    top: 0;
-	transform: translateX(-50%);
-	transform: translateY(-50%);
+	top: 0;
+	transform: translate(50%, -50%);
 	background-color: inherit;
 }
 

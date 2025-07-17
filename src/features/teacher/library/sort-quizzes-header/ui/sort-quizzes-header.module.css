@@ -1,0 +1,18 @@
+.item {
+    display: flex;
+    justify-content: space-between;
+	background-color: var(--fade-yellow);
+
+	padding: 10px 20px;
+
+	border-radius: 10px;
+    
+    text-align: left;
+}
+
+.buttonOrder {
+    background: none;
+    border: none;
+    font-size: 20px;
+    font-family: "Kulim Park";
+}

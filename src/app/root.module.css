@@ -28,13 +28,15 @@
 
 	--dark-red: #7f000f;
 	--red: #9f0013;
-	--light-red1: #B7404E;
-	--light-red2: #D7949C;
+	--light-red1: #b7404e;
+	--light-red2: #d7949c;
 
-    --fade-green: #CDF3B1;
-    --fade-pink: #F5B2C4;
-    --fade-white: #F6F6F6;
-    --fade-yellow: #FFF9E6;
+	--fade-green: #cdf3b1;
+	--fade-pink: #f5b2c4;
+	--fade-white: #f6f6f6;
+	--fade-yellow: #fff9e6;
+
+	--light-blue: #9bb1ee;
 }
 
 * {

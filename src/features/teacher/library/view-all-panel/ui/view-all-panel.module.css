@@ -1,12 +1,30 @@
 .panel {
 	flex: 1;
-	display: flex;
+	display: grid;
 	background-color: white;
 	border-radius: 0 10px 0 0;
-	flex-direction: column;
+	padding: 40px 20px 20px 20px;
+	grid-template-columns: 1fr 4fr;
+	grid-auto-rows: min-content;
+	gap: 10px;
 }
 
-.button{
-	height: fit-content;
-	width: fit-content;
+.filters {
+	background-color: var(--fade-white);
+
+	display: flex;
+
+	flex-direction: column;
+
+	padding: 20px 10px;
+	border-radius: 10px;
+
+	gap: 30px;
+}
+.sidebar {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.quizzesTable {
 }
