@@ -1,0 +1,57 @@
+import { clsx } from "clsx";
+import { createContext, useContext } from "react";
+import { useFormContext } from "react-hook-form";
+import styles from "./checkbox.module.css";
+import type {
+	ICheckboxContext,
+	ICheckboxGroupProps,
+	ICheckboxProps,
+} from "./checkbox.types";
+
+const CheckboxContext = createContext<null | ICheckboxContext>(null);
+
+function useCheckboxContext() {
+	const ctx = useContext(CheckboxContext);
+	if (!ctx) throw new Error("Checkbox component is not inside CheckboxGroup");
+	return ctx;
+}
+export function Checkbox(props: ICheckboxProps) {
+	const { label, labelClassName, isCheckboxVisible, ...restProps } = props;
+	const { getCheckboxProps } = useCheckboxContext();
+	return (
+		<label className={clsx(styles.label, labelClassName)}>
+			{label}
+			<input
+				{...getCheckboxProps()}
+				{...restProps}
+				style={{ display: isCheckboxVisible ? "none" : "inline-block" }}
+			/>
+		</label>
+	);
+}
+
+export function CheckboxGroup(props: ICheckboxGroupProps) {
+	const { onChange, name, children } = props;
+	const methods = useFormContext();
+
+	function getCheckboxProps() {
+		if (methods && !onChange) {
+			return { ...methods.register(name) };
+		} else if (!methods && onChange) {
+			return { name, onChange };
+		} else if (methods && onChange) {
+			throw new Error(
+				"CheckboxGroup in FormContext, but onChange was given"
+			);
+		} else {
+			throw new Error(
+				"CheckboxGroup did not receive onChange and is not witihn FormContext"
+			);
+		}
+	}
+	return (
+		<CheckboxContext value={{ getCheckboxProps }}>
+			{children}
+		</CheckboxContext>
+	);
+}
