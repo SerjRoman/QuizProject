@@ -1,5 +1,11 @@
 export type QuizLibraryRequest = {
 	from?: "copied" | "favourite" | "created";
+	filters?: {
+		tagsIds: string[];
+		languagesIds: string[];
+		subjectId: string;
+	};
+	search?: string;
 };
 export type QuizLibraryAllResponse = {
 	id: string;

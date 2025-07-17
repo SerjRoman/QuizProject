@@ -21,11 +21,26 @@ export const quizLibraryApi = baseApi.injectEndpoints({
 								{ type: "LibraryQuiz", id: "LIST" },
 						  ]
 						: [{ type: "LibraryQuiz", id: "LIST" }],
-				query: (arg) => ({
-					url: `${QUIZ_LIBRARY_API_MAP.my}${
-						arg.from ? `/${arg.from}` : ""
-					}?select=${JSON.stringify(QUIZ_LIBRARY_MY_SELECT)}`,
-				}),
+				query: (arg) => {
+					let query = `?select=${JSON.stringify(
+						QUIZ_LIBRARY_MY_SELECT
+					)}`;
+					if (arg.filters) {
+						query += `&tags=${JSON.stringify(arg.filters.tagsIds)}`;
+						query += `&languages=${JSON.stringify(
+							arg.filters.languagesIds
+						)}`;
+						query += `&subject=${arg.filters.subjectId}`;
+					}
+					if (arg.search) {
+						query += `&search=${arg.search}`;
+					}
+					return {
+						url: `${QUIZ_LIBRARY_API_MAP.my}${
+							arg.from ? `/${arg.from}` : ""
+						}${query}`,
+					};
+				},
 				transformResponse(
 					baseQueryReturnValue: QuizLibraryAllResponseRaw[]
 				): QuizLibraryAllResponse[] {
