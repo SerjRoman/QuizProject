@@ -1,4 +1,5 @@
 import type { DetailedHTMLProps, InputHTMLAttributes } from "react";
+import type { RegisterOptions } from "react-hook-form";
 
 export interface IFormInput
 	extends DetailedHTMLProps<
@@ -8,4 +9,5 @@ export interface IFormInput
 	name: string;
 	label?: string;
 	labelClassName?: string;
+	rules?: RegisterOptions;
 }

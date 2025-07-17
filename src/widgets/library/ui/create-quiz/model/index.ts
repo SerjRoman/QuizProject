@@ -1,1 +1,1 @@
-export type {ICreateQuizFormData} from "./create-quiz-modal-form.type"
+export type {ICreateQuizFormData} from "./create-quiz-modal.type"
