@@ -3,7 +3,7 @@ import {
 	useGetLanguagesQuery,
 	useGetSubjectsQuery,
 	useGetTagsQuery,
-} from "@/features/quiz-filters";
+} from "@/features/teacher";
 import { VisibilityTypeConstant } from "@/entities/quiz";
 import {
 	FilterBlock,
@@ -32,6 +32,8 @@ export function CreateQuizModal({
 		defaultValues: {
 			title: "",
 			visibility: "PUBLIC",
+			shuffleQuestions: false,
+			shuffleAnswers: false,
 			coverImage: "",
 		},
 	});
@@ -62,58 +64,97 @@ export function CreateQuizModal({
 								className={styles.titleInput}
 								labelClassName={styles.label}
 							/>
-							<div className={styles.selectVisibilityBlock}>
-								<RadioGroup name={"visibility"}>
-									<Radio
-										value={VisibilityTypeConstant.PRIVATE}
-										labelClassName={styles.selectVisibility}
-										label="private"
-									/>
-									<Radio
-										value={VisibilityTypeConstant.PUBLIC}
-										labelClassName={styles.selectVisibility}
-										label="public"
-									/>
-								</RadioGroup>
+							<div className={styles.radio}>
+								<label className={styles.selectBlock}>
+									Visibitily:
+									<RadioGroup name={"visibility"}>
+										<Radio
+											value={
+												VisibilityTypeConstant.PRIVATE
+											}
+											labelClassName={
+												styles.select
+											}
+											label="private"
+										/>
+										<Radio
+											value={
+												VisibilityTypeConstant.PUBLIC
+											}
+											labelClassName={
+												styles.select
+											}
+											label="public"
+										/>
+									</RadioGroup>
+								</label>
+								<label className={styles.selectBlock}>
+									Shuffle questions:
+									<RadioGroup name={"shuffleQuestions"}>
+										<Radio
+											value={"true"}
+											labelClassName={
+												styles.select
+											}
+											label="true"
+										/>
+										<Radio
+											value={"false"}
+											labelClassName={
+												styles.select
+											}
+											label="false"
+										/>
+									</RadioGroup>
+								</label>
+								<label className={styles.selectBlock}>
+									Shuffle answers:
+									<RadioGroup name={"shuffleAnswers"}>
+										<Radio
+											value={"true"}
+											labelClassName={
+												styles.select
+											}
+											label="true"
+										/>
+										<Radio
+											value={"false"}
+											labelClassName={
+												styles.select
+											}
+											label="false"
+										/>
+									</RadioGroup>
+								</label>
 							</div>
+
 							<div className={styles.imageBlock}>
 								<p>Cover Image</p>
 								<div className={styles.image}>+</div>
 							</div>
 						</div>
 						<div className={styles.block}>
-							{/* <div className={styles.filterBlock}>
-							<p>Tags</p>
-							<h4>lfdlfdlfdlfd</h4>
-						</div>
-						<div className={styles.filterBlock}>
-							<p>Subject</p>
-							<h4>lfdlfdlfdlfd</h4>
-						</div>
-						<div className={styles.filterBlock}>
-							<p>Languages</p>
-							<h4>lfdlfdlfdlfd</h4>
-						</div> */}
 							<FilterBlock
 								title="Tags"
 								className={styles.filterBlock}
 							>
 								{tags?.map((tag) => (
-									<div key={tag.id}>{tag.name}</div>
+									<div className={styles.item} key={tag.id}>
+										{tag.name}
+									</div>
 								))}
-								<div>tag1</div>
-								<div>tag2</div>
-								<div>tag3</div>
-								<div>tag4</div>
-								<div>tag5</div>
-								<div>tag6</div>
-								<div>tag7</div>
-								<div>tag8</div>
-								<div>tag9</div>
-								<div>tag10</div>
-								<div>tag11</div>
-								<div>tag12</div>
-
+								{/* <div className={styles.item}>tag1</div>
+								<div className={styles.item}>tag2</div>
+								<div className={styles.item}>tag3</div>
+								<div className={styles.item}>tag4</div>
+								<div className={styles.item}>tag5</div>
+								<div className={styles.item}>tag6</div>
+								<div className={styles.item}>tag7</div>
+								<div className={styles.item}>tag8</div>
+								<div className={styles.item}>tag9</div>
+								<div className={styles.item}>tag10</div>
+								<div className={styles.item}>tag11</div>
+								<div className={styles.item}>tag12</div> */}
 							</FilterBlock>
 							<FilterBlock
 								title="Subject"
@@ -122,6 +163,18 @@ export function CreateQuizModal({
 								{subjects?.map((subject) => (
 									<div key={subject.id}>{subject.name}</div>
 								))}
+								{/* <div className={styles.item}>subject1</div>
+								<div className={styles.item}>subject2</div>
+								<div className={styles.item}>subject3</div>
+								<div className={styles.item}>subject4</div>
+								<div className={styles.item}>subject5</div>
+								<div className={styles.item}>subject6</div>
+								<div className={styles.item}>subject7</div>
+								<div className={styles.item}>subject8</div>
+								<div className={styles.item}>subject9</div>
+								<div className={styles.item}>subject10</div>
+								<div className={styles.item}>subject11</div>
+								<div className={styles.item}>subject12</div> */}
 							</FilterBlock>
 							<FilterBlock
 								title="Languages"
@@ -130,6 +183,18 @@ export function CreateQuizModal({
 								{languages?.map((language) => (
 									<div key={language.id}>{language.name}</div>
 								))}
+								{/* <div className={styles.item}>language1</div>
+								<div className={styles.item}>language2</div>
+								<div className={styles.item}>language3</div>
+								<div className={styles.item}>language4</div>
+								<div className={styles.item}>language5</div>
+								<div className={styles.item}>language6</div>
+								<div className={styles.item}>language7</div>
+								<div className={styles.item}>language8</div>
+								<div className={styles.item}>language9</div>
+								<div className={styles.item}>language10</div>
+								<div className={styles.item}>language11</div>
+								<div className={styles.item}>language12</div> */}
 							</FilterBlock>
 						</div>
 					</div>

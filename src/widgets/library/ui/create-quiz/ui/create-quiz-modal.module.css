@@ -48,6 +48,7 @@
 	width: 50%;
 	gap: 30px;
 	padding: 20px 0;
+	height: fit-content;
 }
 
 .titleInput {
@@ -59,17 +60,28 @@
 	font-size: 20px;
 }
 
-.selectVisibility {
+
+.radio{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
+.select {
 	display: flex;
 	gap: 10px;
 	font-size: 18px;
+	font-family: "Kulim Park";
 }
 
-.selectVisibilityBlock {
+.selectBlock {
 	display: flex;
 	gap: 30px;
 	justify-content: center;
 	padding-top: 30px;
+	font-size: 18px;
+	font-family: "Kulim Park";
 }
 
 .imageBlock{
@@ -85,8 +97,8 @@
 .image{
 	display: flex;
 	background-color: var(--white);
-	width: 200px;
-	height: 200px;
+	width: 90px;
+	height: 90px;
 	align-items: center;
 	justify-content: center;
 	border-radius: 20px;
@@ -99,17 +111,17 @@
 	padding: 10px;
 	width: 100%;
 	height: fit-content;
+	/* gap: 10px; */
 }
 
-.filterBlock div {
+.item {
 	font-size: 14px;
 	font-family: "Kulim Park";
-	padding: 0 5px;
-	margin: 0;
-	color: black;
 	background-color: var(--light-grey2);
 	width: fit-content;
 	height: fit-content;
 	border-radius: 15px;
 	padding: 5px 7px;
+	cursor: pointer;
+
 }

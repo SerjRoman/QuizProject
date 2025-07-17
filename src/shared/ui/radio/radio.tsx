@@ -27,6 +27,7 @@ export function Radio(props: IRadioProps) {
 				type="radio"
 				{...getRadioProps()}
 				{...restProps}
+				className={styles.radio}
 			/>
 			{label}
 		</label>
