@@ -16,7 +16,7 @@ export function SortQuizzesHeader() {
 					Activity name
 				</button>
 			</div>
-			<th className={styles.headingOrder}>
+			<div className={styles.headingOrder}>
 				<button
 					onClick={() => {
 						dispatch(setSort("date"));
@@ -25,8 +25,8 @@ export function SortQuizzesHeader() {
 				>
 					Creation date
 				</button>
-			</th>
-			<th></th>
+			</div>
+			<span className={styles.ownerText}>Owner</span>
 		</div>
 	);
 }

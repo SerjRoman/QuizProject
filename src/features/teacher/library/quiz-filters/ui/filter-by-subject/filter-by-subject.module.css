@@ -1,7 +1,4 @@
-.block {
-	background-color: inherit;
-}
-.label {
+.block label {
 	cursor: pointer;
 	background-color: var(--light-grey2);
 	border-radius: 15px;
@@ -11,7 +8,7 @@
 	display: none;
 }
 
-.label:has(.input:checked) {
+.label:has(input:checked) {
 	background-color: var(--fade-pink);
 }
 .showMore {

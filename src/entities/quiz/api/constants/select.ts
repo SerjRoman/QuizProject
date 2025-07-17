@@ -6,4 +6,6 @@ export const QUIZ_LIBRARY_MY_SELECT = [
 	"subjectId",
 	"tagsIds",
 	"languagesIds",
+	"createdBy",
+    "coverImage"
 ];

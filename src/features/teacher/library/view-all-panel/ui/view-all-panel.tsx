@@ -54,9 +54,11 @@ export function ViewAllPanel() {
 							id: quiz.id,
 							title: quiz.title,
 							createdAt: quiz.createdAt,
+							user: quiz.createdBy.user,
+							coverImage: quiz.coverImage,
 						}}
 						actions={<></>}
-					></QuizItem>
+					/>
 				))}
 			</div>
 			<CreateQuizModal

@@ -22,9 +22,10 @@ export function Checkbox(props: ICheckboxProps) {
 		<label className={clsx(styles.label, labelClassName)}>
 			{label}
 			<input
-				{...getCheckboxProps()}
 				{...restProps}
-				style={{ display: isCheckboxVisible ? "none" : "inline-block" }}
+				{...getCheckboxProps()}
+				type="checkbox"
+				style={{ display: isCheckboxVisible ? "inline-block" : "none" }}
 			/>
 		</label>
 	);

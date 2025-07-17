@@ -5,6 +5,7 @@ type QuizItem = {
 	title: string;
 	createdAt: string;
 	id: string;
+	coverImage: string;
 };
 
 export interface IQuizItemProps
@@ -12,6 +13,9 @@ export interface IQuizItemProps
 		HTMLAttributes<HTMLTableElement>,
 		HTMLTableElement
 	> {
-	quiz: Pick<IQuiz, keyof QuizItem> & { isFavourite: boolean };
+	quiz: Pick<IQuiz, keyof QuizItem> & {
+		isFavourite: boolean;
+		user: { avatar: string | null; firstName: string; lastName: string };
+	};
 	actions: ReactNode;
 }

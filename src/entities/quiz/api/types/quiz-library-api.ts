@@ -9,6 +9,14 @@ export type QuizLibraryAllResponse = {
 	tagsIds: string[];
 	languagesIds: string[];
 	subjectId: string;
+	createdBy: {
+		user: {
+			avatar: string | null;
+			firstName: string;
+			lastName: string;
+		};
+	};
+	coverImage: string | null;
 };
 export type QuizLibraryAllResponseRaw = {
 	id: string;
@@ -18,6 +26,14 @@ export type QuizLibraryAllResponseRaw = {
 	tagsIds: string[];
 	languagesIds: string[];
 	subjectId: string;
+	createdBy: {
+		user: {
+			avatar: string | null;
+			firstName: string;
+			lastName: string;
+		};
+	};
+	coverImage: string | null;
 };
 
 export type QuizLibraryFavourite = {

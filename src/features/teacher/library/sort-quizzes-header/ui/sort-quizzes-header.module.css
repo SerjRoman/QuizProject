@@ -1,18 +1,25 @@
 .item {
-    display: flex;
-    justify-content: space-between;
+	display: grid;
+	grid-template-columns: 2fr 1fr 1fr 1fr;
+	justify-content: space-between;
 	background-color: var(--fade-yellow);
 
 	padding: 10px 20px;
 
 	border-radius: 10px;
-    
-    text-align: left;
+
+	text-align: left;
 }
 
 .buttonOrder {
-    background: none;
-    border: none;
-    font-size: 20px;
-    font-family: "Kulim Park";
+	background: none;
+	border: none;
+	font-size: 20px;
+	font-family: "Kulim Park";
+}
+
+.ownerText {
+	font-size: 20px;
+	font-family: "Kulim Park";
+    text-align: center;
 }

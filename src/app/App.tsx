@@ -5,7 +5,6 @@ import { useAppDispatch } from "@/shared/lib";
 import { Dropdown, Icons, MenuButton } from "@/shared/ui";
 
 import styles from "./root.module.css";
-// TODO Checkbox/CheckboxGroup
 function App() {
 	const [login] = useLoginMutation();
 	const dispatch = useAppDispatch();
