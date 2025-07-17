@@ -1,1 +1,2 @@
-export {useGetLanguagesQuery, useGetSubjectsQuery, useGetTagsQuery} from "./api"
+export * from "./ui";
+export * from "./api";

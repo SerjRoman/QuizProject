@@ -1,0 +1,15 @@
+.label {
+	cursor: pointer;
+	background-color: var(--light-grey2);
+	border-radius: 15px;
+	padding: 5px 7px;
+}
+
+.label:has(input:checked) {
+	background-color: var(--light-blue);
+}
+.showMore {
+	cursor: pointer;
+	text-decoration: underline;
+	text-decoration-color: var(--light-blue);
+}

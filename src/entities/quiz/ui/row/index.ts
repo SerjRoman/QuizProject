@@ -1,1 +1,0 @@
-export { QuizTableRow } from "./row";
