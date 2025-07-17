@@ -10,9 +10,7 @@
 
 	overflow-y: auto;
 }
-.sortHeader {
-	position: sticky;
-}
+
 .filters {
 	background-color: var(--fade-white);
 
@@ -26,14 +24,18 @@
 	gap: 30px;
 
 	overflow-y: auto;
-
-	min-height: 0;
 }
 .sidebar {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
 }
-.quizzesTable {
+.content {
 	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+}
+.quizzesList {
+	overflow-y: auto;
+	flex-direction: column;
 }

@@ -12,7 +12,7 @@ import {
 	// selectFilteredQuizzes,
 	useGetMyQuizzesQuery,
 } from "@/entities/quiz";
-import { useAppSelector } from "@/shared/lib";
+import { useAppSelector, useDebounce } from "@/shared/lib";
 import { Icons, MenuButton } from "@/shared/ui";
 
 import styles from "./view-all-panel.module.css";
@@ -20,10 +20,11 @@ import styles from "./view-all-panel.module.css";
 export function ViewAllPanel() {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const state = useAppSelector((state) => state);
+	const debouncedSearch = useDebounce(state.quizLlibrary.search, 300);
 	const { data } = useGetMyQuizzesQuery(
 		{
 			filters: { ...state.quizLlibrary.filters },
-			search: state.quizLlibrary.search,
+			search: debouncedSearch,
 		},
 		{
 			// selectFromResult: (queryResult) =>
@@ -47,22 +48,24 @@ export function ViewAllPanel() {
 					<QuizFilterByLanguagesBlock />
 				</div>
 			</div>
-			<div className={styles.quizzesTable}>
+			<div className={styles.content}>
 				<SortQuizzesHeader />
-				{data?.map((quiz) => (
-					<QuizItem
-						key={quiz.id}
-						quiz={{
-							isFavourite: quiz.isFavourite,
-							id: quiz.id,
-							title: quiz.title,
-							createdAt: quiz.createdAt,
-							user: quiz.createdBy.user,
-							coverImage: quiz.coverImage,
-						}}
-						actions={<></>}
-					/>
-				))}
+				<div className={styles.quizzesList}>
+					{data?.map((quiz) => (
+						<QuizItem
+							key={quiz.id}
+							quiz={{
+								isFavourite: quiz.isFavourite,
+								id: quiz.id,
+								title: quiz.title,
+								createdAt: quiz.createdAt,
+								user: quiz.createdBy.user,
+								coverImage: quiz.coverImage,
+							}}
+							actions={<></>}
+						/>
+					))}
+				</div>
 			</div>
 
 			<CreateQuizModal
