@@ -12,23 +12,16 @@
 
 	border-radius: 20px;
 	border: 1px dashed var(--grey1);
-}
-
-.title {
-	position: absolute;
-	right: 50%;
-	top: 0;
-	transform: translate(50%, -50%);
-	background-color: inherit;
+	text-align: center;
 }
 
 .content {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 10px;
+	text-align: left;
 }
 
-.showMore {
-	font-size: 14px;
-	font-family: "Kulim Park";
+.actionsBlock {
+	text-align: left;
 }
