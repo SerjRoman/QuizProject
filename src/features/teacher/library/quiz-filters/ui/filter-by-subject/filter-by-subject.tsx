@@ -42,7 +42,7 @@ export function QuizFilterBySubjectBlock() {
 					);
 				}}
 			>
-				{data?.map((subject) => (
+				{data.slice(0, isFullOpen ? undefined : 10).map((subject) => (
 					<Checkbox
 						key={subject.id}
 						label={subject.name}

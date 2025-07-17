@@ -9,7 +9,7 @@ import {
 } from "@/features/teacher";
 import {
 	QuizItem,
-	selectFilteredQuizzes,
+	// selectFilteredQuizzes,
 	useGetMyQuizzesQuery,
 } from "@/entities/quiz";
 import { useAppSelector } from "@/shared/lib";
@@ -21,10 +21,13 @@ export function ViewAllPanel() {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const state = useAppSelector((state) => state);
 	const { data } = useGetMyQuizzesQuery(
-		{},
 		{
-			selectFromResult: (queryResult) =>
-				selectFilteredQuizzes(state, queryResult),
+			filters: { ...state.quizLlibrary.filters },
+			search: state.quizLlibrary.search,
+		},
+		{
+			// selectFromResult: (queryResult) =>
+			// 	selectFilteredQuizzes(state, queryResult),
 		}
 	);
 	return (
@@ -44,9 +47,9 @@ export function ViewAllPanel() {
 					<QuizFilterByLanguagesBlock />
 				</div>
 			</div>
-			<div>
+			<div className={styles.quizzesTable}>
 				<SortQuizzesHeader />
-				{data.map((quiz) => (
+				{data?.map((quiz) => (
 					<QuizItem
 						key={quiz.id}
 						quiz={{
@@ -61,6 +64,7 @@ export function ViewAllPanel() {
 					/>
 				))}
 			</div>
+
 			<CreateQuizModal
 				isOpen={isModalOpen}
 				onClose={() => setIsModalOpen(false)}
