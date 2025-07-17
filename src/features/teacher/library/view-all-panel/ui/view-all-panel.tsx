@@ -44,7 +44,7 @@ export function ViewAllPanel() {
 					<QuizFilterByLanguagesBlock />
 				</div>
 			</div>
-			<div>
+			<div className={styles.quizzesTable}>
 				<SortQuizzesHeader />
 				{data.map((quiz) => (
 					<QuizItem
@@ -61,6 +61,7 @@ export function ViewAllPanel() {
 					/>
 				))}
 			</div>
+
 			<CreateQuizModal
 				isOpen={isModalOpen}
 				onClose={() => setIsModalOpen(false)}
