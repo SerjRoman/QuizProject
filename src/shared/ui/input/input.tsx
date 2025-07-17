@@ -9,9 +9,16 @@ import styles from "./input.module.css";
 import type { IInput } from "./input.types";
 
 export function Input(props: IInput) {
-	const { className, iconLeft, iconRight, label, ...restProps } = props;
+	const {
+		className,
+		iconLeft,
+		iconRight,
+		label,
+		labelClassName,
+		...restProps
+	} = props;
 	return (
-		<label className={styles.label}>
+		<label className={clsx(styles.label, labelClassName)}>
 			{label && <span className={styles.labelText}>{label}</span>}
 			<div className={styles.inputWrapper}>
 				{isValidElement(iconLeft) &&

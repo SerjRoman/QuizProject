@@ -1,17 +1,10 @@
 import { useEffect } from "react";
-import { SortQuizzesHeaderCell } from "@/features/teacher";
-import {
-	QuizTableRow,
-	setFilters,
-	useGetMyQuizzesQuery,
-} from "@/entities/quiz";
-import { selectFilteredQuizzes } from "@/entities/quiz/model/slices/quiz-library.selector";
+import { setFilters } from "@/entities/quiz";
 import { setTokens, useLoginMutation } from "@/entities/user";
-import { useAppDispatch, useAppSelector } from "@/shared/lib";
+import { useAppDispatch } from "@/shared/lib";
 import { Dropdown, Icons, MenuButton } from "@/shared/ui";
 
 import styles from "./root.module.css";
-
 function App() {
 	const [login] = useLoginMutation();
 	const dispatch = useAppDispatch();
@@ -21,14 +14,6 @@ function App() {
 		if (!token || !refreshToken) return;
 		dispatch(setTokens({ token, refreshToken }));
 	}, [dispatch]);
-	const state = useAppSelector((state) => state);
-	const { data } = useGetMyQuizzesQuery(
-		{},
-		{
-			selectFromResult: (queryResult) =>
-				selectFilteredQuizzes(state, queryResult),
-		}
-	);
 
 	return (
 		<>
@@ -94,26 +79,6 @@ function App() {
 					/>
 				}
 			/>
-			<table style={{ width: "100%" }}>
-				<thead>
-					<SortQuizzesHeaderCell />
-				</thead>
-				<tbody>
-					{data?.map((quiz) => {
-						return (
-							<QuizTableRow
-								quiz={{
-									title: quiz.title,
-									isFavourite: quiz.isFavourite,
-									id: quiz.id,
-									createdAt: quiz.createdAt,
-								}}
-								actions={<></>}
-							/>
-						);
-					})}
-				</tbody>
-			</table>
 		</>
 	);
 }

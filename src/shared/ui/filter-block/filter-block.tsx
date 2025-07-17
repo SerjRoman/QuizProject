@@ -1,21 +1,17 @@
 import { clsx } from "clsx";
 import styles from "./filter-block.module.css";
 import type { IFilterBlockProps } from "./filter-block.types";
+
 export function FilterBlock(props: IFilterBlockProps) {
-	const { title, children, onShowMore, className, showMoreClassName } = props;
+	const { title, children, actions, className } = props;
 	return (
-		<div
+		<fieldset
 			className={clsx(styles.filterBlock, className)}
 			style={{ paddingTop: title && 20 }}
 		>
-			{title && <span className={styles.title}>{title}</span>}
+			<legend className={styles.title}>{title}</legend>
 			<div className={styles.content}>{children}</div>
-			<p
-				className={clsx(styles.showMore, showMoreClassName)}
-				onClick={onShowMore}
-			>
-				Show more
-			</p>
-		</div>
+			<div className={styles.actionsBlock}>{actions}</div>
+		</fieldset>
 	);
 }
