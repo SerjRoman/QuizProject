@@ -10,7 +10,7 @@ import {
 	// selectFilteredQuizzes,
 	useGetMyQuizzesQuery,
 } from "@/entities/quiz";
-import { useAppSelector, useDebounce } from "@/shared/lib";
+import { useAppSelector, useDebounce, useModal } from "@/shared/lib";
 import { Icons, MenuButton } from "@/shared/ui";
 import { CreateQuizModal } from "../../create-quiz";
 import styles from "./view-all-panel.module.css";
@@ -66,10 +66,7 @@ export function ViewAllPanel() {
 				</div>
 			</div>
 
-			<CreateQuizModal
-				isOpen={isModalOpen}
-				onClose={() => setIsModalOpen(false)}
-			/>
+			<ModalWrapper ModalComponent={CreateQuizModal} />
 		</div>
 	);
 }
