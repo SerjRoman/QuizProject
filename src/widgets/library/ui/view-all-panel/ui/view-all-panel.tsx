@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { CreateQuizModal } from "@/features/create-quiz-modal";
 import {
 	QuizFilterByLanguagesBlock,
 	QuizFilterBySubjectBlock,
@@ -12,9 +10,9 @@ import {
 	selectFilteredQuizzes,
 	useGetMyQuizzesQuery,
 } from "@/entities/quiz";
-import { useAppSelector } from "@/shared/lib";
+import { useAppSelector, useModal } from "@/shared/lib";
 import { Icons, MenuButton } from "@/shared/ui";
-
+import { CreateQuizModal } from "../../create-quiz";
 import styles from "./view-all-panel.module.css";
 
 export function ViewAllPanel() {
@@ -35,7 +33,7 @@ export function ViewAllPanel() {
 					title={"Create new quiz"}
 					iconRight={<Icons.Plus />}
 					enabled
-					onClick={() => setIsModalOpen(true)}
+					onClick={openModal}
 				/>
 				<div className={styles.filters}>
 					<QuizSearch />
@@ -61,10 +59,7 @@ export function ViewAllPanel() {
 					/>
 				))}
 			</div>
-			<CreateQuizModal
-				isOpen={isModalOpen}
-				onClose={() => setIsModalOpen(false)}
-			/>
+			<ModalWrapper ModalComponent={CreateQuizModal} />
 		</div>
 	);
 }

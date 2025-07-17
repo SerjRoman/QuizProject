@@ -1,3 +1,8 @@
-export { SortQuizzesHeaderCell } from "./sort-quizzes-header-cell";
+export { SortQuizzesHeader } from "./sort-quizzes-header";
+export {
+	QuizFilterByTagsBlock,
+	QuizFilterByLanguagesBlock,
+	QuizFilterBySubjectBlock,
+} from "./quiz-filters";
 export { QuizSearch } from "./quiz-search";
 export { useGetLanguagesQuery, useGetSubjectsQuery, useGetTagsQuery } from "./quiz-filters"
