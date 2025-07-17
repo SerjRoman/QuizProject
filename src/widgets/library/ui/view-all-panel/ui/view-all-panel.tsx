@@ -7,10 +7,10 @@ import {
 } from "@/features/teacher";
 import {
 	QuizItem,
-	selectFilteredQuizzes,
+	// selectFilteredQuizzes,
 	useGetMyQuizzesQuery,
 } from "@/entities/quiz";
-import { useAppSelector, useModal } from "@/shared/lib";
+import { useAppSelector, useDebounce } from "@/shared/lib";
 import { Icons, MenuButton } from "@/shared/ui";
 import { CreateQuizModal } from "../../create-quiz";
 import styles from "./view-all-panel.module.css";
@@ -18,11 +18,15 @@ import styles from "./view-all-panel.module.css";
 export function ViewAllPanel() {
 	const [{ open: openModal }, ModalWrapper] = useModal();
 	const state = useAppSelector((state) => state);
+	const debouncedSearch = useDebounce(state.quizLlibrary.search, 300);
 	const { data } = useGetMyQuizzesQuery(
-		{},
 		{
-			selectFromResult: (queryResult) =>
-				selectFilteredQuizzes(state, queryResult),
+			filters: { ...state.quizLlibrary.filters },
+			search: debouncedSearch,
+		},
+		{
+			// selectFromResult: (queryResult) =>
+			// 	selectFilteredQuizzes(state, queryResult),
 		}
 	);
 	return (
@@ -42,24 +46,30 @@ export function ViewAllPanel() {
 					<QuizFilterByLanguagesBlock />
 				</div>
 			</div>
-			<div>
+			<div className={styles.content}>
 				<SortQuizzesHeader />
-				{data.map((quiz) => (
-					<QuizItem
-						key={quiz.id}
-						quiz={{
-							isFavourite: quiz.isFavourite,
-							id: quiz.id,
-							title: quiz.title,
-							createdAt: quiz.createdAt,
-							user: quiz.createdBy.user,
-							coverImage: quiz.coverImage,
-						}}
-						actions={<></>}
-					/>
-				))}
+				<div className={styles.quizzesList}>
+					{data?.map((quiz) => (
+						<QuizItem
+							key={quiz.id}
+							quiz={{
+								isFavourite: quiz.isFavourite,
+								id: quiz.id,
+								title: quiz.title,
+								createdAt: quiz.createdAt,
+								user: quiz.createdBy.user,
+								coverImage: quiz.coverImage,
+							}}
+							actions={<></>}
+						/>
+					))}
+				</div>
 			</div>
-			<ModalWrapper ModalComponent={CreateQuizModal} />
+
+			<CreateQuizModal
+				isOpen={isModalOpen}
+				onClose={() => setIsModalOpen(false)}
+			/>
 		</div>
 	);
 }
