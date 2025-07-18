@@ -10,3 +10,4 @@ export { Button } from "./button";
 export { Tab, TabPanel, TabList, Tabs } from "./tabs";
 export { FilterBlock } from "./filter-block";
 export { Checkbox, CheckboxGroup } from "./checkbox";
+export { Paginate } from "./paginate";
