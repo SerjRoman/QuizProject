@@ -1,10 +1,20 @@
 import { clsx } from "clsx";
+import { useEffect } from "react";
 import { Icons } from "../icons";
 import styles from "./paginate.module.css";
 import type { IPaginateProps } from "./paginate.types";
 
 export function Paginate(props: IPaginateProps) {
 	const { currentPage, totalPages, setPage, className } = props;
+
+	useEffect(() => {
+		if (!totalPages) return;
+
+		if (totalPages < currentPage) {
+			setPage(1);
+		}
+	}, [currentPage, setPage, totalPages]);
+
 	if (!totalPages) return;
 	const pageNumbers: number[] = [];
 	for (let i = 1; i <= totalPages; i++) {

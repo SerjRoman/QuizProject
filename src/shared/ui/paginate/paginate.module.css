@@ -29,3 +29,6 @@
 	width: 9px;
 	height: 15px;
 }
+.pageListItem:active {
+	background-color: var(--light-blue);
+}

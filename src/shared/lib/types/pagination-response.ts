@@ -1,10 +1,12 @@
 export type PaginationResponse<T> = {
-	meta: {
-		totalCount: number;
-		currentPage: number;
-		isFirstPage: boolean;
-		isLastPage: boolean;
-		pageCount: number;
-	};
+	meta: PaginationData;
 	data: T;
+};
+
+export type PaginationData = {
+	totalCount: number;
+	currentPage: number;
+	isFirstPage: boolean;
+	isLastPage: boolean;
+	pageCount: number;
 };

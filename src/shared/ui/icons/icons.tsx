@@ -1,6 +1,7 @@
 import ArrowDown from "@assets/svg/arrow-down.svg";
 import ArrowLeft from "@assets/svg/arrow-left.svg";
 import ArrowRight from "@assets/svg/arrow-right.svg";
+import ArrowUp from "@assets/svg/arrow-up.svg";
 import Bell from "@assets/svg/bell.svg";
 import Bin from "@assets/svg/bin.svg";
 import DotsVertical from "@assets/svg/dots-vertical.svg";
@@ -22,4 +23,5 @@ export const Icons = {
 	Plus,
 	ArrowLeft,
 	ArrowRight,
+	ArrowUp,
 };

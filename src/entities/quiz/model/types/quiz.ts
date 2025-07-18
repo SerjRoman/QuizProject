@@ -22,7 +22,21 @@ export interface IQuiz {
 
 export type QuizLibrary = Pick<
 	IQuiz,
-	"id" | "title" | "createdAt" | "tagsIds" | "languagesIds" | "subjectId"
+	| "id"
+	| "title"
+	| "createdAt"
+	| "tagsIds"
+	| "languagesIds"
+	| "subjectId"
+	| "coverImage"
 > & {
 	isFavourite: boolean;
+	createdBy: {
+		user: {
+			avatar: string | null;
+			firstName: string;
+			lastName: string;
+		};
+	};
 };
+
