@@ -1,0 +1,12 @@
+.quizzesList {
+	overflow-y: auto;
+	flex: 1;
+	flex-direction: column;
+}
+
+.navPage {
+	width: 100%;
+	padding-top: 20px;
+	display: flex;
+	justify-content: center;
+}

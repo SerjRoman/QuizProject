@@ -16,7 +16,7 @@ interface IQuizLibraryState {
 const initialState: IQuizLibraryState = {
 	search: "",
 	sort: {
-		field: "date",
+		field: "createdAt",
 		order: "desc",
 	},
 	filters: {

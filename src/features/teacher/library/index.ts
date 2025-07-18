@@ -4,7 +4,7 @@ export {
 	QuizFilterBySubjectBlock,
 } from "./quiz-filters";
 export { SortQuizzesHeader } from "./sort-quizzes-header";
-export { ViewAllPanel } from "./view-all-panel";
+export { ViewAllPanel } from "../../../widgets/library/view-all-panel";
 export { ViewCreatedPanel } from "./view-created-panel";
 export { ViewCopiedPanel } from "./view-copied-panel";
 export { ViewFoldersPanel } from "./view-folders-panel";
