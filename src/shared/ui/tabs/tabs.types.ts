@@ -12,6 +12,7 @@ export interface ITabPanelProps {
 
 export interface ITabsProps extends PropsWithChildren {
 	defaultTab?: string;
+	onTabChange?: () => void;
 }
 
 export interface ITabsContext {

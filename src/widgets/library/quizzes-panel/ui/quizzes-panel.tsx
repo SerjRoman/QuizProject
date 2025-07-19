@@ -1,34 +1,26 @@
 import { useState } from "react";
-import { QuizContent } from "@/widgets/library/quiz-content";
+import { QuizContent } from "@/widgets/library";
 import { CreateQuizModal } from "@/features/create-quiz-modal";
 import {
 	QuizFilterByLanguagesBlock,
-	QuizFilterByStatus,
 	QuizFilterBySubjectBlock,
 	QuizFilterByTagsBlock,
-	QuizFilterByVisibility,
 	QuizSearch,
 } from "@/features/teacher";
-import { useGetMyQuizzesQuery } from "@/entities/quiz";
-import { useAppSelector, useDebounce } from "@/shared/lib";
+import { useLibraryQuizzes } from "@/entities/quiz";
 import { Icons, MenuButton } from "@/shared/ui";
-import styles from "./view-created-panel.module.css";
+import styles from "./quizzes-panel.module.css";
+import type { IQuizzesPanel } from "./quizzes-panel.types";
 
-export function ViewCreatedPanel() {
+
+export function QuizzesPanel({ filters, queryArgs }: IQuizzesPanel) {
 	const [currentPage, setCurrentPage] = useState<number>(1);
-	const quizLlibrary = useAppSelector((state) => state.quizLlibrary);
-	const debouncedSearch = useDebounce(quizLlibrary.search, 300);
-	const { data, isLoading, error } = useGetMyQuizzesQuery({
-		from: "created",
-		filters: { ...quizLlibrary.filters },
-		search: debouncedSearch,
-		page: currentPage,
-		sort: quizLlibrary.sort,
-		visibility: quizLlibrary.visibility,
-		status: quizLlibrary.status,
-	});
-
 	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	const { data, isLoading, error } = useLibraryQuizzes({
+		page: currentPage,
+		queryArgs,
+	});
 
 	const renderContent = () => {
 		if (isLoading || !data) return <p>Loading...</p>;
@@ -44,6 +36,7 @@ export function ViewCreatedPanel() {
 			/>
 		);
 	};
+
 	return (
 		<div className={styles.panel}>
 			<div className={styles.sidebar}>
@@ -56,11 +49,7 @@ export function ViewCreatedPanel() {
 				/>
 				<div className={styles.filters}>
 					<QuizSearch />
-					<div className={styles.checkboxFilters}>
-						<QuizFilterByStatus />
-						<div className={styles.vl} />
-						<QuizFilterByVisibility />
-					</div>
+					{filters}
 					<QuizFilterByTagsBlock />
 					<QuizFilterBySubjectBlock />
 					<QuizFilterByLanguagesBlock />

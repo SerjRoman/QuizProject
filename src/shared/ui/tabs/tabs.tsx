@@ -1,5 +1,11 @@
 import { clsx } from "clsx";
-import { createContext, useContext, useState, type ReactNode } from "react";
+import {
+	createContext,
+	useContext,
+	useEffect,
+	useState,
+	type ReactNode,
+} from "react";
 import type {
 	IActiveContext,
 	ITabPanelProps,
@@ -23,9 +29,12 @@ const useTabListContext = () => {
 	return ctx;
 };
 
-export function Tabs({ defaultTab, children }: ITabsProps) {
+export function Tabs({ defaultTab, children, onTabChange }: ITabsProps) {
 	const [activeTab, setActiveTab] = useState(defaultTab);
-
+	useEffect(() => {
+		if (!onTabChange) return;
+		onTabChange();
+	}, [activeTab, onTabChange]);
 	return (
 		<TabsContext value={{ activeTab, setActiveTab }}>
 			{children}
