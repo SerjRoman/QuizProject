@@ -1,5 +1,10 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { OrderOptions, SortOptions } from "../types";
+import type {
+	OrderOptions,
+	QuizStatus,
+	QuizVisibility,
+	SortOptions,
+} from "../types";
 interface IQuizLibraryState {
 	search: string;
 	sort: {
@@ -10,6 +15,8 @@ interface IQuizLibraryState {
 		tagsIds: string[];
 		languagesIds: string[];
 		subjectId: string;
+		visibility?: QuizVisibility;
+		status?: QuizStatus;
 	};
 }
 
@@ -23,6 +30,8 @@ const initialState: IQuizLibraryState = {
 		tagsIds: [],
 		languagesIds: [],
 		subjectId: "",
+		visibility: undefined,
+		status: undefined,
 	},
 };
 
@@ -52,6 +61,8 @@ export const quizLibrarySlice = createSlice({
 					tagsIds?: string[];
 					languagesIds?: string[];
 					subjectId?: string;
+					visibility?: QuizVisibility;
+					status?: QuizStatus;
 				};
 			}>
 		) => {

@@ -1,4 +1,4 @@
-.block label {
+.label {
 	cursor: pointer;
 	background-color: var(--light-grey2);
 	border-radius: 15px;
@@ -7,7 +7,6 @@
 .input {
 	display: none;
 }
-
 .label:has(input:checked) {
 	background-color: var(--fade-pink);
 }

@@ -6,6 +6,7 @@ import {
 	QuizFilterBySubjectBlock,
 	QuizFilterByTagsBlock,
 	QuizSearch,
+	QuizFilterByVisibility,
 } from "@/features/teacher";
 import { useGetMyQuizzesQuery } from "@/entities/quiz";
 import { useAppSelector, useDebounce } from "@/shared/lib";
@@ -52,6 +53,7 @@ export function ViewAllPanel() {
 				/>
 				<div className={styles.filters}>
 					<QuizSearch />
+					<QuizFilterByVisibility />
 					<QuizFilterByTagsBlock />
 					<QuizFilterBySubjectBlock />
 					<QuizFilterByLanguagesBlock />

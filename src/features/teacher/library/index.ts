@@ -1,8 +1,4 @@
-export {
-	QuizFilterByTagsBlock,
-	QuizFilterByLanguagesBlock,
-	QuizFilterBySubjectBlock,
-} from "./quiz-filters";
+export * from "./quiz-filters";
 export { SortQuizzesHeader } from "./sort-quizzes-header";
 export { ViewAllPanel } from "../../../widgets/library/view-all-panel";
 export { ViewCreatedPanel } from "./view-created-panel";

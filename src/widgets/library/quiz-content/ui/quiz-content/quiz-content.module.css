@@ -2,6 +2,7 @@
 	overflow-y: auto;
 	flex: 1;
 	flex-direction: column;
+	scrollbar-gutter: stable;
 }
 
 .navPage {
