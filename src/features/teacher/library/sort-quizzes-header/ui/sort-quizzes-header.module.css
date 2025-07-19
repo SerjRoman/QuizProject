@@ -9,6 +9,8 @@
 	border-radius: 10px;
 
 	text-align: left;
+	scrollbar-gutter: stable;
+	overflow-y: auto;
 }
 
 .buttonOrder {

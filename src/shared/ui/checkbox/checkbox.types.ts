@@ -2,7 +2,7 @@ import type {
 	ChangeEvent,
 	DetailedHTMLProps,
 	InputHTMLAttributes,
-    ReactNode,
+	ReactNode,
 } from "react";
 import type { UseFormRegisterReturn } from "react-hook-form";
 
@@ -19,12 +19,13 @@ export interface ICheckboxProps
 	label: string;
 	isCheckboxVisible?: boolean;
 	labelClassName?: string;
+	checkmark?: ReactNode;
 }
 
 export interface ICheckboxGroupProps {
 	name: string;
 	onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
-    children?: ReactNode
+	children?: ReactNode;
 }
 
 export interface ICheckboxContext {

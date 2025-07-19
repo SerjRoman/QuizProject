@@ -1,0 +1,25 @@
+.checkmark {
+	width: 18px;
+	height: 18px;
+	border: 2px solid var(--dark-grey1);
+	border-radius: 2px;
+	position: relative;
+}
+.checkmark:after {
+	display: none;
+	content: "";
+}
+label:has(.checkmark):has(input:checked) > .checkmark {
+	background-color: var(--dark-grey1);
+}
+label:has(.checkmark):has(input:checked) > .checkmark:after {
+	display: block;
+	position: absolute;
+	top: 1.5px;
+	left: 1.5px;
+	width: 9px;
+	height: 5px;
+	border: solid var(--white);
+	border-width: 0 2px 2px 0;
+	transform: scale(-1, 1) rotate(45deg);
+}

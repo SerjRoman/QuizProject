@@ -28,7 +28,7 @@ function App() {
 			<button
 				onClick={() => {
 					login({
-						email: "abcd@gmail.com",
+						email: "first_user@gmail.com",
 						password: "123456",
 					});
 				}}

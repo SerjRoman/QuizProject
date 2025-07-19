@@ -11,6 +11,7 @@
 	overflow-y: auto;
 }
 
+
 .filters {
 	background-color: var(--fade-white);
 
@@ -25,6 +26,7 @@
 
 	overflow-y: auto;
 }
+
 .sidebar {
 	display: flex;
 	flex-direction: column;
@@ -34,4 +36,5 @@
 	overflow-y: auto;
 	display: flex;
 	flex-direction: column;
+	gap: 10px;
 }
