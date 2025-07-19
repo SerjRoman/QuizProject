@@ -1,0 +1,47 @@
+.panel {
+	flex: 1;
+	display: grid;
+	background-color: white;
+	border-radius: 0 10px 0 0;
+	padding: 40px 20px 40px 20px;
+	grid-template-columns: 1fr 4fr;
+	grid-auto-rows: minmax(0, 1fr);
+	gap: 10px;
+
+	overflow-y: auto;
+}
+
+.filters {
+	background-color: var(--fade-white);
+
+	display: flex;
+
+	flex-direction: column;
+
+	padding: 20px 10px;
+	border-radius: 10px;
+
+	gap: 30px;
+
+	overflow-y: auto;
+}
+
+.sidebar {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.content {
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.checkboxFilters {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+.vl {
+	border-left: 1px solid var(--grey1);
+}

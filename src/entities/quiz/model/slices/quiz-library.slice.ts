@@ -15,9 +15,9 @@ interface IQuizLibraryState {
 		tagsIds: string[];
 		languagesIds: string[];
 		subjectId: string;
-		visibility?: QuizVisibility;
-		status?: QuizStatus;
 	};
+	visibility: QuizVisibility[];
+	status: QuizStatus[];
 }
 
 const initialState: IQuizLibraryState = {
@@ -30,9 +30,9 @@ const initialState: IQuizLibraryState = {
 		tagsIds: [],
 		languagesIds: [],
 		subjectId: "",
-		visibility: undefined,
-		status: undefined,
 	},
+	visibility: [],
+	status: [],
 };
 
 export const quizLibrarySlice = createSlice({
@@ -68,7 +68,22 @@ export const quizLibrarySlice = createSlice({
 		) => {
 			state.filters = { ...state.filters, ...payload.filters };
 		},
+		setVisibility: (state, { payload }: PayloadAction<QuizVisibility>) => {
+			if (state.visibility.includes(payload)) {
+				state.visibility = state.visibility.filter((v) => v != payload);
+			} else {
+				state.visibility = [...state.visibility, payload];
+			}
+		},
+		setStatus: (state, { payload }: PayloadAction<QuizStatus>) => {
+			if (state.status.includes(payload)) {
+				state.status = state.status.filter((s) => s != payload);
+			} else {
+				state.status = [...state.status, payload];
+			}
+		},
 	},
 });
 
-export const { setSort, setFilters, setSearch } = quizLibrarySlice.actions;
+export const { setSort, setFilters, setSearch, setVisibility, setStatus } =
+	quizLibrarySlice.actions;

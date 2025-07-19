@@ -1,5 +1,11 @@
 import type { PaginationResponse } from "@/shared/lib";
-import type { OrderOptions, QuizLibrary, SortOptions } from "../../model";
+import type {
+	OrderOptions,
+	QuizLibrary,
+	QuizStatus,
+	QuizVisibility,
+	SortOptions,
+} from "../../model";
 
 export type QuizLibraryRequest = {
 	from?: "copied" | "favourite" | "created";
@@ -14,6 +20,8 @@ export type QuizLibraryRequest = {
 		field: SortOptions;
 		order: OrderOptions;
 	};
+	visibility?: QuizVisibility[];
+	status?: QuizStatus[];
 };
 export type QuizLibraryAllResponse = PaginationResponse<QuizLibrary[]>;
 export type QuizLibraryAllResponseRaw = PaginationResponse<QuizLibrary[]>;

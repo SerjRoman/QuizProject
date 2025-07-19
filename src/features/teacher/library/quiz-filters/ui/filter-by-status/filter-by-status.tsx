@@ -1,5 +1,5 @@
 import type { ChangeEvent } from "react";
-import { setFilters, type QuizStatus } from "@/entities/quiz";
+import { setStatus, type QuizStatus } from "@/entities/quiz";
 import { useAppDispatch } from "@/shared/lib";
 import { Checkbox, CheckboxGroup } from "@/shared/ui";
 import { Checkmarks } from "@/shared/ui/checkbox/checkmarks";
@@ -10,7 +10,7 @@ export function QuizFilterByStatus() {
 
 	function handleStatusChange(event: ChangeEvent<HTMLInputElement>) {
 		const status = event.target.value as QuizStatus;
-		dispatch(setFilters({ filters: { status } }));
+		dispatch(setStatus(status));
 	}
 	return (
 		<div className={styles.container}>

@@ -40,6 +40,12 @@ export const quizLibraryApi = baseApi.injectEndpoints({
 				if (arg.sort) {
 					query += `&sort=${JSON.stringify(arg.sort)}`;
 				}
+				if (arg.visibility && arg.visibility.length > 0) {
+					query += `&visibility=${JSON.stringify(arg.visibility)}`;
+				}
+				if (arg.status && arg.status.length > 0) {
+					query += `&status=${JSON.stringify(arg.status)}`;
+				}
 				return {
 					url: `${QUIZ_LIBRARY_API_MAP.my}${
 						arg.from ? `/${arg.from}` : ""
