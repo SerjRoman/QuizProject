@@ -23,6 +23,7 @@ export function Radio(props: IRadioProps) {
 		labelClassName,
 		isRadioVisible = true,
 		value,
+		className,
 		...restProps
 	} = props;
 	const { getRadioProps } = useRadioContext();
@@ -34,7 +35,7 @@ export function Radio(props: IRadioProps) {
 				{...getRadioProps()}
 				{...restProps}
 				style={{ display: isRadioVisible ? "inline-block" : "none" }}
-				className={styles.radio}
+				className={clsx(styles.radio, className)}
 			/>
 			{label}
 		</label>
