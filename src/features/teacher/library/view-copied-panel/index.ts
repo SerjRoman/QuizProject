@@ -1,1 +1,0 @@
-export {ViewCopiedPanel} from "./ui"

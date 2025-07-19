@@ -1,16 +1,23 @@
-import { ViewAllPanel, ViewCreatedPanel } from "@/widgets/library";
 import {
+	ViewAllPanel,
+	ViewCreatedPanel,
 	ViewCopiedPanel,
-	ViewFavouritePanel,
-	ViewFoldersPanel,
-} from "@/features/teacher";
+} from "@/widgets/library";
+import { clearFilters } from "@/entities/quiz";
+import { useAppDispatch } from "@/shared/lib";
 import { Tab, TabList, TabPanel, Tabs } from "@/shared/ui";
 import styles from "./page.module.css";
 
 export function LibraryPage() {
+	const dispatch = useAppDispatch();
 	return (
 		<div className={styles.container}>
-			<Tabs defaultTab="all">
+			<Tabs
+				defaultTab="all"
+				onTabChange={() => {
+					dispatch(clearFilters());
+				}}
+			>
 				<TabList
 					TabsClassName={styles.tabs}
 					activeClassName={styles.active}
@@ -31,12 +38,12 @@ export function LibraryPage() {
 				<TabPanel name={"copied"}>
 					<ViewCopiedPanel />
 				</TabPanel>
-				<TabPanel name={"folders"}>
+				{/* <TabPanel name={"folders"}>
 					<ViewFoldersPanel />
 				</TabPanel>
 				<TabPanel name={"favourite"}>
 					<ViewFavouritePanel />
-				</TabPanel>
+				</TabPanel> */}
 			</Tabs>
 		</div>
 	);

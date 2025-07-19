@@ -82,8 +82,24 @@ export const quizLibrarySlice = createSlice({
 				state.status = [...state.status, payload];
 			}
 		},
+		clearFilters: (state) => {
+			state.filters = { tagsIds: [], languagesIds: [], subjectId: "" };
+			state.search = "";
+			state.sort = {
+				field: "createdAt",
+				order: "desc",
+			};
+			state.status = [];
+			state.visibility = [];
+		},
 	},
 });
 
-export const { setSort, setFilters, setSearch, setVisibility, setStatus } =
-	quizLibrarySlice.actions;
+export const {
+	setSort,
+	setFilters,
+	setSearch,
+	setVisibility,
+	setStatus,
+	clearFilters,
+} = quizLibrarySlice.actions;
