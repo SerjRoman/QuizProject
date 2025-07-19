@@ -1,3 +1,6 @@
+import type { PaginationResponse } from "@/shared/lib";
+import type { OrderOptions, QuizLibrary, SortOptions } from "../../model";
+
 export type QuizLibraryRequest = {
 	from?: "copied" | "favourite" | "created";
 	filters?: {
@@ -6,41 +9,14 @@ export type QuizLibraryRequest = {
 		subjectId: string;
 	};
 	search?: string;
-};
-export type QuizLibraryAllResponse = {
-	id: string;
-	title: string;
-	isFavourite: boolean;
-	createdAt: Date;
-	tagsIds: string[];
-	languagesIds: string[];
-	subjectId: string;
-	createdBy: {
-		user: {
-			avatar: string | null;
-			firstName: string;
-			lastName: string;
-		};
+	page?: number;
+	sort?: {
+		field: SortOptions;
+		order: OrderOptions;
 	};
-	coverImage: string | null;
 };
-export type QuizLibraryAllResponseRaw = {
-	id: string;
-	title: string;
-	isFavourite: boolean;
-	createdAt: string;
-	tagsIds: string[];
-	languagesIds: string[];
-	subjectId: string;
-	createdBy: {
-		user: {
-			avatar: string | null;
-			firstName: string;
-			lastName: string;
-		};
-	};
-	coverImage: string | null;
-};
+export type QuizLibraryAllResponse = PaginationResponse<QuizLibrary[]>;
+export type QuizLibraryAllResponseRaw = PaginationResponse<QuizLibrary[]>;
 
 export type QuizLibraryFavourite = {
 	id: string;

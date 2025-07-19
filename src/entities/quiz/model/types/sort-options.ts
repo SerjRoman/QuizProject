@@ -1,2 +1,2 @@
-export type SortOptions = "name" | "date";
-export type OrderOptions = 'asc' | 'desc'
+export type SortOptions = "createdAt" | "title";
+export type OrderOptions = "asc" | "desc";
