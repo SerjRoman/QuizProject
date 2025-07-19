@@ -1,1 +1,0 @@
-export {ViewCreatedPanel} from "./view-created-panel"

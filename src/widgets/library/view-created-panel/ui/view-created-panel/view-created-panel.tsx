@@ -1,31 +1,31 @@
 import { useState } from "react";
-import { QuizContent } from "@/widgets/library";
+import { QuizContent } from "@/widgets/library/quiz-content";
 import { CreateQuizModal } from "@/features/create-quiz-modal";
 import {
 	QuizFilterByLanguagesBlock,
+	QuizFilterByStatus,
 	QuizFilterBySubjectBlock,
 	QuizFilterByTagsBlock,
+	QuizFilterByVisibility,
 	QuizSearch,
 } from "@/features/teacher";
 import { useGetMyQuizzesQuery } from "@/entities/quiz";
 import { useAppSelector, useDebounce } from "@/shared/lib";
 import { Icons, MenuButton } from "@/shared/ui";
+import styles from "./view-created-panel.module.css";
 
-import styles from "./view-all-panel.module.css";
-
-export function ViewAllPanel() {
+export function ViewCreatedPanel() {
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const quizLlibrary = useAppSelector((state) => state.quizLlibrary);
 	const debouncedSearch = useDebounce(quizLlibrary.search, 300);
 	const { data, isLoading, error } = useGetMyQuizzesQuery({
-		filters: {
-			tagsIds: quizLlibrary.filters.tagsIds,
-			languagesIds: quizLlibrary.filters.languagesIds,
-			subjectId: quizLlibrary.filters.subjectId,
-		},
+		from: "created",
+		filters: { ...quizLlibrary.filters },
 		search: debouncedSearch,
 		page: currentPage,
 		sort: quizLlibrary.sort,
+		visibility: quizLlibrary.visibility,
+		status: quizLlibrary.status,
 	});
 
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -56,6 +56,11 @@ export function ViewAllPanel() {
 				/>
 				<div className={styles.filters}>
 					<QuizSearch />
+					<div className={styles.checkboxFilters}>
+						<QuizFilterByStatus />
+						<div className={styles.vl} />
+						<QuizFilterByVisibility />
+					</div>
 					<QuizFilterByTagsBlock />
 					<QuizFilterBySubjectBlock />
 					<QuizFilterByLanguagesBlock />

@@ -1,7 +1,6 @@
+import { ViewAllPanel, ViewCreatedPanel } from "@/widgets/library";
 import {
-	ViewAllPanel,
 	ViewCopiedPanel,
-	ViewCreatedPanel,
 	ViewFavouritePanel,
 	ViewFoldersPanel,
 } from "@/features/teacher";
