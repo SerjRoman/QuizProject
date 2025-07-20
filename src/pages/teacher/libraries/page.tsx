@@ -2,6 +2,7 @@ import {
 	ViewAllPanel,
 	ViewCreatedPanel,
 	ViewCopiedPanel,
+	ViewFavouritePanel,
 } from "@/widgets/library";
 import { clearFilters } from "@/entities/quiz";
 import { useAppDispatch } from "@/shared/lib";
@@ -40,10 +41,10 @@ export function LibraryPage() {
 				</TabPanel>
 				{/* <TabPanel name={"folders"}>
 					<ViewFoldersPanel />
-				</TabPanel>
+				</TabPanel> */}
 				<TabPanel name={"favourite"}>
 					<ViewFavouritePanel />
-				</TabPanel> */}
+				</TabPanel>
 			</Tabs>
 		</div>
 	);

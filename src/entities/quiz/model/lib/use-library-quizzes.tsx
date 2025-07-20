@@ -10,13 +10,20 @@ export function useLibraryQuizzes({
 }) {
 	const quizLlibrary = useAppSelector((state) => state.quizLlibrary);
 	const debouncedSearch = useDebounce(quizLlibrary.search, 300);
-	const { data, isLoading, error } = useGetMyQuizzesQuery({
-		...quizLlibrary.filters,
-		search: debouncedSearch,
-		page: page,
-		sort: quizLlibrary.sort,
-		...queryArgs,
-	});
+	const { data, isLoading, error } = useGetMyQuizzesQuery(
+		{
+			filters: quizLlibrary.filters,
+			search: debouncedSearch,
+			page: page,
+			sort: quizLlibrary.sort,
+			visibility: quizLlibrary.visibility,
+			status: quizLlibrary.status,
+			...queryArgs,
+		},
+		{
+			refetchOnMountOrArgChange: true,
+		}
+	);
 
 	return { data, isLoading, error };
 }
