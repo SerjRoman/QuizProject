@@ -1,5 +1,10 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { OrderOptions, SortOptions } from "../types";
+import type {
+	OrderOptions,
+	QuizStatus,
+	QuizVisibility,
+	SortOptions,
+} from "../types";
 interface IQuizLibraryState {
 	search: string;
 	sort: {
@@ -11,6 +16,8 @@ interface IQuizLibraryState {
 		languagesIds: string[];
 		subjectId: string;
 	};
+	visibility: QuizVisibility[];
+	status: QuizStatus[];
 }
 
 const initialState: IQuizLibraryState = {
@@ -24,6 +31,8 @@ const initialState: IQuizLibraryState = {
 		languagesIds: [],
 		subjectId: "",
 	},
+	visibility: [],
+	status: [],
 };
 
 export const quizLibrarySlice = createSlice({
@@ -52,12 +61,45 @@ export const quizLibrarySlice = createSlice({
 					tagsIds?: string[];
 					languagesIds?: string[];
 					subjectId?: string;
+					visibility?: QuizVisibility;
+					status?: QuizStatus;
 				};
 			}>
 		) => {
 			state.filters = { ...state.filters, ...payload.filters };
 		},
+		setVisibility: (state, { payload }: PayloadAction<QuizVisibility>) => {
+			if (state.visibility.includes(payload)) {
+				state.visibility = state.visibility.filter((v) => v != payload);
+			} else {
+				state.visibility = [...state.visibility, payload];
+			}
+		},
+		setStatus: (state, { payload }: PayloadAction<QuizStatus>) => {
+			if (state.status.includes(payload)) {
+				state.status = state.status.filter((s) => s != payload);
+			} else {
+				state.status = [...state.status, payload];
+			}
+		},
+		clearFilters: (state) => {
+			state.filters = { tagsIds: [], languagesIds: [], subjectId: "" };
+			state.search = "";
+			state.sort = {
+				field: "createdAt",
+				order: "desc",
+			};
+			state.status = [];
+			state.visibility = [];
+		},
 	},
 });
 
-export const { setSort, setFilters, setSearch } = quizLibrarySlice.actions;
+export const {
+	setSort,
+	setFilters,
+	setSearch,
+	setVisibility,
+	setStatus,
+	clearFilters,
+} = quizLibrarySlice.actions;

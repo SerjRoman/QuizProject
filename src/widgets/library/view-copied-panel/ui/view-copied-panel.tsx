@@ -1,8 +1,5 @@
-import styles from "./view-copied-panel.module.css";
+import { QuizzesPanel } from "@/widgets/library";
+
 export function ViewCopiedPanel() {
-    return (
-        <div className={styles.panel}>
-            <h1>CopiedPanel</h1>
-        </div>
-    );
+	return <QuizzesPanel queryArgs={{ from: "copied" }} />;
 }

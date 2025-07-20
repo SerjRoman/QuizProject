@@ -1,1 +1,1 @@
-export {ViewCopiedPanel} from "./view-copied-panel"
+export { ViewCopiedPanel } from "./view-copied-panel";

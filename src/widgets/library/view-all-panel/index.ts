@@ -1,1 +1,1 @@
-export { ViewAllPanel } from "./ui/view-all-panel";
+export { ViewAllPanel } from "./ui";

@@ -1,0 +1,87 @@
+import { useState } from "react";
+import { QuizContent } from "@/widgets/library";
+import { CreateQuizModal } from "@/widgets/library/create-quiz";
+import {
+	QuizFilterByLanguagesBlock,
+	QuizFilterBySubjectBlock,
+	QuizFilterByTagsBlock,
+	QuizSearch,
+} from "@/features/teacher";
+
+import { useLibraryQuizzes } from "@/entities/quiz";
+// import { useAppSelector, useDebounce, useModal } from "@/shared/lib";
+
+// =======
+// >>>>>>> 863477932132f4d9f3c8d3e0290735d48b518230:src/widgets/library/quizzes-panel/ui/quizzes-panel.tsx
+import { useModal } from "@/shared/lib";
+import { Icons, MenuButton } from "@/shared/ui";
+// import styles from "./quizzes-panel.module.css";
+import type { IQuizzesPanel } from "./quizzes-panel.types";
+
+// <<<<<<< HEAD:src/widgets/library/view-all-panel/ui/view-all-panel/view-all-panel.tsx
+import styles from "./view-all-panel.module.css";
+
+// export function ViewAllPanel() {
+// 	const [currentPage, setCurrentPage] = useState<number>(1);
+// 	const quizLlibrary = useAppSelector((state) => state.quizLlibrary);
+// 	const debouncedSearch = useDebounce(quizLlibrary.search, 300);
+// 	const { data, isLoading, error } = useGetMyQuizzesQuery({
+// 		filters: { ...quizLlibrary.filters },
+// 		search: debouncedSearch,
+// 		page: currentPage,
+// 		sort: quizLlibrary.sort,
+// 	});
+// }
+// // =======
+
+export function QuizzesPanel({ filters, queryArgs }: IQuizzesPanel) {
+	const [currentPage, setCurrentPage] = useState<number>(1);
+	const [{ open: openModal }, ModalWrapper] = useModal();
+
+	// const [isModalOpen, setIsModalOpen] = useState(false);
+// >>>>>>> 863477932132f4d9f3c8d3e0290735d48b518230:src/widgets/library/quizzes-panel/ui/quizzes-panel.tsx
+
+	const { data, isLoading, error } = useLibraryQuizzes({
+		page: currentPage,
+		queryArgs,
+	});
+
+	const renderContent = () => {
+		if (isLoading || !data) return <p>Loading...</p>;
+		const displayQuizzes = data.data;
+		const { meta } = data;
+		if (error) return <p>{String(error)}</p>;
+		if (meta.pageCount === 0) return <p>No quizzes found</p>;
+		return (
+			<QuizContent
+				quizzes={displayQuizzes}
+				meta={data.meta}
+				onPageChange={setCurrentPage}
+			/>
+		);
+	};
+
+	return (
+		<div className={styles.panel}>
+			<div className={styles.sidebar}>
+				<MenuButton
+					className={styles.button}
+					title={"Create new quiz"}
+					iconRight={<Icons.Plus />}
+					enabled
+					onClick={openModal}
+				/>
+				<div className={styles.filters}>
+					<QuizSearch />
+					{filters}
+					<QuizFilterByTagsBlock />
+					<QuizFilterBySubjectBlock />
+					<QuizFilterByLanguagesBlock />
+				</div>
+			</div>
+			<div className={styles.content}>{renderContent()}</div>
+
+			<ModalWrapper ModalComponent={CreateQuizModal} />
+		</div>
+	);
+}

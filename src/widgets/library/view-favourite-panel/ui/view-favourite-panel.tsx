@@ -1,9 +1,5 @@
-import styles from "./view-favourite-panel.module.css";
+import { QuizzesPanel } from "@/widgets/library";
 
 export function ViewFavouritePanel() {
-    return (
-        <div className={styles.panel}>
-            <h1>FavouritePanel</h1>
-        </div>
-    );
+	return <QuizzesPanel queryArgs={{ from: "favourite" }} />;
 }

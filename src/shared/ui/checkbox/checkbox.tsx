@@ -16,10 +16,17 @@ function useCheckboxContext() {
 	return ctx;
 }
 export function Checkbox(props: ICheckboxProps) {
-	const { label, labelClassName, isCheckboxVisible, ...restProps } = props;
+	const {
+		label,
+		labelClassName,
+		isCheckboxVisible,
+		checkmark,
+		...restProps
+	} = props;
 	const { getCheckboxProps } = useCheckboxContext();
 	return (
 		<label className={clsx(styles.label, labelClassName)}>
+			{checkmark}
 			{label}
 			<input
 				{...restProps}
