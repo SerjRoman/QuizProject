@@ -1,8 +1,8 @@
 import { clsx } from "clsx";
 import { useMemo } from "react";
 import { useFormContext } from "react-hook-form";
-import type { ICreateQuizFormData } from "@/widgets/library/ui/create-quiz/model";
-import { useGetLanguagesQuery } from "@/features/teacher/library/quiz-filters";
+import { useGetLanguagesQuery } from "@/features/teacher";
+import type { ICreateQuizFormData } from "@features/teacher";
 import { useModal } from "@/shared/lib";
 import { Checkbox, CheckboxGroup, FilterBlock } from "@/shared/ui";
 import { ShowMoreModal } from "../../../show-more-modal";

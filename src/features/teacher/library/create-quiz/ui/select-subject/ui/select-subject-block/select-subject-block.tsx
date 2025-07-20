@@ -1,16 +1,21 @@
 import { clsx } from "clsx";
-import { useMemo, useState } from "react";
-import { useGetSubjectsQuery } from "@/features/teacher/library/quiz-filters";
-import { FilterBlock, Radio, RadioGroup } from "@/shared/ui";
+import { useMemo } from "react";
+import { useFormContext } from "react-hook-form";
+import type { ICreateQuizFormData } from "@/features/teacher";
+import { useGetSubjectsQuery } from "@/features/teacher";
+import { useModal } from "@/shared/lib";
+import { Checkbox, FilterBlock, Radio, RadioGroup } from "@/shared/ui";
 import { ShowMoreModal } from "../../../show-more-modal";
+import styles from "./selects-subject-block.module.css";
 
 export function SelectSubjectBlock() {
 	const { data: subjects } = useGetSubjectsQuery();
-
-	const [selectedSubject, setSelectedSubject] = useState<string>("");
-	const [isShowMoreSubjectsOpen, setIsShowMoreSubjectsOpen] = useState(false);
-	const [isFullOpenSubjects, setIsFullOpenSubjects] =
-		useState<boolean>(false);
+	const [{ open }, ModalProvider] = useModal<{
+		title: string;
+		name: "subject";
+	}>();
+	const { watch } = useFormContext<ICreateQuizFormData>();
+	const selectedSubject = watch("subject");
 
 	const topSubjects = useMemo(() => {
 		if (!subjects) return [];
@@ -21,10 +26,6 @@ export function SelectSubjectBlock() {
 			: subjects.slice(0, 5);
 	}, [subjects, selectedSubject]);
 
-	function handleAddSubject(subject: string) {
-		setSelectedSubject(subject);
-		setIsShowMoreSubjectsOpen(false);
-	}
 	return (
 		<>
 			<FilterBlock
@@ -33,10 +34,7 @@ export function SelectSubjectBlock() {
 						<p
 							className={clsx(styles.showMore, styles.shMSub)}
 							onClick={() => {
-								setIsFullOpenSubjects(!isFullOpenSubjects);
-								setIsShowMoreSubjectsOpen(
-									!isShowMoreSubjectsOpen
-								);
+								open();
 							}}
 						>
 							Show more
@@ -58,18 +56,19 @@ export function SelectSubjectBlock() {
 					))}
 				</RadioGroup>
 			</FilterBlock>
-			{subjects && (
-				<SelectSubjectModal
-					isOpen={isModalOpen}
-					onClose={() => setIsModalOpen(false)}
-					onAdd={(subj) => {
-						setSelectedSubject(subj);
-						setIsModalOpen(false);
-					}}
-					subjects={subjects}
-					selectedSubject={selectedSubject}
-				/>
-			)}
+			<ModalProvider
+				ModalComponent={ShowMoreModal}
+				customProps={{ title: "subjects", name: "subject" }}
+			>
+				{subjects?.map((subject) => (
+					<Checkbox
+						labelClassName={clsx(styles.item, styles.subject)}
+						key={subject.id}
+						label={subject.name}
+						value={subject.id}
+					/>
+				))}
+			</ModalProvider>
 		</>
 	);
 }

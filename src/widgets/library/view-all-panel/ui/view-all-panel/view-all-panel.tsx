@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { QuizContent } from "@/widgets/library";
-import { CreateQuizModal } from "@/widgets/library/ui/create-quiz";
 import {
 	QuizFilterByLanguagesBlock,
 	QuizFilterBySubjectBlock,
@@ -16,6 +15,7 @@ import { useAppSelector, useDebounce, useModal } from "@/shared/lib";
 import { Icons, MenuButton } from "@/shared/ui";
 
 import styles from "./view-all-panel.module.css";
+import { CreateQuizModal } from "@/widgets/library/create-quiz";
 
 export function ViewAllPanel() {
 	const [{ open: openModal }, ModalWrapper] = useModal();

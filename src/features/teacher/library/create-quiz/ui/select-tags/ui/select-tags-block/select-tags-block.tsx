@@ -1,34 +1,30 @@
 import { clsx } from "clsx";
-import { useMemo, useState } from "react";
-import { useGetTagsQuery } from "@/features/teacher/library/quiz-filters";
+import { useMemo } from "react";
+import { useFormContext } from "react-hook-form";
+import type { ICreateQuizFormData } from "@/features/teacher";
+import { useGetTagsQuery } from "@/features/teacher";
+import { useModal } from "@/shared/lib";
 import { Checkbox, CheckboxGroup, FilterBlock } from "@/shared/ui";
-// import { ShowMoreModal } from "../../../show-more-modal";
-import { SelectTagsModal } from "../select-tags-modal";
+import { ShowMoreModal } from "../../../show-more-modal";
+import styles from "./select-tags-block.module.css"
 
 export function SelectTagsBlock() {
 	const { data: tags } = useGetTagsQuery();
+	const [{ open }, ModalProvider] = useModal<{
+		title: string;
+		name: "tags";
+	}>();
 
-	const [isFullOpenTags, setIsFullOpenTags] = useState<boolean>(false);
+	const { watch } = useFormContext<ICreateQuizFormData>();
+	const selectedTags = watch("tags");
 
-	const [isShowMoreTagsOpen, setIsShowMoreTagsOpen] = useState(false);
-
-	const [selectedTags, setSelectedTags] = useState<string[]>([]);
-	const [isModalOpen, setIsModalOpen] = useState(false);
 	const topTags = useMemo(() => {
 		if (!tags) return [];
-		const uniqueTagIds = new Set(selectedTags);
-		const selectedTagObjects = tags.filter((tag) =>
-			selectedTags.includes(tag.id)
-		);
-		const restTags = tags.filter((tag) => !uniqueTagIds.has(tag.id));
-		return [...selectedTagObjects, ...restTags].slice(0, 5);
+		const selectedSet = new Set(selectedTags);
+		const selectedTagObjs = tags.filter((t) => selectedSet.has(t.id));
+		const rest = tags.filter((t) => !selectedSet.has(t.id));
+		return [...selectedTagObjs, ...rest].slice(0, 5);
 	}, [tags, selectedTags]);
-
-	// function handleAddTags(newTags: string[]) {
-	// 	setSelectedTags(newTags);
-	// 	setIsShowMoreTagsOpen(false);
-	// }
-
 	return (
 		<>
 			<FilterBlock
@@ -37,8 +33,7 @@ export function SelectTagsBlock() {
 						<p
 							className={clsx(styles.showMore, styles.shMTag)}
 							onClick={() => {
-								setIsFullOpenTags(!isFullOpenTags);
-								setIsShowMoreTagsOpen(!isShowMoreTagsOpen);
+								open();
 							}}
 						>
 							Show more
@@ -59,18 +54,19 @@ export function SelectTagsBlock() {
 					))}
 				</CheckboxGroup>
 			</FilterBlock>
-			{tags && (
-				<SelectTagsModal
-					isOpen={isModalOpen}
-					onClose={() => setIsModalOpen(false)}
-					onAdd={(newTags) => {
-						setSelectedTags(newTags);
-						setIsModalOpen(false);
-					}}
-					tags={tags}
-					selectedTags={selectedTags}
-				/>
-			)}
+			<ModalProvider
+				ModalComponent={ShowMoreModal}
+				customProps={{ title: "tags", name: "tags" }}
+			>
+				{tags?.map((tag) => (
+					<Checkbox
+						value={tag.id}
+						labelClassName={clsx(styles.item, styles.tag)}
+						key={tag.id}
+						label={tag.name}
+					/>
+				))}
+			</ModalProvider>
 		</>
 	);
 }

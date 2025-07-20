@@ -1,0 +1,83 @@
+.button {
+	position: fixed;
+	bottom: 20px;
+	left: 50%;
+	width: 300px;
+	transform: translateX(-50%);
+}
+
+.main {
+	display: flex;
+	flex-direction: row;
+}
+
+.block {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 50%;
+	padding: 10px 0;
+	height: fit-content;
+}
+
+.left {
+	gap: 30px;
+}
+.right {
+	gap: 20px;
+
+}
+
+.titleInput {
+	display: flex;
+	width: 300px;
+}
+.label {
+	font-family: "Kulim Park";
+	font-size: 20px;
+}
+
+.radio {
+	/* display: flex; */
+	/* width: 30px; */
+	/* height: 30px; */
+}
+
+.select {
+	display: flex;
+	gap: 5px;
+	font-size: 18px;
+	font-family: "Kulim Park";
+}
+
+.selectBlock {
+	display: flex;
+	gap: 30px;
+	justify-content: center;
+	padding-top: 30px;
+	font-size: 18px;
+	font-family: "Kulim Park";
+}
+
+.imageBlock {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding-top: 30px;
+	gap: 10px;
+	font-family: "Kulim Park";
+	font-size: 20px;
+}
+.image {
+	display: flex;
+	background-color: var(--white);
+	width: 90px;
+	height: 90px;
+	align-items: center;
+	justify-content: center;
+	border-radius: 20px;
+	border: black solid 1px;
+}
+

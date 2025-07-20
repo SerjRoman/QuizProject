@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
-import type { ICreateQuizFormData } from "@/widgets/library/ui/create-quiz/model";
+import type { ICreateQuizFormData } from "@/features/teacher";
 import {
 	CheckboxGroup,
 	FilterBlock,
