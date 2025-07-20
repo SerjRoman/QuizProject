@@ -1,29 +1,30 @@
 import { clsx } from "clsx";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
+import { useFormContext } from "react-hook-form";
+import type { ICreateQuizFormData } from "@/widgets/library/ui/create-quiz/model";
 import { useGetLanguagesQuery } from "@/features/teacher/library/quiz-filters";
+import { useModal } from "@/shared/lib";
 import { Checkbox, CheckboxGroup, FilterBlock } from "@/shared/ui";
-import { SelectLanguagesModal } from "../select-languages-modal";
-
+import { ShowMoreModal } from "../../../show-more-modal";
+import styles from "./select-languages-block.module.css";
 export function SelectLanguagesBlock() {
 	const { data: languages } = useGetLanguagesQuery();
-	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [{ open }, ModalProvider] = useModal<{
+		title: string;
+		name: "languages";
+	}>();
 
-	const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
+	const { watch } = useFormContext<ICreateQuizFormData>();
+	const selectedLanguages = watch("languages");
 
 	const topLanguages = useMemo(() => {
 		if (!languages) return [];
 		const selectedSet = new Set(selectedLanguages);
-		const selectedObjs = languages.filter((l) =>
-			selectedLanguages.includes(l.id)
-		);
+
+		const selectedObjs = languages.filter((l) => selectedSet.has(l.id));
 		const rest = languages.filter((l) => !selectedSet.has(l.id));
 		return [...selectedObjs, ...rest].slice(0, 5);
-	}, [languages, selectedLanguages]);
-
-	const [isShowMoreLanguagesOpen, setIsShowMoreLanguagesOpen] =
-		useState(false);
-	const [isFullOpenLanguages, setIsFullOpenLanguages] =
-		useState<boolean>(false);
+	}, [selectedLanguages, languages]);
 
 	return (
 		<>
@@ -33,10 +34,7 @@ export function SelectLanguagesBlock() {
 						<p
 							className={clsx(styles.showMore, styles.shMLan)}
 							onClick={() => {
-								setIsFullOpenLanguages(!isFullOpenLanguages);
-								setIsShowMoreLanguagesOpen(
-									!isShowMoreLanguagesOpen
-								);
+								open();
 							}}
 						>
 							Show more
@@ -57,18 +55,19 @@ export function SelectLanguagesBlock() {
 					))}
 				</CheckboxGroup>
 			</FilterBlock>
-			{languages && (
-				<SelectLanguagesModal
-					isOpen={isModalOpen}
-					onClose={() => setIsModalOpen(false)}
-					onAdd={(newSelected) => {
-						setSelectedLanguages(newSelected);
-						setIsModalOpen(false);
-					}}
-					languages={languages}
-					selectedLanguages={selectedLanguages}
-				/>
-			)}
+			<ModalProvider
+				ModalComponent={ShowMoreModal}
+				customProps={{ title: "languages", name: "languages" }}
+			>
+				{languages?.map((language) => (
+					<Checkbox
+						key={language.id}
+						value={language.id}
+						label={language.name}
+						labelClassName={clsx(styles.item, styles.language)}
+					/>
+				))}
+			</ModalProvider>
 		</>
 	);
 }

@@ -1,14 +1,6 @@
 import { clsx } from "clsx";
-import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
-import {
-	SelectLanguagesBlock,
-	SelectSubjectBlock,
-	SelectTagsBlock,
-	useGetLanguagesQuery,
-	useGetSubjectsQuery,
-	useGetTagsQuery,
-} from "@/features/teacher";
+import { SelectLanguagesBlock } from "@/features/teacher";
 import { VisibilityTypeConstant } from "@/entities/quiz";
 import { Form, Icons, MenuButton, Modal, Radio, RadioGroup } from "@/shared/ui";
 import type { ICreateQuizFormData } from "../model";
@@ -35,7 +27,7 @@ export function CreateQuizModal({
 	});
 
 	function onSubmit(data: ICreateQuizFormData) {
-		return data;
+		console.log(data);
 	}
 
 	return (
@@ -127,8 +119,8 @@ export function CreateQuizModal({
 							</div>
 						</div>
 						<div className={clsx(styles.block, styles.right)}>
-							<SelectTagsBlock />
-							<SelectSubjectBlock />
+							{/* <SelectTagsBlock /> */}
+							{/* <SelectSubjectBlock /> */}
 							<SelectLanguagesBlock />
 						</div>
 					</div>

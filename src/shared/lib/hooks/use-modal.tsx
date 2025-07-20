@@ -12,24 +12,29 @@ interface IModalProps {
 	doCloseOnClickOutside?: boolean;
 	className?: string;
 }
-interface IModalPropsWithCustomModal {
+interface IModalPropsWithCustomModal<T = object> {
 	children?: ReactNode;
 	doCloseOnClickOutside?: boolean;
 	className?: string;
 	ModalComponent?: FunctionComponent<
-		IModalProps & { isOpen: boolean; onClose: () => void }
+		IModalProps & { isOpen: boolean; onClose: () => void } & T
 	>;
+	customProps?: T;
 }
 
-export function useModal(): [
+export function useModal<T = object>(): [
 	{ open: () => void; close: () => void; isOpen: boolean },
-	(props: IModalPropsWithCustomModal) => JSX.Element
+	(props: IModalPropsWithCustomModal<T>) => JSX.Element
 ] {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const ModalProvider = useCallback(
-		(props: IModalPropsWithCustomModal) => {
-			const { ModalComponent, ...restProps } = props;
+		(props: IModalPropsWithCustomModal<T>) => {
+			const {
+				ModalComponent,
+				customProps = {} as T,
+				...restProps
+			} = props;
 			if (!ModalComponent) {
 				return (
 					<Modal
@@ -46,6 +51,7 @@ export function useModal(): [
 					isOpen={isOpen}
 					onClose={() => setIsOpen(false)}
 					{...restProps}
+					{...customProps}
 				>
 					{props.children}
 				</ModalComponent>
