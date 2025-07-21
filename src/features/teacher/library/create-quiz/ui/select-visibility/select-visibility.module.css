@@ -1,0 +1,15 @@
+.select {
+	display: flex;
+	gap: 5px;
+	font-size: 18px;
+	font-family: "Kulim Park";
+}
+
+.selectBlock {
+	display: flex;
+	gap: 30px;
+	justify-content: center;
+	padding-top: 30px;
+	font-size: 18px;
+	font-family: "Kulim Park";
+}

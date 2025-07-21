@@ -1,1 +1,1 @@
-export {ViewFavouritePanel} from "./view-favourite-panel"
+export { ViewFavouritePanel } from "./view-favourite-panel";

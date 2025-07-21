@@ -1,1 +1,1 @@
-export {ViewCreatedPanel} from "./view-created-panel"
+export { ViewCreatedPanel } from "./view-created-panel";

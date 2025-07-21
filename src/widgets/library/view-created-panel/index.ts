@@ -1,1 +1,1 @@
-export {ViewCreatedPanel} from "./ui"
+export { ViewCreatedPanel } from "./ui";

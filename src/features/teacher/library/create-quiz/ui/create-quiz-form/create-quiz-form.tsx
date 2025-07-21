@@ -1,20 +1,25 @@
 import { clsx } from "clsx";
 import { useForm } from "react-hook-form";
-import { VisibilityTypeConstant } from "@/entities/quiz";
-import { RadioGroup, Radio, MenuButton, Form } from "@/shared/ui";
+import { useCreateQuizMutation } from "@/entities/quiz";
+import { MenuButton, Form } from "@/shared/ui";
 import type { ICreateQuizFormData } from "../../model";
 import { SelectLanguagesBlock } from "../select-languages";
+import { SelectShuffleAnswers } from "../select-shuffle-answers";
+import { SelectShuffleQuestions } from "../select-shuffle-questions";
 import { SelectSubjectBlock } from "../select-subject";
 import { SelectTagsBlock } from "../select-tags";
-import styles from "./create-quiz-form.module.css"
+import { SelectVisibility } from "../select-visibility";
+import { UploadImage } from "../upload-image";
+import styles from "./create-quiz-form.module.css";
 
 export function CreateQuizForm() {
-    	const methodsForm = useForm<ICreateQuizFormData>({
+	const [createQuiz] = useCreateQuizMutation();
+	const methodsForm = useForm<ICreateQuizFormData>({
 		defaultValues: {
 			title: "",
 			visibility: "PUBLIC",
-			shuffleQuestions: false,
-			shuffleAnswers: false,
+			shuffleQuestions: "false",
+			shuffleAnswers: "true",
 			coverImage: "",
 			tags: [],
 			subject: "",
@@ -22,8 +27,13 @@ export function CreateQuizForm() {
 		},
 	});
 
-	function onSubmit(data: ICreateQuizFormData) {
-		console.log(data);
+	async function onSubmit(data: ICreateQuizFormData) {
+		try {
+			await createQuiz(data).unwrap();
+			alert("Quiz was successfully created!");
+		} catch (err) {
+			console.error("Error creating quiz:", err);
+		}
 	}
 
 	return (
@@ -46,57 +56,14 @@ export function CreateQuizForm() {
 						}}
 					/>
 					<div className={styles.radio}>
-						<label className={styles.selectBlock}>
-							Visibitily:
-							<RadioGroup name={"visibility"}>
-								<Radio
-									value={VisibilityTypeConstant.PRIVATE}
-									labelClassName={styles.select}
-									// className={styles.radio}
-									label="private"
-								/>
-								<Radio
-									value={VisibilityTypeConstant.PUBLIC}
-									labelClassName={styles.select}
-									label="public"
-								/>
-							</RadioGroup>
-						</label>
-						<label className={styles.selectBlock}>
-							Shuffle questions:
-							<RadioGroup name={"shuffleQuestions"}>
-								<Radio
-									value={"true"}
-									labelClassName={styles.select}
-									label="true"
-								/>
-								<Radio
-									value={"false"}
-									labelClassName={styles.select}
-									label="false"
-								/>
-							</RadioGroup>
-						</label>
-						<label className={styles.selectBlock}>
-							Shuffle answers:
-							<RadioGroup name={"shuffleAnswers"}>
-								<Radio
-									value={"true"}
-									labelClassName={styles.select}
-									label="true"
-								/>
-								<Radio
-									value={"false"}
-									labelClassName={styles.select}
-									label="false"
-								/>
-							</RadioGroup>
-						</label>
+						<SelectVisibility />
+						<SelectShuffleQuestions />
+						<SelectShuffleAnswers />
 					</div>
 
 					<div className={styles.imageBlock}>
 						<p>Cover Image</p>
-						<div className={styles.image}>+</div>
+						<UploadImage />
 					</div>
 				</div>
 				<div className={clsx(styles.block, styles.right)}>
