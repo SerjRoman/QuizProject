@@ -1,8 +1,13 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import { clsx } from "clsx";
-import { useForm } from "react-hook-form";
+import { useForm, useFormContext } from "react-hook-form";
 import { useCreateQuizMutation } from "@/entities/quiz";
 import { MenuButton, Form } from "@/shared/ui";
-import type { ICreateQuizFormData } from "../../model";
+import {
+	type ICreateQuizFormData,
+	type ICreateQuizSchema,
+	createQuizFormSchema,
+} from "../../model";
 import { SelectLanguagesBlock } from "../select-languages";
 import { SelectShuffleAnswers } from "../select-shuffle-answers";
 import { SelectShuffleQuestions } from "../select-shuffle-questions";
@@ -14,17 +19,21 @@ import styles from "./create-quiz-form.module.css";
 
 export function CreateQuizForm() {
 	const [createQuiz] = useCreateQuizMutation();
-	const methodsForm = useForm<ICreateQuizFormData>({
+	const methodsForm = useForm<ICreateQuizFormData >({
 		defaultValues: {
 			title: "",
 			visibility: "PUBLIC",
 			shuffleQuestions: "false",
-			shuffleAnswers: "true",
+			shuffleAnswers: "false",
 			coverImage: "",
 			tags: [],
 			subject: "",
 			languages: [],
 		},
+	});
+
+	const { register } = useForm<ICreateQuizSchema>({
+		resolver: yupResolver(createQuizFormSchema)
 	});
 
 	async function onSubmit(data: ICreateQuizFormData) {
@@ -46,14 +55,6 @@ export function CreateQuizForm() {
 						placeholder="Type quiz title here"
 						className={styles.titleInput}
 						labelClassName={styles.label}
-						rules={{
-							required: "Title is required",
-							minLength: {
-								value: 3,
-								message:
-									"Title must have at least 3 characters",
-							},
-						}}
 					/>
 					<div className={styles.radio}>
 						<SelectVisibility />

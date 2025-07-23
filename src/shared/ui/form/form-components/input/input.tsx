@@ -5,7 +5,7 @@ import styles from "./input.module.css";
 import type { IFormInput } from "./input.types";
 
 export function FormInput(props: IFormInput) {
-	const { name, label, labelClassName, className, rules, ...restProps } = props;
+	const { name, label, labelClassName, className, ...restProps } = props;
 	const {
 		register,
 		formState: { errors },
@@ -22,7 +22,7 @@ export function FormInput(props: IFormInput) {
 			)}
 			<Input
 				className={clsx(styles.input, className)}
-				{...register(name, rules)}
+				{...register(name)}
 				{...restProps}
 				aria-invalid={!!errors[name]?.message}
 				id={name}

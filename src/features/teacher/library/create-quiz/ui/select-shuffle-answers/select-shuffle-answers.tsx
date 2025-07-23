@@ -9,12 +9,12 @@ export function SelectShuffleAnswers() {
 				<Radio
 					value={"true"}
 					labelClassName={styles.select}
-					label="true"
+					label="yes"
 				/>
 				<Radio
 					value={"false"}
 					labelClassName={styles.select}
-					label="false"
+					label="no"
 				/>
 			</RadioGroup>
 		</label>
