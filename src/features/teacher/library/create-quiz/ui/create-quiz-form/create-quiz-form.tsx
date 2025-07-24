@@ -26,9 +26,9 @@ export function CreateQuizForm() {
 			shuffleQuestions: false,
 			shuffleAnswers: false,
 			coverImage: "",
-			tagsIds: [],
-			subjectId: "",
-			languagesIds: [],
+			tags: [],
+			subject: "",
+			languages: [],
 		}
 		
 	});
