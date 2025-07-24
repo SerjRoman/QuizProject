@@ -7,12 +7,12 @@ export function SelectShuffleQuestions() {
 			Shuffle questions:
 			<RadioGroup name={"shuffleQuestions"}>
 				<Radio
-					value={"true"}
+					value={true}
 					labelClassName={styles.select}
 					label="yes"
 				/>
 				<Radio
-					value={"false"}
+					value={false}
 					labelClassName={styles.select}
 					label="no"
 				/>

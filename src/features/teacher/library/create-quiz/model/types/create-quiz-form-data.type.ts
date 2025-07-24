@@ -2,11 +2,11 @@ type QuizVisibilityStatus = "PUBLIC" | "PRIVATE";
 
 export interface ICreateQuizFormData {
 	title: string;
-	visibility: QuizVisibilityStatus;
-	shuffleQuestions: string;
-	shuffleAnswers: string;
+	subject: string;  
 	coverImage?: string;
-	tags: string[];         
-	subject: string;       
+	tags: string[];   
 	languages: string[];
+	visibility: QuizVisibilityStatus;
+	shuffleAnswers: boolean;
+	shuffleQuestions: boolean;
 }

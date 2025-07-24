@@ -43,13 +43,13 @@ export function Dropdown<T>(props: IDropdownProps<T>) {
 
 	return (
 		<div
-			className={clsx(styles.container, className)}
+			className={clsx(styles.container)}
 			ref={dropdownRef}
 			{...handleHover}
 		>
 			{trigger(renderProps)}
 			{isOpen && (
-				<div {...restProps} className={styles.dropdownPanel}>
+				<div {...restProps} className={clsx(styles.dropdownPanel, className)}>
 					{dataSource?.map(renderItem)}
 				</div>
 			)}

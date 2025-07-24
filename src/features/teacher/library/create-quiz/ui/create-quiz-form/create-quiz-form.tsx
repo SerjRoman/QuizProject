@@ -1,12 +1,11 @@
-import { yupResolver } from "@hookform/resolvers/yup";
+// import { yupResolver } from "@hookform/resolvers/yup";
 import { clsx } from "clsx";
-import { useForm, useFormContext } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useCreateQuizMutation } from "@/entities/quiz";
 import { MenuButton, Form } from "@/shared/ui";
 import {
 	type ICreateQuizFormData,
-	type ICreateQuizSchema,
-	createQuizFormSchema,
+	// createQuizFormSchema,
 } from "../../model";
 import { SelectLanguagesBlock } from "../select-languages";
 import { SelectShuffleAnswers } from "../select-shuffle-answers";
@@ -20,21 +19,23 @@ import styles from "./create-quiz-form.module.css";
 export function CreateQuizForm() {
 	const [createQuiz] = useCreateQuizMutation();
 	const methodsForm = useForm<ICreateQuizFormData >({
+		// resolver: yupResolver(createQuizFormSchema),
 		defaultValues: {
 			title: "",
 			visibility: "PUBLIC",
-			shuffleQuestions: "false",
-			shuffleAnswers: "false",
+			shuffleQuestions: false,
+			shuffleAnswers: false,
 			coverImage: "",
-			tags: [],
-			subject: "",
-			languages: [],
-		},
+			tagsIds: [],
+			subjectId: "",
+			languagesIds: [],
+		}
+		
 	});
 
-	const { register } = useForm<ICreateQuizSchema>({
-		resolver: yupResolver(createQuizFormSchema)
-	});
+	// const { register } = useForm<ICreateQuizSchema>({
+	// 	resolver: yupResolver(createQuizFormSchema)
+	// });
 
 	async function onSubmit(data: ICreateQuizFormData) {
 		try {

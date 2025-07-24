@@ -17,6 +17,9 @@
 .showMore {
 	cursor: pointer;
 	text-decoration: underline;
+	border-radius: 10px;
+	padding: 5px 7px;
+	border: 3px solid var(--fade-green);
 }
 
 .language {

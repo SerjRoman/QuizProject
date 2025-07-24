@@ -30,7 +30,7 @@ export function Radio(props: IRadioProps) {
 	return (
 		<label className={clsx(styles.label, labelClassName)}>
 			<input
-				value={value}
+				value={String(value)}
 				type="radio"
 				{...getRadioProps()}
 				{...restProps}

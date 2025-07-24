@@ -4,7 +4,7 @@ import type { UseFormRegisterReturn } from "react-hook-form";
 export interface IRadioProps
 	extends Omit<HTMLAttributes<HTMLInputElement>, "type"> {
 	label?: string;
-	value: string;
+	value: string | boolean;
 	isRadioVisible?: boolean;
 	labelClassName?: string;
 }

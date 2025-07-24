@@ -7,11 +7,12 @@ export const createQuizApi = baseApi.injectEndpoints({
 			query: (quizData) => ({
 				url: "/quizzes",
 				method: "POST",
-				body: {
-					tagsIds: quizData.tags,
-					subjectId: quizData.subject,
-					languagesIds: quizData.languages
-				},
+				body: quizData,
+				// {
+				// 	tagsIds: quizData.tagsIds,
+				// 	subjectId: quizData.subjectId,
+				// 	languagesIds: quizData.languagesIds
+				// },
 			}),
 		}),
 	}),
