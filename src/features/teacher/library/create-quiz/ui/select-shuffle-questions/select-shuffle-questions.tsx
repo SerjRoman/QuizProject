@@ -5,14 +5,14 @@ export function SelectShuffleQuestions() {
 	return (
 		<label className={styles.selectBlock}>
 			Shuffle questions:
-			<RadioGroup name={"shuffleQuestions"}>
+			<RadioGroup name={"shuffleQuestions"} >
 				<Radio
-					value={true}
+					value={"true"}
 					labelClassName={styles.select}
 					label="yes"
 				/>
 				<Radio
-					value={false}
+					value={"false"}
 					labelClassName={styles.select}
 					label="no"
 				/>

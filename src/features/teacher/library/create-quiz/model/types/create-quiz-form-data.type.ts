@@ -1,12 +1,12 @@
-type QuizVisibilityStatus = "PUBLIC" | "PRIVATE";
+import type { QuizVisibility } from "@/entities/quiz";
 
 export interface ICreateQuizFormData {
 	title: string;
-	subject: string;  
+	subjectId: string;  
 	coverImage?: string;
-	tags: string[];   
-	languages: string[];
-	visibility: QuizVisibilityStatus;
+	tagsIds: string[];   
+	languagesIds: string[];
+	visibility: QuizVisibility;
 	shuffleAnswers: boolean;
 	shuffleQuestions: boolean;
 }

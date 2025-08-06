@@ -1,10 +1,10 @@
 import { clsx } from "clsx";
-import { useMemo } from "react";
+import { useMemo, type ChangeEvent, type ReactNode } from "react";
 import { useFormContext } from "react-hook-form";
 import type { ICreateQuizFormData } from "@/features/teacher";
 import { useGetSubjectsQuery } from "@/features/teacher";
 import { useModal } from "@/shared/lib";
-import { Checkbox, FilterBlock, Radio, RadioGroup } from "@/shared/ui";
+import { FilterBlock, Radio, RadioGroup } from "@/shared/ui";
 import { ShowMoreModal } from "../../../show-more-modal";
 import styles from "./selects-subject-block.module.css";
 
@@ -12,10 +12,14 @@ export function SelectSubjectBlock() {
 	const { data: subjects } = useGetSubjectsQuery();
 	const [{ open }, ModalProvider] = useModal<{
 		title: string;
-		name: "subject";
+		name: "subjectId";
+		content: (
+			onChange: (e: ChangeEvent<HTMLInputElement>) => void,
+			selectedItems: string | string[]
+		) => ReactNode;
 	}>();
 	const { watch } = useFormContext<ICreateQuizFormData>();
-	const selectedSubject = watch("subject");
+	const selectedSubject = watch("subjectId");
 
 	const topSubjects = useMemo(() => {
 		if (!subjects) return [];
@@ -44,7 +48,7 @@ export function SelectSubjectBlock() {
 				title="Subject"
 				className={styles.filterBlock}
 			>
-				<RadioGroup name={"subject"}>
+				<RadioGroup name={"subjectId"}>
 					{topSubjects.map((subject) => (
 						<Radio
 							labelClassName={clsx(styles.item, styles.subject)}
@@ -58,17 +62,30 @@ export function SelectSubjectBlock() {
 			</FilterBlock>
 			<ModalProvider
 				ModalComponent={ShowMoreModal}
-				customProps={{ title: "subjects", name: "subject" }}
-			>
-				{subjects?.map((subject) => (
-					<Checkbox
-						labelClassName={clsx(styles.item, styles.subject)}
-						key={subject.id}
-						label={subject.name}
-						value={subject.id}
-					/>
-				))}
-			</ModalProvider>
+				customProps={{
+					title: "subjects",
+					name: "subjectId",
+					content: (onChange, selectedItems) => {
+						return (
+							<RadioGroup name="subjectIds" onChange={onChange}>
+								{subjects?.map((subject) => (
+									<Radio
+										labelClassName={clsx(
+											styles.item,
+											styles.subject
+										)}
+										checked={selectedItems.includes(subject.id)}
+										isRadioVisible={false}
+										key={subject.id}
+										label={subject.name}
+										value={subject.id}
+									/>
+								))}
+							</RadioGroup>
+						);
+					},
+				}}
+			></ModalProvider>
 		</>
 	);
 }
