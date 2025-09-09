@@ -7,6 +7,6 @@ export interface ICreateQuizFormData {
 	tags: string[];   
 	languages: string[];
 	visibility: QuizVisibilityStatus;
-	shuffleAnswers: boolean;
+	shuffleAnswers: string;
 	shuffleQuestions: boolean;
 }

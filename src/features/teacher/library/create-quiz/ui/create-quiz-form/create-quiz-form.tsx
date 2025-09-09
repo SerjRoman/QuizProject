@@ -22,9 +22,9 @@ export function CreateQuizForm() {
 		// resolver: yupResolver(createQuizFormSchema),
 		defaultValues: {
 			title: "",
-			visibility: "PUBLIC",
+			visibility: "PRIVATE",
 			shuffleQuestions: false,
-			shuffleAnswers: false,
+			shuffleAnswers: "false",
 			coverImage: "",
 			tags: [],
 			subject: "",
