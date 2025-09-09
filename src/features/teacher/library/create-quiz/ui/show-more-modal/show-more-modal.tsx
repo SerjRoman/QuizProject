@@ -1,27 +1,25 @@
-import { useState } from "react";
+import { useState, type ChangeEvent, type ReactNode } from "react";
 import { useFormContext } from "react-hook-form";
 import type { ICreateQuizFormData } from "@/features/teacher";
-import {
-	CheckboxGroup,
-	FilterBlock,
-	Icons,
-	MenuButton,
-	Modal,
-} from "@/shared/ui";
+import { FilterBlock, Icons, MenuButton, Modal } from "@/shared/ui";
 import styles from "./show-more-modal.module.css";
 
 export function ShowMoreModal({
 	isOpen,
 	onClose,
 	title,
-	children,
 	name,
+	content,
 }: {
 	isOpen?: boolean;
 	onClose?: () => void;
 	title?: string;
-	children?: React.ReactNode;
-	name: "languages" | "subject" | "tags";
+	children?: ReactNode;
+	name: "languagesIds" | "subjectId" | "tagsIds";
+	content: (
+		onChange: (e: ChangeEvent<HTMLInputElement>) => void,
+        selectedItems: string | string[]
+	) => ReactNode;
 }) {
 	const { watch, setValue } = useFormContext<ICreateQuizFormData>();
 	const items = watch(name);
@@ -47,6 +45,9 @@ export function ShowMoreModal({
 			});
 		}
 	}
+	function onChange(e: ChangeEvent<HTMLInputElement>) {
+		toggleChecked(e.target.value, e.target.checked);
+	}
 	return (
 		<Modal
 			className={styles.modal}
@@ -63,16 +64,7 @@ export function ShowMoreModal({
 			</div>
 			<div className={styles.main}>
 				<h1 className={styles.header}>Add more {title}</h1>
-				<FilterBlock>
-					<CheckboxGroup
-						name={name}
-						onChange={(e) => {
-							toggleChecked(e.target.value, e.target.checked);
-						}}
-					>
-						{children}
-					</CheckboxGroup>
-				</FilterBlock>
+				<FilterBlock>{content(onChange, selectedItems)}</FilterBlock>
 				<MenuButton
 					title={"Add"}
 					onClick={() => {

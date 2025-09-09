@@ -1,11 +1,10 @@
 .button {
-	position: fixed;
-	bottom: 20px;
-	left: 50%;
 	width: 300px;
-	transform: translateX(-50%);
 }
-
+.form {
+    align-items: center;
+    gap: 10px;
+}
 .main {
 	display: flex;
 	flex-direction: row;

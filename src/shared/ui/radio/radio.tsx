@@ -30,7 +30,7 @@ export function Radio(props: IRadioProps) {
 	return (
 		<label className={clsx(styles.label, labelClassName)}>
 			<input
-				value={String(value)}
+				value={value}
 				type="radio"
 				{...getRadioProps()}
 				{...restProps}
@@ -52,9 +52,7 @@ export function RadioGroup(props: IRadioGroupProps) {
 		} else if (!methods && onChange) {
 			return { name, onChange };
 		} else if (methods && onChange) {
-			throw new Error(
-				"RadioGroup in FormContext, but onChange was given"
-			);
+			return { name, onChange };
 		} else {
 			throw new Error(
 				"RadioGroup did not receive onChange and is not witihn FormContext"

@@ -11,11 +11,11 @@ export function SelectLanguagesBlock() {
 	const { data: languages } = useGetLanguagesQuery();
 	const [{ open }, ModalProvider] = useModal<{
 		title: string;
-		name: "languages";
+		name: "languagesIds";
 	}>();
 
 	const { watch } = useFormContext<ICreateQuizFormData>();
-	const selectedLanguages = watch("languages");
+	const selectedLanguages = watch("languagesIds");
 
 	const topLanguages = useMemo(() => {
 		if (!languages) return [];
@@ -44,7 +44,7 @@ export function SelectLanguagesBlock() {
 				title="Languages"
 				className={styles.filterBlock}
 			>
-				<CheckboxGroup name={"languages"}>
+				<CheckboxGroup name={"languagesIds"}>
 					{topLanguages.map((language) => (
 						<Checkbox
 							value={language.id}
@@ -57,7 +57,7 @@ export function SelectLanguagesBlock() {
 			</FilterBlock>
 			<ModalProvider
 				ModalComponent={ShowMoreModal}
-				customProps={{ title: "languages", name: "languages" }}
+				customProps={{ title: "languages", name: "languagesIds" }}
 			>
 				{languages?.map((language) => (
 					<Checkbox

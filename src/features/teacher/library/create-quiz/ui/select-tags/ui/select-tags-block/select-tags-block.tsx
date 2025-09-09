@@ -1,22 +1,27 @@
 import { clsx } from "clsx";
-import { useMemo } from "react";
+import { useMemo, type ChangeEvent, type ReactNode } from "react";
 import { useFormContext } from "react-hook-form";
-import type { ICreateQuizFormData } from "@/features/teacher";
 import { useGetTagsQuery } from "@/features/teacher";
 import { useModal } from "@/shared/lib";
 import { Checkbox, CheckboxGroup, FilterBlock } from "@/shared/ui";
+import type { ICreateQuizSchema } from "../../../../model";
 import { ShowMoreModal } from "../../../show-more-modal";
-import styles from "./select-tags-block.module.css"
+import styles from "./select-tags-block.module.css";
 
 export function SelectTagsBlock() {
+	const fieldName = "tagsIds";
 	const { data: tags } = useGetTagsQuery();
 	const [{ open }, ModalProvider] = useModal<{
 		title: string;
-		name: "tags";
+		name: typeof fieldName;
+		content: (
+			onChange: (e: ChangeEvent<HTMLInputElement>) => void,
+			selectedItems: string | string[]
+		) => ReactNode;
 	}>();
 
-	const { watch } = useFormContext<ICreateQuizFormData>();
-	const selectedTags = watch("tags");
+	const { watch } = useFormContext<ICreateQuizSchema>();
+	const selectedTags = watch(fieldName);
 
 	const topTags = useMemo(() => {
 		if (!tags) return [];
@@ -43,7 +48,7 @@ export function SelectTagsBlock() {
 				title="Tags"
 				className={styles.filterBlock}
 			>
-				<CheckboxGroup name={"tags"}>
+				<CheckboxGroup name={fieldName}>
 					{topTags.map((tag) => (
 						<Checkbox
 							value={tag.id}
@@ -56,17 +61,29 @@ export function SelectTagsBlock() {
 			</FilterBlock>
 			<ModalProvider
 				ModalComponent={ShowMoreModal}
-				customProps={{ title: "tags", name: "tags" }}
-			>
-				{tags?.map((tag) => (
-					<Checkbox
-						value={tag.id}
-						labelClassName={clsx(styles.item, styles.tag)}
-						key={tag.id}
-						label={tag.name}
-					/>
-				))}
-			</ModalProvider>
+				customProps={{
+					title: "tags",
+					name: fieldName,
+					content: (onChange, selectedItems) => {
+						return (
+							<CheckboxGroup onChange={onChange} name={"tagsIds"}>
+								{tags?.map((tag) => (
+									<Checkbox
+										value={tag.id}
+										labelClassName={clsx(
+											styles.item,
+											styles.tag
+										)}
+										key={tag.id}
+										label={tag.name}
+										checked={selectedItems.includes(tag.id)}
+									/>
+								))}
+							</CheckboxGroup>
+						);
+					},
+				}}
+			></ModalProvider>
 		</>
 	);
 }
