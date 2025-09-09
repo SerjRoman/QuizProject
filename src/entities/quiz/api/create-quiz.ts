@@ -9,10 +9,10 @@ export const createQuizApi = baseApi.injectEndpoints({
 				method: "POST",
 				body: {
 					title: quizData.title,
-					subjectId: quizData.subject,
+					subjectId: quizData.subjectId,
 					coverImage: quizData.coverImage,
-					tagsIds: quizData.tags,
-					languagesIds: quizData.languages,
+					tagsIds: quizData.tagsIds,
+					languagesIds: quizData.languagesIds,
 					visibility: quizData.visibility, 
 					shuffleAnswers: quizData.shuffleAnswers,
 					shuffleQuestions: quizData.shuffleQuestions,
