@@ -58,6 +58,14 @@ export function SelectTagsBlock() {
 						/>
 					))}
 				</CheckboxGroup>
+				<p
+					className={clsx(styles.showMore, styles.shMTag)}
+					onClick={() => {
+						open();
+					}}
+				>
+					Show more
+				</p>
 			</FilterBlock>
 			<ModalProvider
 				ModalComponent={ShowMoreModal}

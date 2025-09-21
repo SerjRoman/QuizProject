@@ -1,5 +1,5 @@
 import { clsx } from "clsx";
-import { useMemo } from "react";
+import { useMemo, type ChangeEvent, type ReactNode } from "react";
 import { useFormContext } from "react-hook-form";
 import { useGetLanguagesQuery } from "@/features/teacher";
 import type { ICreateQuizFormData } from "@features/teacher";
@@ -12,6 +12,10 @@ export function SelectLanguagesBlock() {
 	const [{ open }, ModalProvider] = useModal<{
 		title: string;
 		name: "languagesIds";
+		content: (
+			onChange: (e: ChangeEvent<HTMLInputElement>) => void,
+			selectedItems: string | string[]
+		) => ReactNode;
 	}>();
 
 	const { watch } = useFormContext<ICreateQuizFormData>();
@@ -54,20 +58,45 @@ export function SelectLanguagesBlock() {
 						/>
 					))}
 				</CheckboxGroup>
+				<p
+					className={clsx(styles.showMore, styles.shMTag)}
+					onClick={() => {
+						open();
+					}}
+				>
+					Show more
+				</p>
 			</FilterBlock>
 			<ModalProvider
 				ModalComponent={ShowMoreModal}
-				customProps={{ title: "languages", name: "languagesIds" }}
-			>
-				{languages?.map((language) => (
-					<Checkbox
-						key={language.id}
-						value={language.id}
-						label={language.name}
-						labelClassName={clsx(styles.item, styles.language)}
-					/>
-				))}
-			</ModalProvider>
+				customProps={{
+					title: "languages",
+					name: "languagesIds",
+					content: (onChange, selectedItems) => {
+						return (
+							<CheckboxGroup
+								onChange={onChange}
+								name={"languagesIds"}
+							>
+								{languages?.map((language) => (
+									<Checkbox
+										key={language.id}
+										value={language.id}
+										label={language.name}
+										labelClassName={clsx(
+											styles.item,
+											styles.language
+										)}
+										checked={selectedItems.includes(
+											language.id
+										)}
+									/>
+								))}
+							</CheckboxGroup>
+						);
+					},
+				}}
+			></ModalProvider>
 		</>
 	);
 }

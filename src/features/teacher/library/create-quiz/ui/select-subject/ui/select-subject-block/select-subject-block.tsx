@@ -59,6 +59,14 @@ export function SelectSubjectBlock() {
 						/>
 					))}
 				</RadioGroup>
+				<p
+					className={clsx(styles.showMore, styles.shMTag)}
+					onClick={() => {
+						open();
+					}}
+				>
+					Show more
+				</p>
 			</FilterBlock>
 			<ModalProvider
 				ModalComponent={ShowMoreModal}
@@ -74,7 +82,9 @@ export function SelectSubjectBlock() {
 											styles.item,
 											styles.subject
 										)}
-										checked={selectedItems.includes(subject.id)}
+										checked={selectedItems.includes(
+											subject.id
+										)}
 										isRadioVisible={false}
 										key={subject.id}
 										label={subject.name}
