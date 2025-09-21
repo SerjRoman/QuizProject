@@ -19,10 +19,10 @@ export function Header({ nav_bar_button }: IHeader) {
 									title={tab.title}
 									enabled={tab.path === location.pathname}
 									onClick={() => navigate(`${tab.path}`)}
-									iconRight={ tab.iconRight &&
-										<tab.iconRight/>
+									iconRight={
+										tab.iconRight && <tab.iconRight />
 									}
-									iconLeft={tab.iconLeft && <tab.iconLeft/>}
+									iconLeft={tab.iconLeft && <tab.iconLeft />}
 								/>
 							)}
 							className={styles.dropdown}

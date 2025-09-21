@@ -1,16 +1,9 @@
-import { clsx } from "clsx";
-import { Icons, Images } from "@/shared/ui";
-import {
-	useAddToFavouriteMutation,
-	useRemoveFromFavouriteMutation,
-} from "../../api";
+import { Images } from "@/shared/ui";
 import styles from "./item.module.css";
 import type { IQuizItemProps } from "./item.types";
 
 export function QuizItem(props: IQuizItemProps) {
-	const [addToFavourite] = useAddToFavouriteMutation();
-	const [removeFromFavourite] = useRemoveFromFavouriteMutation();
-	const { quiz, actions } = props;
+	const { quiz, actions, isMy } = props;
 	return (
 		<div className={styles.item}>
 			<div className={styles.infoBlock}>
@@ -28,31 +21,20 @@ export function QuizItem(props: IQuizItemProps) {
 			<div className={styles.createdByBlock}>
 				<img
 					src={
-						quiz.user.avatar
-							? quiz.user.avatar
+						quiz.createdBy.user.avatar
+							? quiz.createdBy.user.avatar
 							: Images.defaultAvatar
 					}
 					className={styles.avatar}
 				/>
 				<span>
-					{quiz.user.firstName} {quiz.user.lastName}
+					{isMy
+						? "Me"
+						: `${quiz.createdBy.user.firstName} ${quiz.createdBy.user.lastName}`}
 				</span>
 			</div>
 			<div className={styles.dataAdditionalButtons}>
-				<div className={styles.buttons}>
-					<Icons.Star
-						className={clsx(
-							styles.starIcon,
-							quiz.isFavourite ? styles.fill : styles.default
-						)}
-						onClick={() => {
-							if (!quiz.isFavourite)
-								addToFavourite({ id: quiz.id });
-							else removeFromFavourite({ id: quiz.id });
-						}}
-					/>
-					{actions}
-				</div>
+				<div className={styles.buttons}>{actions}</div>
 			</div>
 		</div>
 	);

@@ -1,0 +1,30 @@
+import { clsx } from "clsx";
+import { IconButton, Icons } from "@/shared/ui";
+import {
+	useAddToFavouriteMutation,
+	useRemoveFromFavouriteMutation,
+} from "../../api";
+import styles from "./add-quiz-to-favourites-button.module.css";
+import type { AddQuizToFavouritesButtonProps } from "./add-quiz-to-favourites-button.types";
+
+export function AddQuizToFavouritesButton({
+	isFavourite,
+	quizId,
+}: AddQuizToFavouritesButtonProps) {
+	const [addToFavourite] = useAddToFavouriteMutation();
+	const [removeFromFavourite] = useRemoveFromFavouriteMutation();
+	return (
+		<IconButton>
+			<Icons.Star
+				className={clsx(
+					styles.starIcon,
+					isFavourite ? styles.fill : styles.default
+				)}
+				onClick={() => {
+					if (!isFavourite) addToFavourite({ id: quizId });
+					else removeFromFavourite({ id: quizId });
+				}}
+			/>
+		</IconButton>
+	);
+}

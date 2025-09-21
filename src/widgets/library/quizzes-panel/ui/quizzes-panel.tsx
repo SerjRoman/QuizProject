@@ -7,15 +7,20 @@ import {
 	QuizFilterByTagsBlock,
 	QuizSearch,
 } from "@/features/teacher";
-import { useLibraryQuizzes } from "@/entities/quiz";
+import { EditAccessibilityModal } from "@/features/teacher/library/accessibility-quiz";
+import { QuizActionsGroup } from "@/features/teacher/library/quiz-actions";
+import { QuizItem, useLibraryQuizzes } from "@/entities/quiz";
+import { useModal, useAppSelector } from "@/shared/lib";
 import { Icons, MenuButton } from "@/shared/ui";
 import styles from "./quizzes-panel.module.css";
 import type { IQuizzesPanel } from "./quizzes-panel.types";
 
-
 export function QuizzesPanel({ filters, queryArgs }: IQuizzesPanel) {
+	const { user } = useAppSelector((state) => state.user);
+
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [{ open }, Modal] = useModal<{ quizId: string }>();
 
 	const { data, isLoading, error } = useLibraryQuizzes({
 		page: currentPage,
@@ -29,11 +34,21 @@ export function QuizzesPanel({ filters, queryArgs }: IQuizzesPanel) {
 		if (error) return <p>{String(error)}</p>;
 		if (meta.pageCount === 0) return <p>No quizzes found</p>;
 		return (
-			<QuizContent
-				quizzes={displayQuizzes}
-				meta={data.meta}
-				onPageChange={setCurrentPage}
-			/>
+			<QuizContent meta={data.meta} onPageChange={setCurrentPage}>
+				{displayQuizzes.map((quiz) => (
+					<QuizItem
+						key={quiz.id}
+						quiz={quiz}
+						actions={
+							<QuizActionsGroup
+								quiz={quiz}
+								onEditAccessibility={open}
+							/>
+						}
+						isMy={user?.id === quiz.createdBy.user.id}
+					/>
+				))}
+			</QuizContent>
 		);
 	};
 
@@ -57,6 +72,7 @@ export function QuizzesPanel({ filters, queryArgs }: IQuizzesPanel) {
 			</div>
 			<div className={styles.content}>{renderContent()}</div>
 
+			<Modal ModalComponent={EditAccessibilityModal}></Modal>
 			<CreateQuizModal
 				isOpen={isModalOpen}
 				onClose={() => setIsModalOpen(false)}

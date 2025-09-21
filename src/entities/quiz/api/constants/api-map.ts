@@ -3,5 +3,4 @@ export const QUIZ_LIBRARY_API_MAP = {
 	myCopied: "/quizzes/teacher/my/copied",
 	myFavourite: "/quizzes/teacher/my/favourite",
 	myCreated: "/quizzes/teacher/my/created",
-    favourite: (id: string) => `/quizzes/${id}/favourite`
 };

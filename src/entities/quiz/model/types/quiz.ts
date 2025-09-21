@@ -1,4 +1,4 @@
-import type { QuizStatus } from "./quiz-status";
+import type { QuizStatus } from "./quiz-filters";
 
 export interface IQuiz {
 	id: string;
@@ -36,7 +36,9 @@ export type QuizLibrary = Pick<
 			avatar: string | null;
 			firstName: string;
 			lastName: string;
+			id: string;
 		};
 	};
 };
+
 

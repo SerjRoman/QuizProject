@@ -1,11 +1,7 @@
 import { baseApi } from "@/shared/api";
 import { QUIZZES_PER_PAGE } from "../model";
 import { QUIZ_LIBRARY_MY_SELECT, QUIZ_LIBRARY_API_MAP } from "./constants";
-import type {
-	QuizLibraryRequest,
-	QuizLibraryAllResponse,
-	QuizLibraryFavourite,
-} from "./types";
+import type { QuizLibraryRequest, QuizLibraryAllResponse } from "./types";
 import type { QuizLibraryAllResponseRaw } from "./types/quiz-library-api";
 
 export const quizLibraryApi = baseApi.injectEndpoints({
@@ -64,30 +60,8 @@ export const quizLibraryApi = baseApi.injectEndpoints({
 				};
 			},
 		}),
-		addToFavourite: build.mutation<void, QuizLibraryFavourite>({
-			query: ({ id }) => ({
-				url: QUIZ_LIBRARY_API_MAP.favourite(id),
-				method: "PUT",
-			}),
-			invalidatesTags: (_, __, arg) => [
-				{ type: "LibraryQuiz", id: arg.id },
-			],
-		}),
-		removeFromFavourite: build.mutation<void, QuizLibraryFavourite>({
-			query: ({ id }) => ({
-				url: QUIZ_LIBRARY_API_MAP.favourite(id),
-				method: "DELETE",
-			}),
-			invalidatesTags: (_, __, arg) => [
-				{ type: "LibraryQuiz", id: arg.id },
-			],
-		}),
 	}),
 });
 
-export const {
-	useLazyGetMyQuizzesQuery,
-	useRemoveFromFavouriteMutation,
-	useAddToFavouriteMutation,
-	useGetMyQuizzesQuery,
-} = quizLibraryApi;
+export const { useLazyGetMyQuizzesQuery, useGetMyQuizzesQuery } =
+	quizLibraryApi;

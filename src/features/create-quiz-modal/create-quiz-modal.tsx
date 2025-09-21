@@ -60,11 +60,11 @@ export function CreateQuizModal({
 				<div className={styles.block}></div>
 			</div>
 			<MenuButton
-					className={styles.button}
-					title={"Create"}
-					enabled
-					onClick={() => {}}
-				/>
+				className={styles.button}
+				title={"Create"}
+				enabled
+				onClick={() => {}}
+			/>
 		</Modal>
 	);
 }
