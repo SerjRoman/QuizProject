@@ -1,21 +1,14 @@
-import type { ICreateQuizFormData } from "@/features/teacher";
+import type { ICreateQuizSchema } from "@/features/teacher";
 import { baseApi } from "@/shared/api";
 
-export const createQuizApi = baseApi.injectEndpoints({
+const createQuizApi = baseApi.injectEndpoints({
 	endpoints: (build) => ({
-		createQuiz: build.mutation<void, ICreateQuizFormData>({
+		createQuiz: build.mutation<void, ICreateQuizSchema>({
 			query: (quizData) => ({
 				url: "/quizzes",
 				method: "POST",
 				body: {
-					title: quizData.title,
-					subjectId: quizData.subjectId,
-					coverImage: quizData.coverImage,
-					tagsIds: quizData.tagsIds,
-					languagesIds: quizData.languagesIds,
-					visibility: quizData.visibility, 
-					shuffleAnswers: quizData.shuffleAnswers,
-					shuffleQuestions: quizData.shuffleQuestions,
+					...quizData
 				},
 			}),
 		}),

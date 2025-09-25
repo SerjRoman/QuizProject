@@ -15,7 +15,7 @@ import { UploadImage } from "../upload-image";
 import styles from "./create-quiz-form.module.css";
 
 export function CreateQuizForm() {
-	const [createQuiz, { error }] = useCreateQuizMutation();
+	const [createQuiz] = useCreateQuizMutation();
 	const methodsForm = useForm({
 		resolver: yupResolver(createQuizFormSchema),
 		defaultValues: {
@@ -34,12 +34,11 @@ export function CreateQuizForm() {
 		try {
 			await createQuiz({
 				...data,
-				shuffleAnswers: data.shuffleAnswers === "true",
-				shuffleQuestions: data.shuffleQuestions === "true",
+				shuffleAnswers: data.shuffleAnswers,
+				shuffleQuestions: data.shuffleQuestions,
 				coverImage:
-					data.coverImage === "" ? undefined : data.coverImage,
+					data.coverImage === "" ? "" : data.coverImage,
 			});
-			console.log(error);
 			alert("Quiz was successfully created!");
 		} catch (err) {
 			console.error("Error creating quiz:", err);

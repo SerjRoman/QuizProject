@@ -17,7 +17,7 @@ export function useError(): UseErrorReturnType {
 					close();
 					setError(null);
 				}}
-			></p>
+			>{error}</p>
 		</Modal>
 	) : null;
 	return { ModalError, setError };

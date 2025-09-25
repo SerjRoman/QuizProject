@@ -1,1 +1,1 @@
-export {SelectTagsBlock} from "./ui/select-tags-block"
+export { SelectTagsBlock } from "./select-tags-block";

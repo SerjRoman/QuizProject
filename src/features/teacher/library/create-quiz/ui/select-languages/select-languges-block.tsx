@@ -2,10 +2,10 @@ import { clsx } from "clsx";
 import { useMemo, type ChangeEvent, type ReactNode } from "react";
 import { useFormContext } from "react-hook-form";
 import { useGetLanguagesQuery } from "@/features/teacher";
-import type { ICreateQuizFormData } from "@features/teacher";
 import { useModal } from "@/shared/lib";
 import { Checkbox, CheckboxGroup, FilterBlock } from "@/shared/ui";
-import { ShowMoreModal } from "../../../show-more-modal";
+import type { ICreateQuizSchema } from "../../model";
+import { ShowMoreModal } from "../show-more-modal";
 import styles from "./select-languages-block.module.css";
 export function SelectLanguagesBlock() {
 	const { data: languages } = useGetLanguagesQuery();
@@ -18,7 +18,7 @@ export function SelectLanguagesBlock() {
 		) => ReactNode;
 	}>();
 
-	const { watch } = useFormContext<ICreateQuizFormData>();
+	const { watch } = useFormContext<ICreateQuizSchema>();
 	const selectedLanguages = watch("languagesIds");
 
 	const topLanguages = useMemo(() => {
@@ -58,14 +58,7 @@ export function SelectLanguagesBlock() {
 						/>
 					))}
 				</CheckboxGroup>
-				<p
-					className={clsx(styles.showMore, styles.shMTag)}
-					onClick={() => {
-						open();
-					}}
-				>
-					Show more
-				</p>
+				
 			</FilterBlock>
 			<ModalProvider
 				ModalComponent={ShowMoreModal}

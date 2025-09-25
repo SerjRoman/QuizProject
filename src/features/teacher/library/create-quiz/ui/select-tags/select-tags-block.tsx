@@ -4,8 +4,8 @@ import { useFormContext } from "react-hook-form";
 import { useGetTagsQuery } from "@/features/teacher";
 import { useModal } from "@/shared/lib";
 import { Checkbox, CheckboxGroup, FilterBlock } from "@/shared/ui";
-import type { ICreateQuizSchema } from "../../../../model";
-import { ShowMoreModal } from "../../../show-more-modal";
+import type { ICreateQuizSchema } from "../../model";
+import { ShowMoreModal } from "../show-more-modal";
 import styles from "./select-tags-block.module.css";
 
 export function SelectTagsBlock() {
@@ -58,14 +58,7 @@ export function SelectTagsBlock() {
 						/>
 					))}
 				</CheckboxGroup>
-				<p
-					className={clsx(styles.showMore, styles.shMTag)}
-					onClick={() => {
-						open();
-					}}
-				>
-					Show more
-				</p>
+				
 			</FilterBlock>
 			<ModalProvider
 				ModalComponent={ShowMoreModal}

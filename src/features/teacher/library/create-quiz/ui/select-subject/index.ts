@@ -1,1 +1,1 @@
-export {SelectSubjectBlock} from "./ui/select-subject-block"
+export { SelectSubjectBlock } from "./select-subject-block";

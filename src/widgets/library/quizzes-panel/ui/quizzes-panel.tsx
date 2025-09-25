@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { QuizContent } from "@/widgets/library";
-import { CreateQuizModal } from "@/widgets/library/create-quiz";
 import {
 	QuizFilterByLanguagesBlock,
 	QuizFilterBySubjectBlock,
 	QuizFilterByTagsBlock,
 	QuizSearch,
+	CreateQuizModal
 } from "@/features/teacher";
 
 import { useLibraryQuizzes } from "@/entities/quiz";

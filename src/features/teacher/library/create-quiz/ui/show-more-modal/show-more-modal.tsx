@@ -1,7 +1,7 @@
 import { useState, type ChangeEvent, type ReactNode } from "react";
 import { useFormContext } from "react-hook-form";
-import type { ICreateQuizFormData } from "@/features/teacher";
 import { FilterBlock, Icons, MenuButton, Modal } from "@/shared/ui";
+import type { ICreateQuizSchema } from "../../model";
 import styles from "./show-more-modal.module.css";
 
 export function ShowMoreModal({
@@ -21,7 +21,7 @@ export function ShowMoreModal({
         selectedItems: string | string[]
 	) => ReactNode;
 }) {
-	const { watch, setValue } = useFormContext<ICreateQuizFormData>();
+	const { watch, setValue } = useFormContext<ICreateQuizSchema>();
 	const items = watch(name);
 	const [selectedItems, setSelectedItems] = useState(items);
 

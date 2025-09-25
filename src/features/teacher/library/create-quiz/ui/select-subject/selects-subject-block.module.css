@@ -19,20 +19,24 @@
 	text-decoration: none;
 	border-radius: 10px;
 	padding: 5px 7px;
-	border: 3px solid var(--light-blue);
+	width: fit-content;
+	border: 3px solid var(--fade-pink);
 }
+
 .showMore:hover{
-	background-color: var(--light-blue);
+	background-color: var(--fade-pink);
 }
 
-.language {
+.subject {
 }
-.shMLan {
-	text-decoration-color: var(--light-blue);
+.shMSub {
+	text-decoration-color: var(--fade-pink);
 }
 
 
-.language:has(input:checked) {
-	background-color: var(--light-blue);
+
+.subject:has(input:checked) {
+	background-color: var(--fade-pink);
 }
+
 

@@ -1,11 +1,11 @@
 import { clsx } from "clsx";
 import { useMemo, type ChangeEvent, type ReactNode } from "react";
 import { useFormContext } from "react-hook-form";
-import type { ICreateQuizFormData } from "@/features/teacher";
 import { useGetSubjectsQuery } from "@/features/teacher";
 import { useModal } from "@/shared/lib";
 import { FilterBlock, Radio, RadioGroup } from "@/shared/ui";
-import { ShowMoreModal } from "../../../show-more-modal";
+import type { ICreateQuizSchema } from "../../model";
+import { ShowMoreModal } from "../show-more-modal";
 import styles from "./selects-subject-block.module.css";
 
 export function SelectSubjectBlock() {
@@ -18,7 +18,7 @@ export function SelectSubjectBlock() {
 			selectedItems: string | string[]
 		) => ReactNode;
 	}>();
-	const { watch } = useFormContext<ICreateQuizFormData>();
+	const { watch } = useFormContext<ICreateQuizSchema>();
 	const selectedSubject = watch("subjectId");
 
 	const topSubjects = useMemo(() => {
@@ -59,14 +59,7 @@ export function SelectSubjectBlock() {
 						/>
 					))}
 				</RadioGroup>
-				<p
-					className={clsx(styles.showMore, styles.shMTag)}
-					onClick={() => {
-						open();
-					}}
-				>
-					Show more
-				</p>
+				
 			</FilterBlock>
 			<ModalProvider
 				ModalComponent={ShowMoreModal}

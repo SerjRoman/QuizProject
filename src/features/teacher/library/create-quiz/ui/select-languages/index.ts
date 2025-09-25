@@ -1,1 +1,1 @@
-export { SelectLanguagesBlock } from "./ui/select-languages-block";
+export { SelectLanguagesBlock } from "./select-languges-block";
