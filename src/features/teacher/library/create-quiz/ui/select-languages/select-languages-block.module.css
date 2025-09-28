@@ -18,7 +18,7 @@
 	cursor: pointer;
 	text-decoration: none;
 	border-radius: 10px;
-	padding: 5px 7px;
+	padding: 3px 3px;
 	width: fit-content;
 
 	border: 3px solid var(--light-blue);

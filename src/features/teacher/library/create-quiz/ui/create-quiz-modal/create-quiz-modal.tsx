@@ -22,7 +22,7 @@ export function CreateQuizModal({
 			</div>
 			<>
 				<h1 className={styles.header}>Create your new quiz</h1>
-				<CreateQuizForm/>
+				<CreateQuizForm close={onClose}/>
 			</>
 		</Modal>
 	);

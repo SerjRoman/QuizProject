@@ -1,9 +1,9 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { clsx } from "clsx";
 import { useForm } from "react-hook-form";
-import { useCreateQuizMutation } from "@/entities/quiz";
 import { useError } from "@/shared/lib";
 import { MenuButton, Form } from "@/shared/ui";
+import { useCreateQuizMutation } from "../../api";
 import { type ICreateQuizSchema, createQuizFormSchema } from "../../model";
 import { SelectLanguagesBlock } from "../select-languages";
 import { SelectShuffleAnswers } from "../select-shuffle-answers";
@@ -14,7 +14,7 @@ import { SelectVisibility } from "../select-visibility";
 import { UploadImage } from "../upload-image";
 import styles from "./create-quiz-form.module.css";
 
-export function CreateQuizForm() {
+export function CreateQuizForm({ close }: { close: () => void }) {
 	const [createQuiz] = useCreateQuizMutation();
 	const methodsForm = useForm({
 		resolver: yupResolver(createQuizFormSchema),
@@ -34,12 +34,12 @@ export function CreateQuizForm() {
 		try {
 			await createQuiz({
 				...data,
-				shuffleAnswers: data.shuffleAnswers,
-				shuffleQuestions: data.shuffleQuestions,
+				shuffleAnswers: data.shuffleAnswers === "true",
+				shuffleQuestions: data.shuffleQuestions === "true",
 				coverImage:
-					data.coverImage === "" ? "" : data.coverImage,
-			});
-			alert("Quiz was successfully created!");
+					data.coverImage === "" ? undefined : data.coverImage,
+			}).unwrap();
+			close();
 		} catch (err) {
 			console.error("Error creating quiz:", err);
 			if (err instanceof Error) {
