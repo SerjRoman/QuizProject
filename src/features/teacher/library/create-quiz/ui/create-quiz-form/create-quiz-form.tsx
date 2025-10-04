@@ -29,7 +29,8 @@ export function CreateQuizForm({ close }: { close: () => void }) {
 			languagesIds: [],
 		},
 	});
-	const { setError, ModalError } = useError();
+	const { ModalError, handleError } = useError();
+
 	async function onSubmit(data: ICreateQuizSchema) {
 		try {
 			await createQuiz({
@@ -40,12 +41,15 @@ export function CreateQuizForm({ close }: { close: () => void }) {
 					data.coverImage === "" ? undefined : data.coverImage,
 			}).unwrap();
 			close();
+			handleError(400);
 		} catch (err) {
 			console.error("Error creating quiz:", err);
 			if (err instanceof Error) {
 				if ("status" in err) {
-					if (err.status) {
-						setError("Unhandled error");
+					if (typeof err?.status === "number") {
+						handleError(err.status);
+					} else {
+						handleError(null, "Unhandled error");
 					}
 				}
 			}
