@@ -1,0 +1,33 @@
+.image {
+	display: flex;
+	background-color: var(--white);
+	width: 90px;
+	height: 90px;
+	align-items: center;
+	justify-content: center;
+	border-radius: 20px;
+	border: black solid 1px;
+}
+.uploadLabel {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	width: 90px;
+	height: 90px;
+
+}
+
+.hiddenInput {
+	display: none;
+}
+
+
+.previewImage {
+	width: 90px;
+	height: 90px;
+	border-radius: 20px;
+	object-fit: cover;
+}
+

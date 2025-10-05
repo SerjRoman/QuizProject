@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useGetSubjectsQuery } from "@/features/quiz-filters/api";
+import { useGetSubjectsQuery } from "@/features/teacher";
 import { setFilters } from "@/entities/quiz";
 import { useAppDispatch, useAppSelector } from "@/shared/lib";
 import { Checkbox, CheckboxGroup, FilterBlock } from "@/shared/ui";

@@ -1,1 +1,0 @@
-export {ViewFavouritePanel} from "./ui"

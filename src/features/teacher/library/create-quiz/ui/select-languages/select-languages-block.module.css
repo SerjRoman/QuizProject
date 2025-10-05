@@ -1,0 +1,40 @@
+.filterBlock {
+	padding: 10px;
+	width: 100%;
+	max-height: 350px;
+}
+
+.item {
+	font-size: 14px;
+	font-family: "Kulim Park";
+	background-color: var(--light-grey2);
+	width: fit-content;
+	height: fit-content;
+	border-radius: 15px;
+	padding: 5px 7px;
+	cursor: pointer;
+}
+.showMore {
+	cursor: pointer;
+	text-decoration: none;
+	border-radius: 10px;
+	padding: 3px 3px;
+	width: fit-content;
+
+	border: 3px solid var(--light-blue);
+}
+.showMore:hover{
+	background-color: var(--light-blue);
+}
+
+.language {
+}
+.shMLan {
+	text-decoration-color: var(--light-blue);
+}
+
+
+.language:has(input:checked) {
+	background-color: var(--light-blue);
+}
+

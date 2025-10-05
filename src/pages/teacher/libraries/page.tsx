@@ -6,6 +6,7 @@ import {
 } from "@/widgets/library";
 import { clearFilters } from "@/entities/quiz";
 import { useAppDispatch } from "@/shared/lib";
+
 import { Tab, TabList, TabPanel, Tabs } from "@/shared/ui";
 import styles from "./page.module.css";
 

@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { QuizContent } from "@/widgets/library";
-import { CreateQuizModal } from "@/features/create-quiz-modal";
 import {
 	QuizFilterByLanguagesBlock,
 	QuizFilterBySubjectBlock,
 	QuizFilterByTagsBlock,
 	QuizSearch,
+	CreateQuizModal
 } from "@/features/teacher";
+
 import { useLibraryQuizzes } from "@/entities/quiz";
+import { useModal } from "@/shared/lib";
 import { Icons, MenuButton } from "@/shared/ui";
 import styles from "./quizzes-panel.module.css";
 import type { IQuizzesPanel } from "./quizzes-panel.types";
@@ -15,7 +17,7 @@ import type { IQuizzesPanel } from "./quizzes-panel.types";
 
 export function QuizzesPanel({ filters, queryArgs }: IQuizzesPanel) {
 	const [currentPage, setCurrentPage] = useState<number>(1);
-	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [{ open: openModal }, ModalWrapper] = useModal();
 
 	const { data, isLoading, error } = useLibraryQuizzes({
 		page: currentPage,
@@ -45,7 +47,7 @@ export function QuizzesPanel({ filters, queryArgs }: IQuizzesPanel) {
 					title={"Create new quiz"}
 					iconRight={<Icons.Plus />}
 					enabled
-					onClick={() => setIsModalOpen(true)}
+					onClick={openModal}
 				/>
 				<div className={styles.filters}>
 					<QuizSearch />
@@ -57,10 +59,7 @@ export function QuizzesPanel({ filters, queryArgs }: IQuizzesPanel) {
 			</div>
 			<div className={styles.content}>{renderContent()}</div>
 
-			<CreateQuizModal
-				isOpen={isModalOpen}
-				onClose={() => setIsModalOpen(false)}
-			/>
+			<ModalWrapper ModalComponent={CreateQuizModal} />
 		</div>
 	);
 }

@@ -1,3 +1,3 @@
 export * from "./quiz-library";
-export { PrivateTypeConstant } from "./constants";
+export { VisibilityTypeConstant } from "./constants";
 export * from "./types";

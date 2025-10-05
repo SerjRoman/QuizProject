@@ -1,0 +1,66 @@
+.button {
+	width: 300px;
+}
+.form {
+    align-items: center;
+    gap: 10px;
+}
+.main {
+	display: flex;
+	flex-direction: row;
+}
+
+.block {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 50%;
+	padding: 10px 0;
+	height: fit-content;
+}
+.radio{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.left {
+	gap: 30px;
+}
+.right {
+	gap: 20px;
+
+}
+
+.titleInput {
+	display: flex;
+	width: 300px;
+}
+.label {
+	font-family: "Kulim Park";
+	font-size: 20px;
+}
+
+
+.imageBlock {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding-top: 30px;
+	gap: 10px;
+	font-family: "Kulim Park";
+	font-size: 20px;
+}
+.image {
+	display: flex;
+	background-color: var(--white);
+	width: 90px;
+	height: 90px;
+	align-items: center;
+	justify-content: center;
+	border-radius: 20px;
+	border: black solid 1px;
+}
+
