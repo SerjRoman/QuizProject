@@ -11,19 +11,24 @@ export function AddQuizToFavouritesButton({
 	isFavourite,
 	quizId,
 }: AddQuizToFavouritesButtonProps) {
-	const [addToFavourite] = useAddToFavouriteMutation();
-	const [removeFromFavourite] = useRemoveFromFavouriteMutation();
+	const [addToFavourite, { isLoading: addLoading }] =
+		useAddToFavouriteMutation();
+	const [removeFromFavourite, { isLoading: removeLoading }] =
+		useRemoveFromFavouriteMutation();
+	const isLoading = addLoading || removeLoading;
 	return (
-		<IconButton>
+		<IconButton
+			onClick={() => {
+				if (!isFavourite) addToFavourite({ id: quizId });
+				else removeFromFavourite({ id: quizId });
+			}}
+			disabled={isLoading}
+		>
 			<Icons.Star
 				className={clsx(
 					styles.starIcon,
 					isFavourite ? styles.fill : styles.default
 				)}
-				onClick={() => {
-					if (!isFavourite) addToFavourite({ id: quizId });
-					else removeFromFavourite({ id: quizId });
-				}}
 			/>
 		</IconButton>
 	);

@@ -43,6 +43,7 @@ export function QuizzesPanel({ filters, queryArgs }: IQuizzesPanel) {
 							<QuizActionsGroup
 								quiz={quiz}
 								onEditAccessibility={open}
+								isOwner={user?.id === quiz.createdBy.user.id}
 							/>
 						}
 						isMy={user?.id === quiz.createdBy.user.id}

@@ -11,5 +11,7 @@ export interface IDropdownProps<T> extends HTMLAttributes<HTMLDivElement> {
 	dataSource: T[];
 	renderItem: (data: T) => ReactNode;
 	showOn?: "hover";
+	closeOn?: "hover";
 	doCloseOnClickOutside?: boolean;
+	panelClassname?: string;
 }

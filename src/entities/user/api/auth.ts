@@ -1,6 +1,6 @@
 import { baseApi } from "@/shared/api";
 import { setTokens, setUser, type IUser } from "../model";
-import { USER_API_MAP } from "./constants";
+import { AUTH_API_MAP } from "./constants";
 import type {
 	ILoginRequest,
 	ILoginResponse,
@@ -12,7 +12,7 @@ export const userApi = baseApi.injectEndpoints({
 	endpoints: (build) => ({
 		login: build.mutation<ILoginResponse, ILoginRequest>({
 			query: (credentials) => ({
-				url: USER_API_MAP.login,
+				url: AUTH_API_MAP.login,
 				body: credentials,
 				method: "POST",
 			}),
@@ -29,7 +29,7 @@ export const userApi = baseApi.injectEndpoints({
 			query: (credentials) => ({
 				method: "POST",
 				body: credentials,
-				url: USER_API_MAP.register,
+				url: AUTH_API_MAP.register,
 			}),
 			onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
 				try {
@@ -43,7 +43,7 @@ export const userApi = baseApi.injectEndpoints({
 
 		me: build.query<IUser, void>({
 			query: () => ({
-				url: USER_API_MAP.me,
+				url: AUTH_API_MAP.me,
 			}),
 			onQueryStarted: async (_, { dispatch, queryFulfilled }) => {
 				try {

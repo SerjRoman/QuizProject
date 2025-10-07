@@ -1,6 +1,6 @@
-import type { DetailedHTMLProps, HTMLAttributes } from "react";
+import type { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 
 export type IconButtonProps = DetailedHTMLProps<
-	HTMLAttributes<HTMLButtonElement>,
+	ButtonHTMLAttributes<HTMLButtonElement>,
 	HTMLButtonElement
 >;

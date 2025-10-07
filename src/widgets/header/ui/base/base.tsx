@@ -14,6 +14,7 @@ export function Header({ nav_bar_button }: IHeader) {
 					return (
 						<Dropdown
 							showOn="hover"
+							closeOn="hover"
 							trigger={() => (
 								<MenuButton
 									title={tab.title}
