@@ -1,41 +1,55 @@
 import { useState } from "react";
 import { QuizContent } from "@/widgets/library";
 import {
+	CreateQuizModal,
 	QuizFilterByLanguagesBlock,
 	QuizFilterBySubjectBlock,
 	QuizFilterByTagsBlock,
 	QuizSearch,
-	CreateQuizModal
 } from "@/features/teacher";
-
-import { useLibraryQuizzes } from "@/entities/quiz";
-import { useModal } from "@/shared/lib";
+import { EditAccessibilityModal } from "@/features/teacher/library/accessibility-quiz";
+import { QuizActionsGroup } from "@/features/teacher/library/quiz-actions";
+import { useLibraryQuizzes, QuizItem } from "@/entities/quiz";
+import { useModal, useAppSelector } from "@/shared/lib";
 import { Icons, MenuButton } from "@/shared/ui";
 import styles from "./quizzes-panel.module.css";
 import type { IQuizzesPanel } from "./quizzes-panel.types";
 
-
 export function QuizzesPanel({ filters, queryArgs }: IQuizzesPanel) {
-	const [currentPage, setCurrentPage] = useState<number>(1);
-	const [{ open: openModal }, ModalWrapper] = useModal();
+	const { user } = useAppSelector((state) => state.user);
 
-	const { data, isLoading, error } = useLibraryQuizzes({
+	const [currentPage, setCurrentPage] = useState<number>(1);
+	const [{ open: openModal }, CreateQuizModalWrapper] = useModal();
+	const [{ open }, QuizActionsModalWrapper] = useModal<{ quizId: string }>();
+
+	const { data, isLoading, error, isFetching } = useLibraryQuizzes({
 		page: currentPage,
 		queryArgs,
 	});
 
 	const renderContent = () => {
-		if (isLoading || !data) return <p>Loading...</p>;
+		if (isLoading || !data || isFetching) return <p>Loading...</p>;
 		const displayQuizzes = data.data;
 		const { meta } = data;
 		if (error) return <p>{String(error)}</p>;
 		if (meta.pageCount === 0) return <p>No quizzes found</p>;
 		return (
-			<QuizContent
-				quizzes={displayQuizzes}
-				meta={data.meta}
-				onPageChange={setCurrentPage}
-			/>
+			<QuizContent meta={data.meta} onPageChange={setCurrentPage}>
+				{displayQuizzes.map((quiz) => (
+					<QuizItem
+						key={quiz.id}
+						quiz={quiz}
+						actions={
+							<QuizActionsGroup
+								quiz={quiz}
+								onEditAccessibility={open}
+								isOwner={user?.id === quiz.createdBy.user.id}
+							/>
+						}
+						isMy={user?.id === quiz.createdBy.user.id}
+					/>
+				))}
+			</QuizContent>
 		);
 	};
 
@@ -47,7 +61,7 @@ export function QuizzesPanel({ filters, queryArgs }: IQuizzesPanel) {
 					title={"Create new quiz"}
 					iconRight={<Icons.Plus />}
 					enabled
-					onClick={openModal}
+					onClick={() => openModal()}
 				/>
 				<div className={styles.filters}>
 					<QuizSearch />
@@ -59,7 +73,8 @@ export function QuizzesPanel({ filters, queryArgs }: IQuizzesPanel) {
 			</div>
 			<div className={styles.content}>{renderContent()}</div>
 
-			<ModalWrapper ModalComponent={CreateQuizModal} />
+			<CreateQuizModalWrapper ModalComponent={CreateQuizModal} />
+			<QuizActionsModalWrapper ModalComponent={EditAccessibilityModal} />
 		</div>
 	);
 }

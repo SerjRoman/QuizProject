@@ -9,7 +9,7 @@ type UseErrorReturnType = {
 
 export function useError(): UseErrorReturnType {
 	const [error, setError] = useState<string | null>(null);
-	const [{ open, close }, Modal] = useModal();
+	const [{ open, close }, Modal] = useModal<void>();
 
 	const handleError = (statusCode: number | null, customMessage?: string) => {
 		if (customMessage) {

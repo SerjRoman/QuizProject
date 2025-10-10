@@ -1,7 +1,7 @@
 export type QuizSelect = {
 	id?: boolean;
 	title?: boolean;
-	isPrivate?: boolean;
+	visibility?: boolean;
 	status?: boolean;
 	coverImage?: boolean;
 	tagsIds?: boolean;
@@ -13,7 +13,9 @@ export type QuizSelect = {
 	updatedAt?: boolean;
 	favouritedByIds?: boolean;
 	createdById?: boolean;
+	ownedById?: boolean;
 	copiedByIds?: boolean;
+	originalQuizId?: boolean;
 	completedByIds?: boolean;
 	folderIds?: boolean;
 	tags?: boolean;
@@ -21,10 +23,14 @@ export type QuizSelect = {
 	subject?: boolean;
 	favouritedBy?: boolean;
 	createdBy?: boolean;
+	ownedBy?: boolean;
 	copiedBy?: boolean;
+	originalQuiz?: boolean;
+	copies?: boolean;
 	completedBy?: boolean;
 	folders?: boolean;
 	questions?: boolean;
 	attempted?: boolean;
 	rooms?: boolean;
+	accesses?: boolean;
 };

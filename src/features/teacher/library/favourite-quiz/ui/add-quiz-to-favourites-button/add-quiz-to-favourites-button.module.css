@@ -1,0 +1,10 @@
+.starIcon {
+	width: 24px;
+	height: 24px;
+}
+.fill {
+	fill: var(--dark-grey1);
+}
+.default {
+	fill: none;
+}

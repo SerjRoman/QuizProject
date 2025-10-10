@@ -38,7 +38,33 @@ export function SelectLanguagesBlock() {
 						<p
 							className={clsx(styles.showMore, styles.shMLan)}
 							onClick={() => {
-								open();
+								open({
+									title: "languages",
+									name: "languagesIds",
+									content: (onChange, selectedItems) => {
+										return (
+											<CheckboxGroup
+												onChange={onChange}
+												name={"languagesIds"}
+											>
+												{languages?.map((language) => (
+													<Checkbox
+														key={language.id}
+														value={language.id}
+														label={language.name}
+														labelClassName={clsx(
+															styles.item,
+															styles.language
+														)}
+														checked={selectedItems.includes(
+															language.id
+														)}
+													/>
+												))}
+											</CheckboxGroup>
+										);
+									},
+								});
 							}}
 						>
 							Show more
@@ -58,38 +84,8 @@ export function SelectLanguagesBlock() {
 						/>
 					))}
 				</CheckboxGroup>
-				
 			</FilterBlock>
-			<ModalProvider
-				ModalComponent={ShowMoreModal}
-				customProps={{
-					title: "languages",
-					name: "languagesIds",
-					content: (onChange, selectedItems) => {
-						return (
-							<CheckboxGroup
-								onChange={onChange}
-								name={"languagesIds"}
-							>
-								{languages?.map((language) => (
-									<Checkbox
-										key={language.id}
-										value={language.id}
-										label={language.name}
-										labelClassName={clsx(
-											styles.item,
-											styles.language
-										)}
-										checked={selectedItems.includes(
-											language.id
-										)}
-									/>
-								))}
-							</CheckboxGroup>
-						);
-					},
-				}}
-			></ModalProvider>
+			<ModalProvider ModalComponent={ShowMoreModal}></ModalProvider>
 		</>
 	);
 }

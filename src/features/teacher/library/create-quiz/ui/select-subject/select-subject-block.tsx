@@ -38,7 +38,34 @@ export function SelectSubjectBlock() {
 						<p
 							className={clsx(styles.showMore, styles.shMSub)}
 							onClick={() => {
-								open();
+								open({
+									title: "subjects",
+									name: "subjectId",
+									content: (onChange, selectedItems) => {
+										return (
+											<RadioGroup
+												name="subjectIds"
+												onChange={onChange}
+											>
+												{subjects?.map((subject) => (
+													<Radio
+														labelClassName={clsx(
+															styles.item,
+															styles.subject
+														)}
+														checked={selectedItems.includes(
+															subject.id
+														)}
+														isRadioVisible={false}
+														key={subject.id}
+														label={subject.name}
+														value={subject.id}
+													/>
+												))}
+											</RadioGroup>
+										);
+									},
+								});
 							}}
 						>
 							Show more
@@ -59,36 +86,8 @@ export function SelectSubjectBlock() {
 						/>
 					))}
 				</RadioGroup>
-				
 			</FilterBlock>
-			<ModalProvider
-				ModalComponent={ShowMoreModal}
-				customProps={{
-					title: "subjects",
-					name: "subjectId",
-					content: (onChange, selectedItems) => {
-						return (
-							<RadioGroup name="subjectIds" onChange={onChange}>
-								{subjects?.map((subject) => (
-									<Radio
-										labelClassName={clsx(
-											styles.item,
-											styles.subject
-										)}
-										checked={selectedItems.includes(
-											subject.id
-										)}
-										isRadioVisible={false}
-										key={subject.id}
-										label={subject.name}
-										value={subject.id}
-									/>
-								))}
-							</RadioGroup>
-						);
-					},
-				}}
-			></ModalProvider>
+			<ModalProvider ModalComponent={ShowMoreModal}></ModalProvider>
 		</>
 	);
 }

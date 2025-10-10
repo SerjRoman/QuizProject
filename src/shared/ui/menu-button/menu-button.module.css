@@ -33,6 +33,8 @@
 .button:hover {
 	background-color: var(--light-grey2);
 }
+
+/* ! TODO: styles for disabled button */
 .button:disabled {
 	background-color: transparent;
 }

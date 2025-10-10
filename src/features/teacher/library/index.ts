@@ -5,6 +5,7 @@ export {
 } from "./quiz-filters";
 export { SortQuizzesHeader } from "./sort-quizzes-header";
 export { QuizSearch } from "./quiz-search";
+export { QuizActionsGroup } from "./quiz-actions";
 export {
 	useGetLanguagesQuery,
 	useGetSubjectsQuery,

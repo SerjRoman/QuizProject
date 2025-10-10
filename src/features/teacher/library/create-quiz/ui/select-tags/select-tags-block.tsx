@@ -38,7 +38,33 @@ export function SelectTagsBlock() {
 						<p
 							className={clsx(styles.showMore, styles.shMTag)}
 							onClick={() => {
-								open();
+								open({
+									title: "tags",
+									name: fieldName,
+									content: (onChange, selectedItems) => {
+										return (
+											<CheckboxGroup
+												onChange={onChange}
+												name={"tagsIds"}
+											>
+												{tags?.map((tag) => (
+													<Checkbox
+														value={tag.id}
+														labelClassName={clsx(
+															styles.item,
+															styles.tag
+														)}
+														key={tag.id}
+														label={tag.name}
+														checked={selectedItems.includes(
+															tag.id
+														)}
+													/>
+												))}
+											</CheckboxGroup>
+										);
+									},
+								});
 							}}
 						>
 							Show more
@@ -58,33 +84,8 @@ export function SelectTagsBlock() {
 						/>
 					))}
 				</CheckboxGroup>
-				
 			</FilterBlock>
-			<ModalProvider
-				ModalComponent={ShowMoreModal}
-				customProps={{
-					title: "tags",
-					name: fieldName,
-					content: (onChange, selectedItems) => {
-						return (
-							<CheckboxGroup onChange={onChange} name={"tagsIds"}>
-								{tags?.map((tag) => (
-									<Checkbox
-										value={tag.id}
-										labelClassName={clsx(
-											styles.item,
-											styles.tag
-										)}
-										key={tag.id}
-										label={tag.name}
-										checked={selectedItems.includes(tag.id)}
-									/>
-								))}
-							</CheckboxGroup>
-						);
-					},
-				}}
-			></ModalProvider>
+			<ModalProvider ModalComponent={ShowMoreModal}></ModalProvider>
 		</>
 	);
 }

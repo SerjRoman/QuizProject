@@ -25,7 +25,3 @@ export type QuizLibraryRequest = {
 };
 export type QuizLibraryAllResponse = PaginationResponse<QuizLibrary[]>;
 export type QuizLibraryAllResponseRaw = PaginationResponse<QuizLibrary[]>;
-
-export type QuizLibraryFavourite = {
-	id: string;
-};

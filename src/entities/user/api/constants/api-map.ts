@@ -4,5 +4,4 @@ export const AUTH_API_MAP = {
 	me: "/auth/me",
 	logout: "/auth/logout",
 	refresh: "/auth/refresh",
-}; 
-
+};

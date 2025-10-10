@@ -10,7 +10,7 @@ export function useLibraryQuizzes({
 }) {
 	const quizLlibrary = useAppSelector((state) => state.quizLlibrary);
 	const debouncedSearch = useDebounce(quizLlibrary.search, 300);
-	const { data, isLoading, error } = useGetMyQuizzesQuery(
+	const request = useGetMyQuizzesQuery(
 		{
 			filters: quizLlibrary.filters,
 			search: debouncedSearch,
@@ -25,5 +25,5 @@ export function useLibraryQuizzes({
 		}
 	);
 
-	return { data, isLoading, error };
+	return request;
 }

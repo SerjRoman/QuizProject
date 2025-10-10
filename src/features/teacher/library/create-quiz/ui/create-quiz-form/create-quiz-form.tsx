@@ -15,7 +15,7 @@ import { UploadImage } from "../upload-image";
 import styles from "./create-quiz-form.module.css";
 
 export function CreateQuizForm({ close }: { close: () => void }) {
-	const [createQuiz] = useCreateQuizMutation();
+	const [createQuiz, { isLoading }] = useCreateQuizMutation();
 	const methodsForm = useForm({
 		resolver: yupResolver(createQuizFormSchema),
 		defaultValues: {
@@ -41,7 +41,6 @@ export function CreateQuizForm({ close }: { close: () => void }) {
 					data.coverImage === "" ? undefined : data.coverImage,
 			}).unwrap();
 			close();
-			handleError(400);
 		} catch (err) {
 			console.error("Error creating quiz:", err);
 			if (err instanceof Error) {
@@ -93,6 +92,7 @@ export function CreateQuizForm({ close }: { close: () => void }) {
 				title={"Create"}
 				type="submit"
 				enabled
+				disabled={isLoading}
 			/>
 			{ModalError}
 		</Form>
