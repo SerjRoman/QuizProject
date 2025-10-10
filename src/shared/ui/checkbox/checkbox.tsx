@@ -48,9 +48,7 @@ export function CheckboxGroup(props: ICheckboxGroupProps) {
 		} else if (!methods && onChange) {
 			return { name, onChange };
 		} else if (methods && onChange) {
-			throw new Error(
-				"CheckboxGroup in FormContext, but onChange was given"
-			);
+			return { name, onChange };
 		} else {
 			throw new Error(
 				"CheckboxGroup did not receive onChange and is not witihn FormContext"

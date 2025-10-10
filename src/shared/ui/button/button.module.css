@@ -14,7 +14,7 @@
 }
 
 .button-red {
-	background-color: var(--button-red);
+	background-color: var(--red);
 	color: var(--white);
 	border: none;
 }
@@ -24,8 +24,8 @@
 	border: none;
 }
 .button-red:active {
-	border: 5px solid var(--button-red);
-	color: var(--button-red-text);
+	border: 5px solid var(--red);
+	color: var(--red);
 	background-color: var(--white);
 }
 .button-red:disabled {
@@ -35,7 +35,7 @@
 }
 
 .button-gray {
-	background-color: var(--button-gray);
+	background-color: var(--dark-grey1);
 	color: var(--white);
 	border: none;
 }
@@ -45,12 +45,12 @@
 	border: none;
 }
 .button-gray:active {
-	border: 5px solid var(--button-gray);
-	color: var(--button-gray-text);
+	border: 5px solid var(--dark-grey1);
+	color: var(--dark-grey1);
 	background-color: var(--white);
 }
 .button-gray:disabled {
-	background-color: var(--button-gray2);
+	background-color: var(--grey1);
 	color: var(--white);
 	border: none;
 }

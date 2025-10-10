@@ -4,6 +4,7 @@ import ArrowRight from "@assets/svg/arrow-right.svg";
 import ArrowUp from "@assets/svg/arrow-up.svg";
 import Bell from "@assets/svg/bell.svg";
 import Bin from "@assets/svg/bin.svg";
+import Cross from "@assets/svg/cross.svg"
 import DotsVertical from "@assets/svg/dots-vertical.svg";
 import Edit from "@assets/svg/edit.svg";
 import Library from "@assets/svg/library.svg";
@@ -28,4 +29,5 @@ export const Icons = {
 	ArrowUp,
 	Person,
 	Users,
+	Cross
 };

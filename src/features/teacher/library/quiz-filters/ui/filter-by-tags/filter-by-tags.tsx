@@ -1,5 +1,5 @@
 import { useState, type ChangeEvent } from "react";
-import { useGetTagsQuery } from "@/features/quiz-filters/api";
+import { useGetTagsQuery } from "@/features/teacher";
 import { setFilters } from "@/entities/quiz";
 import { useAppDispatch, useAppSelector } from "@/shared/lib";
 import { Checkbox, CheckboxGroup, FilterBlock } from "@/shared/ui";

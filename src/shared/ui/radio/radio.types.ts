@@ -1,10 +1,10 @@
-import type { ChangeEvent, HTMLAttributes, PropsWithChildren } from "react";
+import type { ChangeEvent, InputHTMLAttributes, PropsWithChildren } from "react";
 import type { UseFormRegisterReturn } from "react-hook-form";
 
 export interface IRadioProps
-	extends Omit<HTMLAttributes<HTMLInputElement>, "type"> {
+	extends InputHTMLAttributes<HTMLInputElement> {
 	label?: string;
-	value: string;
+	isRadioVisible?: boolean;
 	labelClassName?: string;
 }
 type FormGetRadioProps = UseFormRegisterReturn;

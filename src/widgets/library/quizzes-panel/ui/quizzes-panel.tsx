@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { QuizContent } from "@/widgets/library";
-import { CreateQuizModal } from "@/features/create-quiz-modal";
 import {
+	CreateQuizModal,
 	QuizFilterByLanguagesBlock,
 	QuizFilterBySubjectBlock,
 	QuizFilterByTagsBlock,
@@ -9,7 +9,7 @@ import {
 } from "@/features/teacher";
 import { EditAccessibilityModal } from "@/features/teacher/library/accessibility-quiz";
 import { QuizActionsGroup } from "@/features/teacher/library/quiz-actions";
-import { QuizItem, useLibraryQuizzes } from "@/entities/quiz";
+import { useLibraryQuizzes, QuizItem } from "@/entities/quiz";
 import { useModal, useAppSelector } from "@/shared/lib";
 import { Icons, MenuButton } from "@/shared/ui";
 import styles from "./quizzes-panel.module.css";
@@ -19,16 +19,16 @@ export function QuizzesPanel({ filters, queryArgs }: IQuizzesPanel) {
 	const { user } = useAppSelector((state) => state.user);
 
 	const [currentPage, setCurrentPage] = useState<number>(1);
-	const [isModalOpen, setIsModalOpen] = useState(false);
-	const [{ open }, Modal] = useModal<{ quizId: string }>();
+	const [{ open: openModal }, CreateQuizModalWrapper] = useModal();
+	const [{ open }, QuizActionsModalWrapper] = useModal<{ quizId: string }>();
 
-	const { data, isLoading, error } = useLibraryQuizzes({
+	const { data, isLoading, error, isFetching } = useLibraryQuizzes({
 		page: currentPage,
 		queryArgs,
 	});
 
 	const renderContent = () => {
-		if (isLoading || !data) return <p>Loading...</p>;
+		if (isLoading || !data || isFetching) return <p>Loading...</p>;
 		const displayQuizzes = data.data;
 		const { meta } = data;
 		if (error) return <p>{String(error)}</p>;
@@ -61,7 +61,7 @@ export function QuizzesPanel({ filters, queryArgs }: IQuizzesPanel) {
 					title={"Create new quiz"}
 					iconRight={<Icons.Plus />}
 					enabled
-					onClick={() => setIsModalOpen(true)}
+					onClick={() => openModal()}
 				/>
 				<div className={styles.filters}>
 					<QuizSearch />
@@ -73,11 +73,8 @@ export function QuizzesPanel({ filters, queryArgs }: IQuizzesPanel) {
 			</div>
 			<div className={styles.content}>{renderContent()}</div>
 
-			<Modal ModalComponent={EditAccessibilityModal}></Modal>
-			<CreateQuizModal
-				isOpen={isModalOpen}
-				onClose={() => setIsModalOpen(false)}
-			/>
+			<CreateQuizModalWrapper ModalComponent={CreateQuizModal} />
+			<QuizActionsModalWrapper ModalComponent={EditAccessibilityModal} />
 		</div>
 	);
 }

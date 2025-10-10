@@ -27,7 +27,7 @@ export function FormInput(props: IFormInput) {
 				aria-invalid={!!errors[name]?.message}
 				id={name}
 			/>
-			{errors[name]?.message && <p>{errors[name]?.message.toString()}</p>}
+			{errors[name]?.message && <p className={styles.error}>{errors[name]?.message.toString()}</p>}
 		</div>
 	);
 }

@@ -18,7 +18,14 @@ const useRadioContext = () => {
 };
 
 export function Radio(props: IRadioProps) {
-	const { label, labelClassName, value, ...restProps } = props;
+	const {
+		label,
+		labelClassName,
+		isRadioVisible = true,
+		value,
+		className,
+		...restProps
+	} = props;
 	const { getRadioProps } = useRadioContext();
 	return (
 		<label className={clsx(styles.label, labelClassName)}>
@@ -27,6 +34,8 @@ export function Radio(props: IRadioProps) {
 				type="radio"
 				{...getRadioProps()}
 				{...restProps}
+				style={{ display: isRadioVisible ? "inline-block" : "none" }}
+				className={clsx(styles.radio, className)}
 			/>
 			{label}
 		</label>
@@ -43,9 +52,7 @@ export function RadioGroup(props: IRadioGroupProps) {
 		} else if (!methods && onChange) {
 			return { name, onChange };
 		} else if (methods && onChange) {
-			throw new Error(
-				"RadioGroup in FormContext, but onChange was given"
-			);
+			return { name, onChange };
 		} else {
 			throw new Error(
 				"RadioGroup did not receive onChange and is not witihn FormContext"

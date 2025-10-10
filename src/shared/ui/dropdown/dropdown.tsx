@@ -13,7 +13,6 @@ export function Dropdown<T>(props: IDropdownProps<T>) {
 		closeOn,
 		className,
 		doCloseOnClickOutside,
-		panelClassname,
 		...restProps
 	} = props;
 	const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -34,9 +33,10 @@ export function Dropdown<T>(props: IDropdownProps<T>) {
 		toggle: handleToggle,
 	};
 	const handleShowOn = showOn === "hover" && { onMouseEnter: handleOpen };
-	const handleCloseOn = (closeOn === "hover" && !doCloseOnClickOutside) && {
-		onMouseLeave: handleClose,
-	};
+	const handleCloseOn = closeOn === "leave" &&
+		!doCloseOnClickOutside && {
+			onMouseLeave: handleClose,
+		};
 
 	useClickOutside(dropdownRef, () => {
 		if (doCloseOnClickOutside) {
@@ -46,7 +46,7 @@ export function Dropdown<T>(props: IDropdownProps<T>) {
 
 	return (
 		<div
-			className={clsx(styles.container, className)}
+			className={clsx(styles.container)}
 			ref={dropdownRef}
 			{...handleShowOn}
 			{...handleCloseOn}
@@ -55,7 +55,7 @@ export function Dropdown<T>(props: IDropdownProps<T>) {
 			{isOpen && (
 				<div
 					{...restProps}
-					className={clsx(styles.dropdownPanel, panelClassname)}
+					className={clsx(styles.dropdownPanel, className)}
 				>
 					{dataSource?.map(renderItem)}
 				</div>

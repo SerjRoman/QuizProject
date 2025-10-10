@@ -13,8 +13,9 @@ export function Header({ nav_bar_button }: IHeader) {
 				{nav_bar_button.map((tab) => {
 					return (
 						<Dropdown
+							key={tab.id}
 							showOn="hover"
-							closeOn="hover"
+							closeOn="leave"
 							trigger={() => (
 								<MenuButton
 									title={tab.title}
