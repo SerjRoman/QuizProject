@@ -1,8 +1,8 @@
 import { useCreateQuizMutation } from "@/entities/quiz";
 import { useUploadImageMutation } from "@/shared/api";
 import { useError } from "@/shared/lib";
-import { CREATE_QUIZ_ERROR_MAP } from "../constants";
-import type { ICreateQuizSchema } from "../types";
+import { CREATE_QUIZ_API_MAP, CREATE_QUIZ_ERROR_MAP } from "../constants";
+import type { CreateQuizSchema } from "../types";
 
 export function useCreateQuiz(onSuccess: () => void) {
 	const [createQuiz, { isLoading: isCreateLoading }] =
@@ -12,14 +12,14 @@ export function useCreateQuiz(onSuccess: () => void) {
 	const isLoading = isUploadImageLoading || isCreateLoading;
 	const { ModalError, handleError } = useError();
 
-	async function submitCreateQuiz(data: ICreateQuizSchema) {
+	async function submitCreateQuiz(data: CreateQuizSchema) {
 		let finalCoverImageUrl: string | undefined = undefined;
 
 		try {
 			if (data.coverImage instanceof File) {
 				finalCoverImageUrl = await uploadImage({
 					file: data.coverImage,
-					url: "/quizzes/upload-cover",
+					url: CREATE_QUIZ_API_MAP.uploadCover,
 				}).unwrap();
 			} else if (typeof data.coverImage === "string") {
 				finalCoverImageUrl = data.coverImage;
