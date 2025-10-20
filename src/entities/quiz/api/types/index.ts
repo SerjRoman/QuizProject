@@ -1,5 +1,1 @@
-export type {
-	QuizLibraryFavourite,
-	QuizLibraryAllResponse,
-	QuizLibraryRequest,
-} from "./quiz-library-api";
+export type * from "./quiz-library-api";

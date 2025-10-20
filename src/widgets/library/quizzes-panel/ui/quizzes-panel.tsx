@@ -22,13 +22,13 @@ export function QuizzesPanel({ filters, queryArgs }: IQuizzesPanel) {
 	const [{ open: openModal }, CreateQuizModalWrapper] = useModal();
 	const [{ open }, QuizActionsModalWrapper] = useModal<{ quizId: string }>();
 
-	const { data, isLoading, error, isFetching } = useLibraryQuizzes({
+	const { data, isLoading, error } = useLibraryQuizzes({
 		page: currentPage,
 		queryArgs,
 	});
 
 	const renderContent = () => {
-		if (isLoading || !data || isFetching) return <p>Loading...</p>;
+		if (isLoading || !data) return <p>Loading...</p>;
 		const displayQuizzes = data.data;
 		const { meta } = data;
 		if (error) return <p>{String(error)}</p>;
