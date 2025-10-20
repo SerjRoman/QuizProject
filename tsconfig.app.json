@@ -22,7 +22,6 @@
 		"erasableSyntaxOnly": true,
 		"noFallthroughCasesInSwitch": true,
 		"noUncheckedSideEffectImports": true,
-		"baseUrl": "./",
 		"paths": {
 			"@/*": ["./src/*"],
 			"@shared/*": ["./src/shared/*"],
@@ -32,7 +31,7 @@
 			"@widgets/*": ["./src/widgets/*"],
 			"@pages/*": ["./src/pages/*"],
 			"@assets/*": ["./src/assets/*"]
-		},
+		}
 	},
-	"include": ["src"],
+	"include": ["src"]
 }

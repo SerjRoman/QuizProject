@@ -1,5 +1,4 @@
 export {
-	useUploadImageMutation,
 	useGetUploadParamsMutation,
+	useUploadImageMutation,
 } from "./upload-image";
-export { baseApi } from "./api";
