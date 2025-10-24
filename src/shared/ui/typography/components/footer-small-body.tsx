@@ -1,11 +1,9 @@
 import { Typography } from "../typography";
+import type { TypographyProps } from "../typograpty.types";
 import styles from "./styles.module.css";
 
-export function FooterSmallBody() {
+export function FooterSmallBody({ children }: TypographyProps) {
 	return (
-		<Typography
-			className={styles.footerSmallBody}
-			chidren={<span></span>}
-		></Typography>
+		<Typography className={styles.footerSmallBody}>{children}</Typography>
 	);
 }

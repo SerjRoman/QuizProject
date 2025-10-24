@@ -1,11 +1,7 @@
 import { Typography } from "../typography";
+import type { TypographyProps } from "../typograpty.types";
 import styles from "./styles.module.css";
 
-export function FunkyBody() {
-	return (
-		<Typography
-			className={styles.funkyBody}
-			chidren={<span></span>}
-		></Typography>
-	);
+export function FunkyBody({ children }: TypographyProps) {
+	return <Typography className={styles.funkyBody}>{children}</Typography>;
 }

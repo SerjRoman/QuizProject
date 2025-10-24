@@ -1,11 +1,7 @@
 import { Typography } from "../typography";
+import type { TypographyProps } from "../typograpty.types";
 import styles from "./styles.module.css";
 
-export function SubHeading() {
-	return (
-		<Typography
-			className={styles.subHeading}
-			chidren={<span></span>}
-		></Typography>
-	);
+export function SubHeading({ children }: TypographyProps) {
+	return <Typography className={styles.subHeading}>{children}</Typography>;
 }
