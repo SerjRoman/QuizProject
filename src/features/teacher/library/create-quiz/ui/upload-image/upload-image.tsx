@@ -4,7 +4,6 @@ import { Icons } from "@/shared/ui";
 import styles from "./upload-image.module.css";
 
 export function UploadImage() {
-
 	const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 	const { setValue } = useFormContext();
 	const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,10 +14,10 @@ export function UploadImage() {
 			reader.onloadend = () => {
 				const base64String = reader.result as string;
 				setPreviewUrl(base64String);
-				setValue("coverImage", base64String); 
+				setValue("coverImage", base64String);
 			};
 
-			reader.readAsDataURL(file); 
+			reader.readAsDataURL(file);
 		}
 	};
 	return (
@@ -33,13 +32,11 @@ export function UploadImage() {
 				/>
 			</label>
 			{previewUrl && (
-				<div>
-					<img
-						src={previewUrl}
-						alt="Preview"
-						className={styles.previewImage}
-					/>
-				</div>
+				<img
+					src={previewUrl}
+					alt="Preview"
+					className={styles.previewImage}
+				/>
 			)}
 		</div>
 	);

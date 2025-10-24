@@ -7,62 +7,64 @@ import {
 } from "react";
 import { Modal } from "@/shared/ui";
 
-interface IModalProps {
+interface ModalProps {
 	children?: ReactNode;
 	doCloseOnClickOutside?: boolean;
 	className?: string;
 }
-interface IModalPropsWithCustomModal<T = object> {
-	children?: ReactNode;
-	doCloseOnClickOutside?: boolean;
-	className?: string;
-	ModalComponent?: FunctionComponent<
-		IModalProps & { isOpen: boolean; onClose: () => void } & T
-	>;
-	customProps?: T;
+type CustomModalProps<T> = ModalProps & {
+	isOpen: boolean;
+	onClose: () => void;
+} & T;
+interface ModalPropsWithCustomModal<T = object> extends ModalProps {
+	ModalComponent?: FunctionComponent<CustomModalProps<T>>;
 }
 
-export function useModal<T = object>(): [
-	{ open: () => void; close: () => void; isOpen: boolean },
-	(props: IModalPropsWithCustomModal<T>) => JSX.Element
+export function useModal<T = void>(): [
+	{ open: (customProps: T) => void; close: () => void; isOpen: boolean },
+	(props: ModalPropsWithCustomModal<T>) => JSX.Element
 ] {
 	const [isOpen, setIsOpen] = useState(false);
+	const [customProps, setCustomProps] = useState<T>();
 
+	const open = useCallback((props: T) => {
+		setCustomProps(props);
+		setIsOpen(true);
+	}, []);
+	const close = useCallback(() => {
+		setCustomProps(undefined);
+		setIsOpen(false);
+	}, []);
 	const ModalProvider = useCallback(
-		(props: IModalPropsWithCustomModal<T>) => {
-			const {
-				ModalComponent,
-				customProps = {} as T,
-				...restProps
-			} = props;
+		(props: ModalPropsWithCustomModal<T>) => {
+			const { ModalComponent, ...restProps } = props;
+
 			if (!ModalComponent) {
 				return (
-					<Modal
-						isOpen={isOpen}
-						onClose={() => setIsOpen(false)}
-						{...restProps}
-					>
+					<Modal isOpen={isOpen} onClose={close} {...restProps}>
 						{props.children}
 					</Modal>
 				);
 			}
+			const finalProps = {
+				...restProps,
+				...customProps,
+				isOpen: isOpen,
+				onClose: close,
+			};
+
 			return (
-				<ModalComponent
-					isOpen={isOpen}
-					onClose={() => setIsOpen(false)}
-					{...restProps}
-					{...customProps}
-				>
+				<ModalComponent {...(finalProps as CustomModalProps<T>)}>
 					{props.children}
 				</ModalComponent>
 			);
 		},
-		[isOpen, setIsOpen]
+		[close, customProps, isOpen]
 	);
 	return [
 		{
-			open: () => setIsOpen(true),
-			close: () => setIsOpen(false),
+			open,
+			close,
 			isOpen,
 		},
 		ModalProvider,

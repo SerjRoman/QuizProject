@@ -2,7 +2,7 @@ export const QUIZ_LIBRARY_MY_SELECT = [
 	"id",
 	"title",
 	"createdAt",
-	"favouritedByIds",
+	"favouritedBy",
 	"subjectId",
 	"tagsIds",
 	"languagesIds",

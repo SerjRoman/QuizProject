@@ -16,6 +16,7 @@
 	font-size: 20px;
 	font-family: "Kulim Park";
 	border: 1px solid var(--grey1);
+    width: 100%;
 }
 .icon {
 	position: absolute;

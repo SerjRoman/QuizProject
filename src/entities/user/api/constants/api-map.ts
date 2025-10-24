@@ -1,8 +1,7 @@
-export const USER_API_MAP = {
-	login: "/users/login",
-	register: "/users/register",
-	me: "/users/me",
-	logout: "/users/logout",
-	refresh: "/users/refresh",
+export const AUTH_API_MAP = {
+	login: "/auth/login",
+	register: "/auth/register",
+	me: "/auth/me",
+	logout: "/auth/logout",
+	refresh: "/auth/refresh",
 };
-

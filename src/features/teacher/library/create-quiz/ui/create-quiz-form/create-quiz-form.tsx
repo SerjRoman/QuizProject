@@ -1,9 +1,9 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { clsx } from "clsx";
 import { useForm } from "react-hook-form";
-import { useCreateQuizMutation } from "@/entities/quiz";
 import { useError } from "@/shared/lib";
 import { MenuButton, Form } from "@/shared/ui";
+import { useCreateQuizMutation } from "../../api";
 import { type ICreateQuizSchema, createQuizFormSchema } from "../../model";
 import { SelectLanguagesBlock } from "../select-languages";
 import { SelectShuffleAnswers } from "../select-shuffle-answers";
@@ -14,8 +14,8 @@ import { SelectVisibility } from "../select-visibility";
 import { UploadImage } from "../upload-image";
 import styles from "./create-quiz-form.module.css";
 
-export function CreateQuizForm() {
-	const [createQuiz, { error }] = useCreateQuizMutation();
+export function CreateQuizForm({ close }: { close: () => void }) {
+	const [createQuiz, { isLoading }] = useCreateQuizMutation();
 	const methodsForm = useForm({
 		resolver: yupResolver(createQuizFormSchema),
 		defaultValues: {
@@ -29,7 +29,8 @@ export function CreateQuizForm() {
 			languagesIds: [],
 		},
 	});
-	const { setError, ModalError } = useError();
+	const { ModalError, handleError } = useError();
+
 	async function onSubmit(data: ICreateQuizSchema) {
 		try {
 			await createQuiz({
@@ -38,15 +39,16 @@ export function CreateQuizForm() {
 				shuffleQuestions: data.shuffleQuestions === "true",
 				coverImage:
 					data.coverImage === "" ? undefined : data.coverImage,
-			});
-			console.log(error);
-			alert("Quiz was successfully created!");
+			}).unwrap();
+			close();
 		} catch (err) {
 			console.error("Error creating quiz:", err);
 			if (err instanceof Error) {
 				if ("status" in err) {
-					if (err.status) {
-						setError("Unhandled error");
+					if (typeof err?.status === "number") {
+						handleError(err.status);
+					} else {
+						handleError(null, "Unhandled error");
 					}
 				}
 			}
@@ -90,6 +92,7 @@ export function CreateQuizForm() {
 				title={"Create"}
 				type="submit"
 				enabled
+				disabled={isLoading}
 			/>
 			{ModalError}
 		</Form>

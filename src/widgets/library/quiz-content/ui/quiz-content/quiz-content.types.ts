@@ -1,8 +1,7 @@
-import type { QuizLibrary } from "@/entities/quiz";
+import type { PropsWithChildren } from "react";
 import type { PaginationData } from "@/shared/lib";
 
-export interface IQuizContentProps {
-	quizzes: QuizLibrary[];
+export interface IQuizContentProps extends PropsWithChildren {
 	meta: PaginationData;
 	onPageChange: (page: number) => void;
 }

@@ -12,3 +12,5 @@ export { FilterBlock } from "./filter-block";
 export { Checkbox, CheckboxGroup } from "./checkbox";
 export { Paginate } from "./paginate";
 export { Typography } from "./typography"
+export { IconButton } from "./icon-button";
+

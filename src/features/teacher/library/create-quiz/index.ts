@@ -3,5 +3,6 @@ export {
 	SelectSubjectBlock,
 	SelectTagsBlock,
 	CreateQuizForm,
+	CreateQuizModal
 } from "./ui";
-export type { ICreateQuizFormData } from "./model";
+export type { ICreateQuizSchema } from "./model";
