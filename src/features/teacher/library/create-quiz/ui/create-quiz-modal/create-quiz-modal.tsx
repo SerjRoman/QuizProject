@@ -20,10 +20,10 @@ export function CreateQuizModal({
 			<div className={styles.closeIcon}>
 				<Icons.Cross onClick={onClose} />
 			</div>
-			<>
+			<div className={styles.form}>
 				<h1 className={styles.header}>Create your new quiz</h1>
 				<CreateQuizForm close={onClose}/>
-			</>
+			</div>
 		</Modal>
 	);
 }

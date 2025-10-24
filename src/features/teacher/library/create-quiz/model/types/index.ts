@@ -1,1 +1,1 @@
-export type { ICreateQuizSchema } from "./create-quiz-schema";
+export type { CreateQuizSchema } from "./create-quiz-schema";
