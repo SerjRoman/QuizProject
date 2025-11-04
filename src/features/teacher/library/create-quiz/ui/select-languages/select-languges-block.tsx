@@ -4,7 +4,7 @@ import { useFormContext } from "react-hook-form";
 import { useGetLanguagesQuery } from "@/features/teacher";
 import { useModal } from "@/shared/lib";
 import { Checkbox, CheckboxGroup, FilterBlock } from "@/shared/ui";
-import type { ICreateQuizSchema } from "../../model";
+import type { CreateQuizSchema } from "../../model";
 import { ShowMoreModal } from "../show-more-modal";
 import styles from "./select-languages-block.module.css";
 export function SelectLanguagesBlock() {
@@ -18,7 +18,7 @@ export function SelectLanguagesBlock() {
 		) => ReactNode;
 	}>();
 
-	const { watch } = useFormContext<ICreateQuizSchema>();
+	const { watch } = useFormContext<CreateQuizSchema>();
 	const selectedLanguages = watch("languagesIds");
 
 	const topLanguages = useMemo(() => {

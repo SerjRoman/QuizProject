@@ -4,7 +4,7 @@ import { useFormContext } from "react-hook-form";
 import { useGetSubjectsQuery } from "@/features/teacher";
 import { useModal } from "@/shared/lib";
 import { FilterBlock, Radio, RadioGroup } from "@/shared/ui";
-import type { ICreateQuizSchema } from "../../model";
+import type { CreateQuizSchema } from "../../model";
 import { ShowMoreModal } from "../show-more-modal";
 import styles from "./selects-subject-block.module.css";
 
@@ -18,7 +18,7 @@ export function SelectSubjectBlock() {
 			selectedItems: string | string[]
 		) => ReactNode;
 	}>();
-	const { watch } = useFormContext<ICreateQuizSchema>();
+	const { watch } = useFormContext<CreateQuizSchema>();
 	const selectedSubject = watch("subjectId");
 
 	const topSubjects = useMemo(() => {

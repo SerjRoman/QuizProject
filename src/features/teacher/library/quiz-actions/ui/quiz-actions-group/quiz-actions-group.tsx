@@ -3,6 +3,7 @@ import { useError } from "@/shared/lib";
 import { Dropdown, IconButton, Icons } from "@/shared/ui";
 import { useCopyQuizMutation } from "../../../copy-quiz";
 import { ToggleFavouriteQuizButton } from "../../../toggle-favourite-quiz";
+import { QUIZ_ACTIONS_ERROR_MAP } from "../../model";
 import styles from "./quiz-actions-group.module.css";
 import type { QuizActionsGroupProps } from "./quiz-actions-group.types";
 
@@ -20,13 +21,7 @@ export function QuizActionsGroup({
 		} catch (err) {
 			console.error("Error creating quiz:", err);
 			if (err instanceof Error) {
-				if ("status" in err) {
-					if (typeof err?.status === "number") {
-						handleError(err.status);
-					} else {
-						handleError(null, "Unhandled error");
-					}
-				}
+				handleError(err, QUIZ_ACTIONS_ERROR_MAP.delete);
 			}
 		}
 	};
@@ -36,13 +31,7 @@ export function QuizActionsGroup({
 		} catch (err) {
 			console.error("Error creating quiz:", err);
 			if (err instanceof Error) {
-				if ("status" in err) {
-					if (typeof err?.status === "number") {
-						handleError(err.status);
-					} else {
-						handleError(null, "Unhandled error");
-					}
-				}
+				handleError(err);
 			}
 		}
 	};
