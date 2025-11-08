@@ -21,7 +21,7 @@
 }
 
 .activePage {
-	background-color: var(--light-blue);
+	background-color: var(--light-blue-btn-en);
 }
 
 .icon {
@@ -30,5 +30,5 @@
 	height: 15px;
 }
 .pageListItem:active {
-	background-color: var(--light-blue);
+	background-color: var(--light-blue-btn-en);
 }

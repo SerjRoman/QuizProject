@@ -21,20 +21,20 @@
 	padding: 3px 3px;
 	width: fit-content;
 
-	border: 3px solid var(--light-blue);
+	border: 3px solid var(--light-blue-btn-en);
 }
 .showMore:hover{
-	background-color: var(--light-blue);
+	background-color: var(--light-blue-btn-en);
 }
 
 .language {
 }
 .shMLan {
-	text-decoration-color: var(--light-blue);
+	text-decoration-color: var(--light-blue-btn-en);
 }
 
 
 .language:has(input:checked) {
-	background-color: var(--light-blue);
+	background-color: var(--light-blue-btn-en);
 }
 
