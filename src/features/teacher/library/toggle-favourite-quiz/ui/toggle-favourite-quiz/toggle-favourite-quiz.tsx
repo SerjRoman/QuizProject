@@ -4,10 +4,10 @@ import {
 	useAddToFavouriteMutation,
 	useRemoveFromFavouriteMutation,
 } from "../../api";
-import styles from "./add-quiz-to-favourites-button.module.css";
-import type { AddQuizToFavouritesButtonProps } from "./add-quiz-to-favourites-button.types";
+import styles from "./toggle-favourite-quiz.module.css";
+import type { AddQuizToFavouritesButtonProps } from "./toggle-favourite-quiz.types";
 
-export function AddQuizToFavouritesButton({
+export function ToggleFavouriteQuizButton({
 	isFavourite,
 	quizId,
 }: AddQuizToFavouritesButtonProps) {
@@ -16,14 +16,14 @@ export function AddQuizToFavouritesButton({
 	const [removeFromFavourite, { isLoading: removeLoading }] =
 		useRemoveFromFavouriteMutation();
 	const isLoading = addLoading || removeLoading;
+
+	const toggleFavourite = () => {
+		if (isLoading) return;
+		if (!isFavourite) addToFavourite({ id: quizId });
+		else removeFromFavourite({ id: quizId });
+	};
 	return (
-		<IconButton
-			onClick={() => {
-				if (!isFavourite) addToFavourite({ id: quizId });
-				else removeFromFavourite({ id: quizId });
-			}}
-			disabled={isLoading}
-		>
+		<IconButton onClick={toggleFavourite} disabled={isLoading}>
 			<Icons.Star
 				className={clsx(
 					styles.starIcon,

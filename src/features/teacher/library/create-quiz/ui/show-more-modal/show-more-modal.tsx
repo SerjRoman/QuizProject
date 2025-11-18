@@ -18,7 +18,7 @@ export function ShowMoreModal({
 	name: "languagesIds" | "subjectId" | "tagsIds";
 	content: (
 		onChange: (e: ChangeEvent<HTMLInputElement>) => void,
-        selectedItems: string | string[]
+		selectedItems: string | string[]
 	) => ReactNode;
 }) {
 	const { watch, setValue } = useFormContext<CreateQuizSchema>();

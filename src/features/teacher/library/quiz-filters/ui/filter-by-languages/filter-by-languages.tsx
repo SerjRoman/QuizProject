@@ -1,54 +1,36 @@
 import { useState, type ChangeEvent } from "react";
 import { useGetLanguagesQuery } from "@features/teacher";
-import { setFilters } from "@/entities/quiz";
-import { useAppDispatch, useAppSelector } from "@/shared/lib";
+import { addLanguage, removeLanguage } from "@/entities/quiz";
+import { useAppDispatch } from "@/shared/lib";
 import { Checkbox, CheckboxGroup, FilterBlock } from "@/shared/ui";
 import styles from "./filter-by-languages.module.css";
 
 export function QuizFilterByLanguagesBlock() {
-	const { data=[] } = useGetLanguagesQuery();
+	const { data = [] } = useGetLanguagesQuery();
 	const dispatch = useAppDispatch();
-	const filters = useAppSelector((state) => state.quizLlibrary.filters);
 	const [isFullOpen, setIsFullOpen] = useState<boolean>(false);
 	function handleChangeLanguage(event: ChangeEvent<HTMLInputElement>) {
+		const languageId = event.target.value;
 		if (event.target.checked) {
-			dispatch(
-				setFilters({
-					filters: {
-						languagesIds: [
-							...filters.languagesIds,
-							event.target.value,
-						],
-					},
-				})
-			);
+			dispatch(addLanguage(languageId));
 		} else {
-			dispatch(
-				setFilters({
-					filters: {
-						languagesIds: [
-							...filters.languagesIds.filter(
-								(t) => t != event.target.value
-							),
-						],
-					},
-				})
-			);
+			dispatch(removeLanguage(languageId));
 		}
 	}
 	return (
 		<FilterBlock
 			actions={
-				data && data.length > 10 ? (
+				data &&
+				data.length > 10 && (
 					<p
-						className={styles.actionsBlock}
+						className={styles.showMore}
 						onClick={() => {
 							setIsFullOpen(!isFullOpen);
 						}}
 					>
 						{isFullOpen ? "Show less" : "Show more"}
 					</p>
-				) : undefined
+				)
 			}
 			className={styles.block}
 			title="Languages"
