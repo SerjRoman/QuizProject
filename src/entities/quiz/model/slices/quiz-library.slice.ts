@@ -92,6 +92,28 @@ export const quizLibrarySlice = createSlice({
 			state.status = [];
 			state.visibility = [];
 		},
+		addTag(state, { payload }: PayloadAction<string>) {
+			state.filters.tagsIds = [...state.filters.tagsIds, payload];
+		},
+		removeTag(state, { payload }: PayloadAction<string>) {
+			state.filters.tagsIds = state.filters.tagsIds.filter(
+				(tagId) => tagId !== payload
+			);
+		},
+		addLanguage(state, { payload }: PayloadAction<string>) {
+			state.filters.languagesIds = [
+				...state.filters.languagesIds,
+				payload,
+			];
+		},
+		removeLanguage(state, { payload }: PayloadAction<string>) {
+			state.filters.languagesIds = state.filters.languagesIds.filter(
+				(languageId) => languageId !== payload
+			);
+		},
+		setSubject(state, { payload }: PayloadAction<string>) {
+			state.filters.subjectId = payload;
+		},
 	},
 });
 
@@ -102,4 +124,9 @@ export const {
 	setVisibility,
 	setStatus,
 	clearFilters,
+	addLanguage,
+	addTag,
+	removeLanguage,
+	removeTag,
+	setSubject,
 } = quizLibrarySlice.actions;

@@ -5,4 +5,4 @@ export {
 	CreateQuizForm,
 	CreateQuizModal
 } from "./ui";
-export type { ICreateQuizSchema } from "./model";
+export type { CreateQuizSchema } from "./model";

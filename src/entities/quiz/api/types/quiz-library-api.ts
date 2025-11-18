@@ -1,5 +1,6 @@
 import type { PaginationResponse } from "@/shared/lib";
 import type {
+	IQuiz,
 	OrderOptions,
 	QuizLibrary,
 	QuizStatus,
@@ -25,3 +26,20 @@ export type QuizLibraryRequest = {
 };
 export type QuizLibraryAllResponse = PaginationResponse<QuizLibrary[]>;
 export type QuizLibraryAllResponseRaw = PaginationResponse<QuizLibrary[]>;
+
+export interface DeleteQuizPayload {
+	id: string;
+}
+export type DeleteQuizResponse = IQuiz;
+export interface CreateQuizPayload {
+    title: string;
+    visibility: QuizVisibility;
+    shuffleQuestions: boolean;
+    shuffleAnswers: boolean;
+    coverImage?: string;
+    subjectId: string;
+    tagsIds: string[];
+    languagesIds: string[];
+}
+
+export type CreateQuizResponse = IQuiz

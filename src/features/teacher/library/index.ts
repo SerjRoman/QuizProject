@@ -19,4 +19,4 @@ export {
 	SelectTagsBlock,
 	CreateQuizForm,
 } from "./create-quiz";
-export { type ICreateQuizSchema, CreateQuizModal } from "./create-quiz";
+export { type CreateQuizSchema, CreateQuizModal } from "./create-quiz";

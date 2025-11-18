@@ -1,8 +1,15 @@
 import { baseApi } from "@/shared/api";
 import { QUIZZES_PER_PAGE } from "../model";
 import { QUIZ_LIBRARY_MY_SELECT, QUIZ_LIBRARY_API_MAP } from "./constants";
-import type { QuizLibraryRequest, QuizLibraryAllResponse } from "./types";
-import type { QuizLibraryAllResponseRaw } from "./types/quiz-library-api";
+import type {
+	CreateQuizPayload,
+	CreateQuizResponse,
+	DeleteQuizPayload,
+	DeleteQuizResponse,
+	QuizLibraryAllResponse,
+	QuizLibraryAllResponseRaw,
+	QuizLibraryRequest,
+} from "./types";
 
 export const quizLibraryApi = baseApi.injectEndpoints({
 	endpoints: (build) => ({
@@ -60,8 +67,27 @@ export const quizLibraryApi = baseApi.injectEndpoints({
 				};
 			},
 		}),
+		deleteQuiz: build.mutation<DeleteQuizResponse, DeleteQuizPayload>({
+			query: ({ id }) => ({
+				url: `/quizzes/${id}`,
+				method: "DELETE",
+			}),
+			invalidatesTags: ["LibraryQuiz"],
+		}),
+		createQuiz: build.mutation<CreateQuizResponse, CreateQuizPayload>({
+			query: (quizData) => ({
+				url: "/quizzes",
+				method: "POST",
+				body: quizData,
+			}),
+			invalidatesTags: ["LibraryQuiz"],
+		}),
 	}),
 });
 
-export const { useLazyGetMyQuizzesQuery, useGetMyQuizzesQuery } =
-	quizLibraryApi;
+export const {
+	useLazyGetMyQuizzesQuery,
+	useGetMyQuizzesQuery,
+	useDeleteQuizMutation,
+	useCreateQuizMutation,
+} = quizLibraryApi;

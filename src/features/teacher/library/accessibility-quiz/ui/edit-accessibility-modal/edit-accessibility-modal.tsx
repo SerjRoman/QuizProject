@@ -7,7 +7,7 @@ import type { EditAccessibilityModalProps } from "./edit-accessibility-modal.typ
 export function EditAccessibilityModal(props: EditAccessibilityModalProps) {
 	const { isOpen, onClose, quizId } = props;
 
-	const { data: quizzes } = useGetAccessesQuery(
+	const { data: accesses } = useGetAccessesQuery(
 		{ quizId },
 		{ skip: !quizId }
 	);
@@ -29,7 +29,7 @@ export function EditAccessibilityModal(props: EditAccessibilityModalProps) {
 			<div>
 				<span>People with access</span>
 				<div className={styles.accesses}>
-					{quizzes?.accesses.map((access) => {
+					{accesses?.map((access) => {
 						const { user } = access.profile;
 						return (
 							<div className={styles.access}>
