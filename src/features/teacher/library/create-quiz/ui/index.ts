@@ -3,4 +3,4 @@ export { SelectSubjectBlock } from "./select-subject";
 export { SelectTagsBlock } from "./select-tags";
 export { CreateQuizForm } from "./create-quiz-form";
 export { CreateQuizModal } from "./create-quiz-modal";
-export type { ICreateQuizSchema } from "../model";
+export type { CreateQuizSchema } from "../model";

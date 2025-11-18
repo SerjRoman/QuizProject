@@ -1,11 +1,11 @@
 import { useFormContext } from "react-hook-form";
 import { MAX_FILE_SIZE, SUPPORTED_FORMATS } from "@/shared/model";
 import { Icons, UploadImage } from "@/shared/ui";
-import type { ICreateQuizSchema } from "../../model";
+import type { CreateQuizSchema } from "../../model";
 import styles from "./upload-cover.module.css";
 
 export function UploadCover() {
-	const { setValue, watch, setError } = useFormContext<ICreateQuizSchema>();
+	const { setValue, watch, setError } = useFormContext<CreateQuizSchema>();
 	const coverImageFile: File | string | null = watch("coverImage");
 
 	const handleImageChange = (image: File | undefined) => {

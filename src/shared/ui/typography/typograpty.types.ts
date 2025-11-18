@@ -1,10 +1,6 @@
-import type { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
+import type { DetailedHTMLProps, HTMLAttributes, PropsWithChildren } from "react";
 
-export interface TypographyProps
-	extends DetailedHTMLProps<
+export type TypographyProps =  PropsWithChildren<DetailedHTMLProps<
 		HTMLAttributes<HTMLSpanElement>,
-		HTMLSpanElement
-	> {
-        children?: ReactNode;
-		
-    }
+		HTMLSpanElement>
+	>
