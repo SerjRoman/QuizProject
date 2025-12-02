@@ -8,7 +8,7 @@ import type {
 } from "../../api/types";
 
 type GetAllQuizzesSelectFromResultArg = TypedUseQueryStateResult<
-	QuizLibraryAllResponse[],
+	QuizLibraryAllResponse,
 	QuizLibraryRequest,
 	BaseQueryFn
 >;
@@ -20,7 +20,7 @@ export const selectFilteredQuizzes = createSelector(
 	],
 	(libraryState, queryResult) => {
 		const { search, filters, sort } = libraryState;
-		let processedQuizzes = [...(queryResult.currentData ?? [])];
+		let processedQuizzes = [...(queryResult.currentData?.data ?? [])];
 
 		if (search) {
 			const lowerCaseSearch = search.toLowerCase();
@@ -50,10 +50,10 @@ export const selectFilteredQuizzes = createSelector(
 		}
 		processedQuizzes.sort((a, b) => {
 			const multiplier = sort.order === "asc" ? 1 : -1;
-			if (sort.field === "name") {
+			if (sort.field === "title") {
 				return a.title.localeCompare(b.title) * multiplier;
 			}
-			if (sort.field === "date") {
+			if (sort.field === "createdAt") {
 				return (
 					new Date(a.createdAt).getTime() -
 					new Date(b.createdAt).getTime() * multiplier

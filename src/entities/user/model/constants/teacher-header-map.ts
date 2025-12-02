@@ -1,8 +1,8 @@
-import { TEACHER_HEADER_NAVIGATION_MAP } from "@/shared/model/constants/navigation-map";
+import { TEACHER_HEADER_NAVIGATION_MAP } from "@/shared/model";
 import { Icons } from "@/shared/ui";
-import type { INavBarButton } from "../types/nav-bar-button";
+import type { NavBarButton } from "../types/nav-bar-button";
 
-export const TEACHER_HEADER_MAP: INavBarButton[] = [
+export const TEACHER_HEADER_MAP: NavBarButton[] = [
 	{
 		path: TEACHER_HEADER_NAVIGATION_MAP.libraries,
 		title: "Libraries",

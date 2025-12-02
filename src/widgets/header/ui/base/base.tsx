@@ -13,7 +13,7 @@ export function Header({ nav_bar_button }: IHeader) {
 				{nav_bar_button.map((tab) => {
 					return (
 						<Dropdown
-							key={tab.id}
+							key={tab.title}
 							showOn="hover"
 							closeOn="leave"
 							trigger={() => (

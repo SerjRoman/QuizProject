@@ -1,15 +1,11 @@
 :root {
-/* названия - это те которые заменят их, там где названий нет, замены - нет */
-
-	--yellow5: #ffdd73;
 	--black: #000000;
 	--white: #ffff;
 	--error: #ff0000;
-	--pink4: #f33d6e;
-	--button-red2: rgba(159, 0, 19, 0.42);/*снести*/
-	--button-red3: rgba(159, 0, 19, 0.75);/*снести*/
-	--button-gray3: rgba(52, 52, 53, 0.75); /*снести*/
 
+	--button-red2: rgba(159, 0, 19, 0.42); /*снести*/
+	--button-red3: rgba(159, 0, 19, 0.75); /*снести*/
+	--button-gray3: rgba(52, 52, 53, 0.75); /*снести*/
 
 	--grey1: #808080;
 	--grey2: #b2aeae;
@@ -21,17 +17,70 @@
 	--light-grey3: #ededed;
 	--light-grey4: #f6f6f6;
 
+	--pink1: #e7003e;
+	--pink2: #ad2b4e;
+	--pink3: #960028;
+	--pink4: #f33d6e;
+
+	--coral1: #f54b38;
+	--coral2: #d24232;
+	--coral3: #a8372a;
+	--coral4: #fb7465;
+	--coral5: #ffa99f;
+
 	--dark-red: #7f000f;
 	--red: #9f0013;
+	--bright-red: #e50000;
 	--light-red1: #b7404e;
 	--light-red2: #d7949c;
+
+	--orange1: #f59d38;
+	--orange2: #ce8531;
+	--orange3: #a76c28;
+	--orange4: #fcba70;
+	--orange5: #ffce96;
+
+	--yellow1: #ffc200;
+	--yellow2: #e2ac01;
+	--yellow3: #a67e00;
+	--yellow4: #ffd140;
+	--yellow5: #ffdd73;
+
+	--lettuce-green1: #aad20a;
+	--lettuce-green2: #9cc108;
+	--lettuce-green3: #82a106;
+	--lettuce-green4: #c5e05a;
+	--lettuce-green5: #daeb92;
+
+	--green1: #5de100;
+	--green2: #5fa92a;
+	--green3: #3d9200;
+	--green4: #87f03c;
+	--green5: #a3f06c;
+
+	--blue1: #1f1ab2;
+	--blue2: #333085;
+	--blue3: #0c0874;
+	--blue4: #534ed8;
+	--blue5: #7673d8;
+
+	--purple1: #8a38f5;
+	--purple2: #6c29c3;
+	--purple3: #51228e;
+	--purple4: #ae6fff;
+	--purple5: #ccabf7;
 
 	--fade-green: #cdf3b1;
 	--fade-pink: #f5b2c4;
 	--fade-white: #f6f6f6;
 	--fade-yellow: #fff9e6;
 
-	--light-blue: #9bb1ee;
+	--yellow-stroke:#FFCE00;
+	--orange-stroke:#FFCF8B;
+	--fade-yellower: #ffe98e;
+	--light-blue-btn: #cad8ff;
+	--light-blue-btn-hov: #bac6e5;
+	--light-blue-btn-en: #9bb1ee;
 }
 
 * {

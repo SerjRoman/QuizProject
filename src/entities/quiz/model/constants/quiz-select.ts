@@ -4,7 +4,6 @@ import type { QuizSelect } from "../types";
 export const QuizSelectArray: KeysArray<QuizSelect> = [
 	"id",
 	"title",
-	"isPrivate",
 	"status",
 	"coverImage",
 	"tagsIds",

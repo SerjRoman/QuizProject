@@ -6,10 +6,10 @@
 }
 
 .label:has(input:checked) {
-	background-color: var(--light-blue);
+	background-color: var(--light-blue-btn-en);
 }
 .showMore {
 	cursor: pointer;
 	text-decoration: underline;
-	text-decoration-color: var(--light-blue);
+	text-decoration-color: var(--light-blue-btn-en);
 }

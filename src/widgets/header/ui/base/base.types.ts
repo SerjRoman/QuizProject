@@ -1,6 +1,6 @@
-import type { INavBarButton } from "@/entities/user";
+import type { NavBarButton } from "@/entities/user";
 
-export interface IHeader  {
-	nav_bar_button: INavBarButton[];
+export interface IHeader {
+    nav_bar_button: NavBarButton[];
 }
 
