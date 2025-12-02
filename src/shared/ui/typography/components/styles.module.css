@@ -1,0 +1,40 @@
+.funkyHeading {
+    font-size: 60px;
+    font-family:'Krona One';
+    
+}
+
+.heading {
+    font-size: 40px;
+    font-family: 'Kulim Park';
+}
+
+.subHeading {
+    font-size: 30px;
+    font-family: 'Kulim Park';
+}
+
+.body {
+    font-size: 20px;
+    font-family: 'Kulim Park';
+}
+
+.funkyBody {
+    font-size: 20px;
+    font-family: 'Krona One';
+}
+
+.smallBody {
+    font-size: 18px;
+    font-family: 'Kulim Park';
+}
+
+.verySmallBody {
+    font-size: 14px;
+    font-family: 'Kulim Park';
+}
+
+.footerSmallBody {
+    font-size: 12px;
+    font-family: 'Kulim Park';
+}

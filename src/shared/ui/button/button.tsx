@@ -1,4 +1,5 @@
 import { clsx } from "clsx";
+import { Typography } from "../typography";
 import styles from "./button.module.css";
 import type { IButtonProps } from "./button.types";
 export function Button(props: IButtonProps) {
@@ -9,7 +10,7 @@ export function Button(props: IButtonProps) {
 			className={clsx(styles.button, styles[variantClassName], className)}
 			{...restProps}
 		>
-			{title}
+			<Typography.Body>{title}</Typography.Body>
 		</button>
 	);
 }
