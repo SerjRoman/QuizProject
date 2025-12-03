@@ -1,6 +1,6 @@
-import { baseApi } from "@/shared/api";
+import { API_MAP, baseApi } from "@/shared/api";
 import { QUIZZES_PER_PAGE } from "../model";
-import { QUIZ_LIBRARY_MY_SELECT, QUIZ_LIBRARY_API_MAP } from "./constants";
+import { QUIZ_LIBRARY_MY_SELECT } from "./constants";
 import type {
 	CreateQuizPayload,
 	CreateQuizResponse,
@@ -50,7 +50,7 @@ export const quizLibraryApi = baseApi.injectEndpoints({
 					query += `&status=${JSON.stringify(arg.status)}`;
 				}
 				return {
-					url: `${QUIZ_LIBRARY_API_MAP.my}${
+					url: `${API_MAP.quiz.my}${
 						arg.from ? `/${arg.from}` : ""
 					}${query}`,
 				};
@@ -69,14 +69,14 @@ export const quizLibraryApi = baseApi.injectEndpoints({
 		}),
 		deleteQuiz: build.mutation<DeleteQuizResponse, DeleteQuizPayload>({
 			query: ({ id }) => ({
-				url: `/quizzes/${id}`,
+				url: `${API_MAP.quiz.delete}/${id}`,
 				method: "DELETE",
 			}),
 			invalidatesTags: ["LibraryQuiz"],
 		}),
 		createQuiz: build.mutation<CreateQuizResponse, CreateQuizPayload>({
 			query: (quizData) => ({
-				url: "/quizzes",
+				url: API_MAP.quiz.create,
 				method: "POST",
 				body: quizData,
 			}),

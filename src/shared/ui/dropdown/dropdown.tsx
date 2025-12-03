@@ -57,7 +57,7 @@ export function Dropdown<T>(props: IDropdownProps<T>) {
 					{...restProps}
 					className={clsx(styles.dropdownPanel, className)}
 				>
-					{dataSource?.map(renderItem)}
+					{dataSource?.map((item) => renderItem(item, handleClose))}
 				</div>
 			)}
 		</div>

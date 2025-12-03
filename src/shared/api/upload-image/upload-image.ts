@@ -5,7 +5,7 @@ import type {
 	GetUploadParamsResponse,
 	UploadImagePayload,
 	UploadImageResponse,
-} from "./api.types";
+} from "./upload-image-api.types";
 const uploadFileApi = baseApi.injectEndpoints({
 	endpoints: (build) => ({
 		getUploadParams: build.mutation<

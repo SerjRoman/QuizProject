@@ -5,7 +5,7 @@ import type {
 	QuizVisibility,
 	SortOptions,
 } from "../types";
-interface IQuizLibraryState {
+interface QuizLibraryState {
 	search: string;
 	sort: {
 		field: SortOptions;
@@ -20,7 +20,7 @@ interface IQuizLibraryState {
 	status: QuizStatus[];
 }
 
-const initialState: IQuizLibraryState = {
+const initialState: QuizLibraryState = {
 	search: "",
 	sort: {
 		field: "createdAt",
@@ -35,9 +35,9 @@ const initialState: IQuizLibraryState = {
 	status: [],
 };
 
-export const quizLibrarySlice = createSlice({
+export const quizFiltersSlice = createSlice({
 	initialState,
-	name: "quizLlibrary",
+	name: "quizFilters",
 	reducers: {
 		setSort: (state, { payload }: PayloadAction<SortOptions>) => {
 			const isSameField = state.sort.field === payload;
@@ -129,4 +129,4 @@ export const {
 	removeLanguage,
 	removeTag,
 	setSubject,
-} = quizLibrarySlice.actions;
+} = quizFiltersSlice.actions;

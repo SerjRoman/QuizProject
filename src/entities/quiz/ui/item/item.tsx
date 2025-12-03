@@ -1,8 +1,8 @@
 import { Images } from "@/shared/ui";
 import styles from "./item.module.css";
-import type { IQuizItemProps } from "./item.types";
+import type { QuizItemProps } from "./item.types";
 
-export function QuizItem(props: IQuizItemProps) {
+export function QuizItem(props: QuizItemProps) {
 	const { quiz, actions, isMy } = props;
 	return (
 		<div className={styles.item}>
