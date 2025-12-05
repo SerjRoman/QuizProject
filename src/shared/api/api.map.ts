@@ -15,7 +15,9 @@ export const API_MAP = {
 		logout: "/auth/logout",
 		refresh: "/auth/refresh",
 	},
-	tags: "/tags",
-	languages: "/languages",
-	subjects: "/subjects",
+	taxonomy: {
+		tags: "/taxonomies/tags",
+		languages: "/taxonomies/languages",
+		subjects: "/taxonomies/subjects",
+	},
 };

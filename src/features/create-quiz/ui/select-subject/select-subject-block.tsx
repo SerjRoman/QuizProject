@@ -9,7 +9,7 @@ import { ShowMoreModal } from "../show-more-modal";
 import styles from "./selects-subject-block.module.css";
 
 export function SelectSubjectBlock() {
-	const { data: subjects } = useGetSubjectsQuery();
+	const { data } = useGetSubjectsQuery();
 	const [{ open }, ModalProvider] = useModal<{
 		title: string;
 		name: "subjectId";
@@ -20,6 +20,7 @@ export function SelectSubjectBlock() {
 	}>();
 	const { watch } = useFormContext<CreateQuizSchema>();
 	const selectedSubject = watch("subjectId");
+	const subjects = data?.data;
 
 	const topSubjects = useMemo(() => {
 		if (!subjects) return [];

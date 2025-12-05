@@ -1,22 +1,22 @@
 import { API_MAP, baseApi } from "@/shared/api";
-import type { FilterByResponse } from "./taxonomy-api.types";
+import type { PaginatedTaxonomyResponse } from "./taxonomy-api.types";
 
 export const quizFilterByApi = baseApi.injectEndpoints({
 	endpoints: (build) => ({
-		getTags: build.query<FilterByResponse[], void>({
+		getTags: build.query<PaginatedTaxonomyResponse, void>({
 			query: () => ({
-				url: `${API_MAP.tags}?select=["id", "name", "slug"]`,
+				url: API_MAP.taxonomy.tags,
 			}),
 		}),
-		getLanguages: build.query<FilterByResponse[], void>({
+		getLanguages: build.query<PaginatedTaxonomyResponse, void>({
 			query: () => ({
-				url: `${API_MAP.languages}?select=["id", "name", "slug"]`,
+				url: API_MAP.taxonomy.languages,
 			}),
 		}),
 
-		getSubjects: build.query<FilterByResponse[], void>({
+		getSubjects: build.query<PaginatedTaxonomyResponse, void>({
 			query: () => ({
-				url: `${API_MAP.subjects}?select=["id", "name", "slug"]`,
+				url: API_MAP.taxonomy.subjects,
 			}),
 		}),
 	}),

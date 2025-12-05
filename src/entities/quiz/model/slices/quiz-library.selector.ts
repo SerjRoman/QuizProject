@@ -29,20 +29,20 @@ export const selectFilteredQuizzes = createSelector(
             );
         }
 
-        const { subjectId, tagsIds, languagesIds } = filters;
+        const { subjectId, tagIds, languageIds } = filters;
         const hasActiveFilters =
-            subjectId || tagsIds.length > 0 || languagesIds.length > 0;
+            subjectId || tagIds.length > 0 || languageIds.length > 0;
         if (hasActiveFilters) {
             processedQuizzes = processedQuizzes.filter((quiz) => {
                 if (subjectId && quiz.subjectId !== subjectId) return false;
                 if (
-                    tagsIds.length > 0 &&
-                    !tagsIds.some((id) => quiz.tagsIds.includes(id))
+                    tagIds.length > 0 &&
+                    !tagIds.some((id) => quiz.tagIds.includes(id))
                 )
                     return false;
                 if (
-                    languagesIds.length > 0 &&
-                    !languagesIds.some((id) => quiz.languagesIds.includes(id))
+                    languageIds.length > 0 &&
+                    !languageIds.some((id) => quiz.languageIds.includes(id))
                 )
                     return false;
                 return true;

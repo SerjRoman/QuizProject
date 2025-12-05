@@ -1,4 +1,5 @@
-import type { QuizStatus } from "./quiz-filters";
+import type { User } from "@/entities/user";
+import type { QuizStatus, QuizVisibility } from "./quiz-filters";
 
 export interface IQuiz {
 	id: string;
@@ -6,8 +7,8 @@ export interface IQuiz {
 	visibility: boolean;
 	status: QuizStatus;
 	coverImage: string | null;
-	tagsIds: string[];
-	languagesIds: string[];
+	tagIds: string[];
+	languageIds: string[];
 	shuffleAnswers: boolean;
 	shuffleQuestions: boolean;
 	subjectId: string;
@@ -20,25 +21,23 @@ export interface IQuiz {
 	folderIds: string[];
 }
 
-export type QuizLibrary = Pick<
-	IQuiz,
-	| "id"
-	| "title"
-	| "createdAt"
-	| "tagsIds"
-	| "languagesIds"
-	| "subjectId"
-	| "coverImage"
-> & {
-	isFavourite: boolean;
-	createdBy: {
-		user: {
-			avatar: string | null;
-			firstName: string;
-			lastName: string;
-			id: string;
-		};
+export interface QuizLibrary {
+	id: string;
+	title: string;
+	visibility: QuizVisibility;
+	status: QuizStatus;
+	coverImage: null | string;
+	shuffleAnswers: boolean;
+	shuffleQuestions: boolean;
+	creator: {
+		id: string;
+		user: User;
 	};
-};
-
-
+	owner: {
+		id: string;
+		user: User;
+	};
+	createdAt: Date;
+	updatedAt: Date;
+	isFavourite: boolean;
+}

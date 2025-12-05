@@ -21,9 +21,9 @@ export function CreateQuizForm({ onSubmit }: { onSubmit: () => void }) {
 			shuffleQuestions: "false",
 			shuffleAnswers: "false",
 			coverImage: undefined,
-			tagsIds: [],
+			tagIds: [],
 			subjectId: "",
-			languagesIds: [],
+			languageIds: [],
 		},
 	});
 	const { submitCreateQuiz, ModalError, isLoading } = useCreateQuiz(() =>

@@ -44,7 +44,7 @@ export const TeacherLibrary = () => {
 			</TabList>
 
 			<TabPanel name="all">
-				<QuizzesPanel />
+				<QuizzesPanel queryArgs={{ from: "all" }} />
 			</TabPanel>
 
 			<TabPanel name="created">

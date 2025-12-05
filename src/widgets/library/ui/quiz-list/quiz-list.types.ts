@@ -7,6 +7,7 @@ export interface QuizContentProps extends PropsWithChildren {
 	isLoading?: boolean;
 	error?: unknown;
 	userId?: string;
+	currentPage: number;
 	onEditAccess: (quizId: string) => void;
 	onPageChange: (page: number) => void;
 	renderActions: (quiz: QuizLibrary) => ReactNode;

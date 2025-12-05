@@ -5,11 +5,9 @@ const copyQuiz = baseApi.injectEndpoints({
 	endpoints(build) {
 		return {
 			copyQuiz: build.mutation<CopyQuizResponse, CopyQuizPayload>({
-				query: ({ id }) => ({
+				query: (body) => ({
 					url: API_MAP.quiz.copy,
-					body: {
-						id,
-					},
+					body,
 					method: "POST",
 				}),
 				invalidatesTags: ["LibraryQuiz"],

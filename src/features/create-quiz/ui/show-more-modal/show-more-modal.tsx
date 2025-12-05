@@ -8,7 +8,7 @@ import styles from "./show-more-modal.module.css";
 type ShowMoreModalProps = {
 	title?: string;
 	children?: ReactNode;
-	name: "languagesIds" | "subjectId" | "tagsIds";
+	name: "languageIds" | "subjectId" | "tagIds";
 	content: (
 		onChange: (e: ChangeEvent<HTMLInputElement>) => void,
 		selectedItems: string | string[]

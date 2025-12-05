@@ -5,8 +5,15 @@ import styles from "./quiz-list.module.css";
 import type { QuizContentProps } from "./quiz-list.types";
 
 export function QuizList(props: QuizContentProps) {
-	const { data, isLoading, error, userId, onPageChange, renderActions } =
-		props;
+	const {
+		data,
+		isLoading,
+		error,
+		userId,
+		currentPage,
+		onPageChange,
+		renderActions,
+	} = props;
 
 	if (isLoading) return <div>Loading quizzes...</div>;
 	if (error) return <div>Error loading data</div>;
@@ -21,14 +28,14 @@ export function QuizList(props: QuizContentProps) {
 						key={quiz.id}
 						quiz={quiz}
 						actions={renderActions(quiz)}
-						isMy={userId === quiz.createdBy.user.id}
+						isMy={userId === quiz.creator.user.id}
 					/>
 				))}
 			</div>
 			<Paginate
 				className={styles.navPage}
-				currentPage={meta.currentPage}
-				totalPages={meta.pageCount ?? 1}
+				currentPage={currentPage}
+				totalPages={meta.totalPages ?? 1}
 				setPage={onPageChange}
 			/>
 		</>

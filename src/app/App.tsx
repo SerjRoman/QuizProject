@@ -9,10 +9,10 @@ function App() {
 	const [login] = useLoginMutation();
 	const dispatch = useAppDispatch();
 	useEffect(() => {
-		const token = localStorage.getItem("token");
+		const accessToken = localStorage.getItem("accessToken");
 		const refreshToken = localStorage.getItem("refreshToken");
-		if (!token || !refreshToken) return;
-		dispatch(setTokens({ token, refreshToken }));
+		if (!accessToken || !refreshToken) return;
+		dispatch(setTokens({ accessToken, refreshToken }));
 	}, [dispatch]);
 
 	return (
@@ -46,7 +46,7 @@ function App() {
 							dispatch(
 								setFilters({
 									filters: {
-										tagsIds: [prompt() ?? ""],
+										tagIds: [prompt() ?? ""],
 									},
 								})
 							);
@@ -66,7 +66,7 @@ function App() {
 			></Dropdown>
 			<MenuButton
 				onClick={() => {
-					dispatch(setFilters({ filters: { tagsIds: [] } }));
+					dispatch(setFilters({ filters: { tagIds: [] } }));
 				}}
 				title={"FILTER"}
 				enabled={true}

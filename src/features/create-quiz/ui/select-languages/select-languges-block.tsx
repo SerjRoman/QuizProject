@@ -9,10 +9,10 @@ import { ShowMoreModal } from "../show-more-modal";
 import styles from "./select-languages-block.module.css";
 
 export function SelectLanguagesBlock() {
-	const { data: languages } = useGetLanguagesQuery();
+	const { data } = useGetLanguagesQuery();
 	const [{ open }, ModalProvider] = useModal<{
 		title: string;
-		name: "languagesIds";
+		name: "languageIds";
 		content: (
 			onChange: (e: ChangeEvent<HTMLInputElement>) => void,
 			selectedItems: string | string[]
@@ -20,7 +20,8 @@ export function SelectLanguagesBlock() {
 	}>();
 
 	const { watch } = useFormContext<CreateQuizSchema>();
-	const selectedLanguages = watch("languagesIds");
+	const selectedLanguages = watch("languageIds");
+	const languages = data?.data;
 
 	const topLanguages = useMemo(() => {
 		if (!languages) return [];
@@ -41,12 +42,12 @@ export function SelectLanguagesBlock() {
 							onClick={() => {
 								open({
 									title: "languages",
-									name: "languagesIds",
+									name: "languageIds",
 									content: (onChange, selectedItems) => {
 										return (
 											<CheckboxGroup
 												onChange={onChange}
-												name={"languagesIds"}
+												name={"languageIds"}
 											>
 												{languages?.map((language) => (
 													<Checkbox
@@ -75,7 +76,7 @@ export function SelectLanguagesBlock() {
 				title="Languages"
 				className={styles.filterBlock}
 			>
-				<CheckboxGroup name={"languagesIds"}>
+				<CheckboxGroup name={"languageIds"}>
 					{topLanguages.map((language) => (
 						<Checkbox
 							value={language.id}

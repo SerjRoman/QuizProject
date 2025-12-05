@@ -9,8 +9,8 @@ import { ShowMoreModal } from "../show-more-modal";
 import styles from "./select-tags-block.module.css";
 
 export function SelectTagsBlock() {
-	const fieldName = "tagsIds";
-	const { data: tags } = useGetTagsQuery();
+	const fieldName = "tagIds";
+	const { data } = useGetTagsQuery();
 	const [{ open }, ModalProvider] = useModal<{
 		title: string;
 		name: typeof fieldName;
@@ -22,6 +22,7 @@ export function SelectTagsBlock() {
 
 	const { watch } = useFormContext<CreateQuizSchema>();
 	const selectedTags = watch(fieldName);
+	const tags = data?.data;
 
 	const topTags = useMemo(() => {
 		if (!tags) return [];
@@ -45,7 +46,7 @@ export function SelectTagsBlock() {
 										return (
 											<CheckboxGroup
 												onChange={onChange}
-												name={"tagsIds"}
+												name={"tagIds"}
 											>
 												{tags?.map((tag) => (
 													<Checkbox

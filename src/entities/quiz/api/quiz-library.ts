@@ -1,6 +1,5 @@
 import { API_MAP, baseApi } from "@/shared/api";
 import { QUIZZES_PER_PAGE } from "../model";
-import { QUIZ_LIBRARY_MY_SELECT } from "./constants";
 import type {
 	CreateQuizPayload,
 	CreateQuizResponse,
@@ -25,13 +24,19 @@ export const quizLibraryApi = baseApi.injectEndpoints({
 					  ]
 					: [{ type: "LibraryQuiz", id: "LIST" }],
 			query: (arg) => {
-				let query = `?select=${JSON.stringify(QUIZ_LIBRARY_MY_SELECT)}`;
+				let query = `?`;
 				if (arg.filters) {
-					query += `&tags=${JSON.stringify(arg.filters.tagsIds)}`;
-					query += `&languages=${JSON.stringify(
-						arg.filters.languagesIds
-					)}`;
-					query += `&subject=${arg.filters.subjectId}`;
+					const { tagIds, languageIds, subjectId } = arg.filters;
+					if (tagIds && tagIds.length > 0)
+						query += `&tagIds=${arg.filters.tagIds.join(
+							"&tagIds="
+						)}`;
+					if (languageIds && languageIds.length > 0)
+						query += `&languageIds=${arg.filters.languageIds.join(
+							"&languageIds="
+						)}`;
+					if (subjectId)
+						query += `&subjectId=${arg.filters.subjectId}`;
 				}
 				if (arg.search) {
 					query += `&search=${arg.search}`;
@@ -41,7 +46,7 @@ export const quizLibraryApi = baseApi.injectEndpoints({
 					query += `&page=${arg.page}`;
 				}
 				if (arg.sort) {
-					query += `&sort=${JSON.stringify(arg.sort)}`;
+					query += `&order=${arg.sort.field}:${arg.sort.order}`;
 				}
 				if (arg.visibility && arg.visibility.length > 0) {
 					query += `&visibility=${JSON.stringify(arg.visibility)}`;

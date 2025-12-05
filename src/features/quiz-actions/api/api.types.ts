@@ -1,6 +1,6 @@
 import type { IQuiz } from "@/entities/quiz";
 
 export interface CopyQuizPayload {
-	id: string;
+	quizId: string;
 }
 export type CopyQuizResponse = IQuiz;

@@ -6,17 +6,19 @@ import { Checkbox, CheckboxGroup, FilterBlock } from "@/shared/ui";
 import styles from "./filter-by-subject.module.css";
 
 export function QuizFilterBySubjectBlock() {
-	const { data = [] } = useGetSubjectsQuery();
+	const { data } = useGetSubjectsQuery();
 	const dispatch = useAppDispatch();
 	const filters = useAppSelector((state) => state.quizFilters.filters);
 	const [isFullOpen, setIsFullOpen] = useState<boolean>(false);
 	function onChange(event: ChangeEvent<HTMLInputElement>) {
 		dispatch(setSubject(event.target.value));
 	}
+	if (!data) return "Loading";
+	const subjects = data.data;
 	return (
 		<FilterBlock
 			actions={
-				data.length > 10 && (
+				subjects.length > 10 && (
 					<p
 						className={styles.showMore}
 						onClick={() => {
@@ -31,15 +33,17 @@ export function QuizFilterBySubjectBlock() {
 			title="Subject"
 		>
 			<CheckboxGroup name="subject" onChange={onChange}>
-				{data.slice(0, isFullOpen ? undefined : 10).map((subject) => (
-					<Checkbox
-						key={subject.id}
-						label={subject.name}
-						labelClassName={styles.label}
-						checked={subject.id === filters.subjectId}
-						value={subject.id}
-					/>
-				))}
+				{subjects
+					.slice(0, isFullOpen ? undefined : 10)
+					.map((subject) => (
+						<Checkbox
+							key={subject.id}
+							label={subject.name}
+							labelClassName={styles.label}
+							checked={subject.id === filters.subjectId}
+							value={subject.id}
+						/>
+					))}
 			</CheckboxGroup>
 		</FilterBlock>
 	);

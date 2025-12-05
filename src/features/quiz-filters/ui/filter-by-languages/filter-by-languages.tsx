@@ -6,7 +6,7 @@ import { Checkbox, CheckboxGroup, FilterBlock } from "@/shared/ui";
 import styles from "./filter-by-languages.module.css";
 
 export function QuizFilterByLanguagesBlock() {
-	const { data = [] } = useGetLanguagesQuery();
+	const { data } = useGetLanguagesQuery();
 	const dispatch = useAppDispatch();
 	const [isFullOpen, setIsFullOpen] = useState<boolean>(false);
 	function handleChangeLanguage(event: ChangeEvent<HTMLInputElement>) {
@@ -17,11 +17,13 @@ export function QuizFilterByLanguagesBlock() {
 			dispatch(removeLanguage(languageId));
 		}
 	}
+	if (!data) return "Loading";
+	const languages = data.data;
 	return (
 		<FilterBlock
 			actions={
-				data &&
-				data.length > 10 && (
+				languages &&
+				languages.length > 10 && (
 					<p
 						className={styles.showMore}
 						onClick={() => {
@@ -36,14 +38,16 @@ export function QuizFilterByLanguagesBlock() {
 			title="Languages"
 		>
 			<CheckboxGroup onChange={handleChangeLanguage} name="languages">
-				{data.slice(0, isFullOpen ? undefined : 10).map((language) => (
-					<Checkbox
-						key={language.id}
-						label={language.name}
-						labelClassName={styles.label}
-						value={language.id}
-					/>
-				))}
+				{languages
+					.slice(0, isFullOpen ? undefined : 10)
+					.map((language) => (
+						<Checkbox
+							key={language.id}
+							label={language.name}
+							labelClassName={styles.label}
+							value={language.id}
+						/>
+					))}
 			</CheckboxGroup>
 		</FilterBlock>
 	);

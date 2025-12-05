@@ -2,9 +2,9 @@ import { useDeleteQuiz } from "@/entities/quiz";
 import { Dropdown, IconButton, Icons } from "@/shared/ui";
 import { useCopyQuiz } from "../../lib/hooks";
 import styles from "./quiz-settings-dropdown.module.css";
-import type { QuizActionsGroupProps } from "./quiz-settings-dropdown.types";
+import type { QuizSettingsDropdownProps } from "./quiz-settings-dropdown.types";
 
-export function QuizSettingsDropdown({ quiz }: QuizActionsGroupProps) {
+export function QuizSettingsDropdown({ quiz }: QuizSettingsDropdownProps) {
 	const {
 		deleteQuiz,
 		isLoading: deleteLoading,

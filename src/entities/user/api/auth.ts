@@ -1,16 +1,16 @@
 import { baseApi } from "@/shared/api";
-import { setTokens, setUser, type IUser } from "../model";
+import { setTokens, setUser, type User } from "../model";
 import { AUTH_API_MAP } from "./constants";
 import type {
-	ILoginRequest,
-	ILoginResponse,
-	IRegisterRequest,
-	IRegisterResponse,
+	LoginRequest,
+	LoginResponse,
+	RegisterRequest,
+	RegisterResponse,
 } from "./types/auth";
 
 export const userApi = baseApi.injectEndpoints({
 	endpoints: (build) => ({
-		login: build.mutation<ILoginResponse, ILoginRequest>({
+		login: build.mutation<LoginResponse, LoginRequest>({
 			query: (credentials) => ({
 				url: AUTH_API_MAP.login,
 				body: credentials,
@@ -25,7 +25,7 @@ export const userApi = baseApi.injectEndpoints({
 				}
 			},
 		}),
-		register: build.mutation<IRegisterResponse, IRegisterRequest>({
+		register: build.mutation<RegisterResponse, RegisterRequest>({
 			query: (credentials) => ({
 				method: "POST",
 				body: credentials,
@@ -41,7 +41,7 @@ export const userApi = baseApi.injectEndpoints({
 			},
 		}),
 
-		me: build.query<IUser, void>({
+		me: build.query<User, void>({
 			query: () => ({
 				url: AUTH_API_MAP.me,
 			}),
@@ -62,5 +62,4 @@ export const {
 	useMeQuery,
 	useLazyMeQuery,
 	useRegisterMutation,
-} = userApi; 
-
+} = userApi;

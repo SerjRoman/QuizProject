@@ -52,6 +52,7 @@ export function QuizzesPanel({ filters, queryArgs }: IQuizzesPanel) {
 				<QuizList
 					data={data}
 					onPageChange={(page) => setCurrentPage(page)}
+                    currentPage={currentPage}
 					onEditAccess={(quizId: string) => {
 						editAccessModal.open({ quizId });
 					}}

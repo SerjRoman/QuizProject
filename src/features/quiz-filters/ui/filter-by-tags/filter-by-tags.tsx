@@ -6,7 +6,7 @@ import { Checkbox, CheckboxGroup, FilterBlock } from "@/shared/ui";
 import styles from "./filter-by-tags.module.css";
 
 export function QuizFilterByTagsBlock() {
-	const { data = [] } = useGetTagsQuery();
+	const { data } = useGetTagsQuery();
 	const dispatch = useAppDispatch();
 	const [isFullOpen, setIsFullOpen] = useState<boolean>(false);
 
@@ -18,11 +18,13 @@ export function QuizFilterByTagsBlock() {
 			dispatch(removeTag(tag));
 		}
 	}
+	if (!data) return "Loading";
+	const tags = data.data;
 
 	return (
 		<FilterBlock
 			actions={
-				data.length > 10 && (
+				tags.length > 10 && (
 					<p
 						className={styles.showMore}
 						onClick={() => {
@@ -37,7 +39,7 @@ export function QuizFilterByTagsBlock() {
 			className={styles.block}
 		>
 			<CheckboxGroup onChange={handleChange} name="tags">
-				{data.slice(0, isFullOpen ? undefined : 10).map((tag) => (
+				{tags.slice(0, isFullOpen ? undefined : 10).map((tag) => (
 					<Checkbox
 						key={tag.id}
 						label={tag.name}

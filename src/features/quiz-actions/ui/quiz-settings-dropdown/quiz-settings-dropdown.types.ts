@@ -1,6 +1,6 @@
 import type { QuizLibrary } from "@/entities/quiz";
 
-export interface QuizActionsGroupProps {
+export interface QuizSettingsDropdownProps {
 	quiz: QuizLibrary;
 	isOwner: boolean;
 }

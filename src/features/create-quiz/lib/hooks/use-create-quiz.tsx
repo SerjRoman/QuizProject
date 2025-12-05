@@ -1,8 +1,11 @@
 import { useCreateQuizMutation } from "@/entities/quiz";
 import { useUploadImageMutation } from "@/shared/api";
 import { useError } from "@/shared/lib";
-import { CREATE_QUIZ_API_MAP, CREATE_QUIZ_ERROR_MAP } from "../constants";
-import type { CreateQuizSchema } from "../types";
+import {
+	CREATE_QUIZ_API_MAP,
+	CREATE_QUIZ_ERROR_MAP,
+} from "../../model/constants";
+import type { CreateQuizSchema } from "../../model/types";
 
 export function useCreateQuiz(onSuccess: () => void) {
 	const [createQuiz, { isLoading: isCreateLoading }] =

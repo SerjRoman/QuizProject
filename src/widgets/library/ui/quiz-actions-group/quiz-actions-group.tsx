@@ -25,7 +25,7 @@ export function QuizActionsGroup({
 
 			<QuizSettingsDropdown
 				quiz={quiz}
-				isOwner={user?.id === quiz.createdBy.user.id}
+				isOwner={user?.id === quiz.creator.user.id}
 			/>
 		</div>
 	);
