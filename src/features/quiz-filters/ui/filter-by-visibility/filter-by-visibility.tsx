@@ -1,13 +1,25 @@
 import { type ChangeEvent } from "react";
-import { setVisibility, type QuizVisibility } from "@/entities/quiz";
-import { useAppDispatch } from "@/shared/lib";
+import {
+	addVisibility,
+	removeVisibility,
+	type QuizVisibility,
+} from "@/entities/quiz";
+import { useAppDispatch, useAppSelector } from "@/shared/lib";
 import { Checkbox, CheckboxGroup, Checkmarks } from "@/shared/ui";
 import styles from "./filter-by-visibility.module.css";
 export function QuizFilterByVisibility() {
 	const dispatch = useAppDispatch();
+	const { selectedVisibilities } = useAppSelector(
+		(state) => state.quizFilters
+	);
+
 	function handleVisibilityChange(event: ChangeEvent<HTMLInputElement>) {
 		const visibility = event.target.value as QuizVisibility;
-		dispatch(setVisibility(visibility));
+		if (!selectedVisibilities.includes(visibility)) {
+			dispatch(addVisibility(visibility));
+		} else {
+			dispatch(removeVisibility(visibility));
+		}
 	}
 	return (
 		<div className={styles.container}>

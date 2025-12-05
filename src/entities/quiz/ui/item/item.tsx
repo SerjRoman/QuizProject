@@ -1,4 +1,4 @@
-import { Images } from "@/shared/ui";
+import { Images, Typography } from "@/shared/ui";
 import styles from "./item.module.css";
 import type { QuizItemProps } from "./item.types";
 
@@ -15,7 +15,9 @@ export function QuizItem(props: QuizItemProps) {
 					}
 					className={styles.coverImage}
 				/>
-				<p className={styles.dataTitle}>{quiz.title}</p>
+				<Typography.Body className={styles.dataTitle}>
+					{quiz.title}
+				</Typography.Body>
 			</div>
 			<p className={styles.dataDate}>{quiz.createdAt.toDateString()}</p>
 			<div className={styles.createdByBlock}>

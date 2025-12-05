@@ -9,7 +9,7 @@
 
 	padding: 40px 20px 40px 20px;
 
-	grid-template-columns: 1fr 4fr;
+	grid-template-columns: minmax(250px, 1fr) 4fr;
 	grid-auto-rows: minmax(0, 1fr);
 
 	gap: 10px;

@@ -16,8 +16,8 @@ export function useLibraryQuizzes({
 			search: debouncedSearch,
 			page: page,
 			sort: quizFilters.sort,
-			visibility: quizFilters.visibility,
-			status: quizFilters.status,
+			selectedVisiblities: quizFilters.selectedVisibilities,
+			selectedStatuses: quizFilters.selectedStatuses,
 			...queryArgs,
 		},
 		{

@@ -1,5 +1,5 @@
 import { useState, type ChangeEvent } from "react";
-import { setSubject } from "@/entities/quiz";
+import { resetSubject, setSubject } from "@/entities/quiz";
 import { useGetSubjectsQuery } from "@/shared/api";
 import { useAppDispatch, useAppSelector } from "@/shared/lib";
 import { Checkbox, CheckboxGroup, FilterBlock } from "@/shared/ui";
@@ -8,9 +8,13 @@ import styles from "./filter-by-subject.module.css";
 export function QuizFilterBySubjectBlock() {
 	const { data } = useGetSubjectsQuery();
 	const dispatch = useAppDispatch();
-	const filters = useAppSelector((state) => state.quizFilters.filters);
+	const { subjectId } = useAppSelector((state) => state.quizFilters.filters);
 	const [isFullOpen, setIsFullOpen] = useState<boolean>(false);
 	function onChange(event: ChangeEvent<HTMLInputElement>) {
+		if (subjectId === event.target.value) {
+			dispatch(resetSubject());
+			return;
+		}
 		dispatch(setSubject(event.target.value));
 	}
 	if (!data) return "Loading";
@@ -40,7 +44,7 @@ export function QuizFilterBySubjectBlock() {
 							key={subject.id}
 							label={subject.name}
 							labelClassName={styles.label}
-							checked={subject.id === filters.subjectId}
+							checked={subject.id === subjectId}
 							value={subject.id}
 						/>
 					))}
