@@ -1,6 +1,6 @@
-import { baseApi } from "@/shared/api";
+import { API_MAP, baseApi } from "@/shared/api";
+import { arrayToQueryArray } from "@/shared/lib";
 import { QUIZZES_PER_PAGE } from "../model";
-import { QUIZ_LIBRARY_MY_SELECT, QUIZ_LIBRARY_API_MAP } from "./constants";
 import type {
 	CreateQuizPayload,
 	CreateQuizResponse,
@@ -25,13 +25,13 @@ export const quizLibraryApi = baseApi.injectEndpoints({
 					  ]
 					: [{ type: "LibraryQuiz", id: "LIST" }],
 			query: (arg) => {
-				let query = `?select=${JSON.stringify(QUIZ_LIBRARY_MY_SELECT)}`;
+				let query = `?`;
 				if (arg.filters) {
-					query += `&tags=${JSON.stringify(arg.filters.tagsIds)}`;
-					query += `&languages=${JSON.stringify(
-						arg.filters.languagesIds
-					)}`;
-					query += `&subject=${arg.filters.subjectId}`;
+					const { tagIds, languageIds, subjectId } = arg.filters;
+					query += arrayToQueryArray(tagIds, "tagIds");
+					query += arrayToQueryArray(languageIds, "languageIds");
+					if (subjectId)
+						query += `&subjectId=${arg.filters.subjectId}`;
 				}
 				if (arg.search) {
 					query += `&search=${arg.search}`;
@@ -41,16 +41,19 @@ export const quizLibraryApi = baseApi.injectEndpoints({
 					query += `&page=${arg.page}`;
 				}
 				if (arg.sort) {
-					query += `&sort=${JSON.stringify(arg.sort)}`;
+					query += `&order=${arg.sort.field}:${arg.sort.order}`;
 				}
-				if (arg.visibility && arg.visibility.length > 0) {
-					query += `&visibility=${JSON.stringify(arg.visibility)}`;
+				if (arg.selectedVisiblities) {
+					query += arrayToQueryArray(
+						arg.selectedVisiblities,
+						"visibility"
+					);
 				}
-				if (arg.status && arg.status.length > 0) {
-					query += `&status=${JSON.stringify(arg.status)}`;
+				if (arg.selectedStatuses) {
+					query += arrayToQueryArray(arg.selectedStatuses, "status");
 				}
 				return {
-					url: `${QUIZ_LIBRARY_API_MAP.my}${
+					url: `${API_MAP.quiz.my}${
 						arg.from ? `/${arg.from}` : ""
 					}${query}`,
 				};
@@ -69,14 +72,14 @@ export const quizLibraryApi = baseApi.injectEndpoints({
 		}),
 		deleteQuiz: build.mutation<DeleteQuizResponse, DeleteQuizPayload>({
 			query: ({ id }) => ({
-				url: `/quizzes/${id}`,
+				url: `${API_MAP.quiz.delete}/${id}`,
 				method: "DELETE",
 			}),
 			invalidatesTags: ["LibraryQuiz"],
 		}),
 		createQuiz: build.mutation<CreateQuizResponse, CreateQuizPayload>({
 			query: (quizData) => ({
-				url: "/quizzes",
+				url: API_MAP.quiz.create,
 				method: "POST",
 				body: quizData,
 			}),

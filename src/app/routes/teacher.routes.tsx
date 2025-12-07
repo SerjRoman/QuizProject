@@ -1,5 +1,5 @@
 import type { RouteObject } from "react-router-dom";
-import { LibraryPage } from "@/pages/teacher";
+import { TeacherLibraryPage } from "@/pages/teacher-library";
 import App from "../App";
 
 export const TeacherRoutes: RouteObject = {
@@ -9,11 +9,11 @@ export const TeacherRoutes: RouteObject = {
 			path: "dashboard",
 			children: [
 				{
-					path: "libraries",
+					path: "library",
 					children: [
 						{
 							path: "",
-							element: <LibraryPage />,
+							element: <TeacherLibraryPage />,
 						},
 					],
 				},

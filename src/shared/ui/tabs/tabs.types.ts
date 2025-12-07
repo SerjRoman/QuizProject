@@ -1,7 +1,7 @@
 import type { PropsWithChildren, ReactNode } from "react";
 
 export interface ITabProps {
-	title: string;
+	title: ReactNode;
 	name: string;
 }
 

@@ -4,8 +4,8 @@ import {
 	type FetchArgs,
 	type FetchBaseQueryError,
 } from "@reduxjs/toolkit/query/react";
-import { AUTH_API_MAP } from "@/entities/user";
 import { ENV } from "@/shared/config";
+import { API_MAP } from "./api.map";
 import { queryHeaders } from "./headers";
 export const baseQuery = fetchBaseQuery({
 	baseUrl: ENV.VITE_API_URL,
@@ -27,7 +27,7 @@ export const customBaseQuery: BaseQueryFn<
 		}
 		const resRefresh = await baseQuery(
 			{
-				url: AUTH_API_MAP.refresh,
+				url: API_MAP.auth.refresh,
 				method: "POST",
 				body: {
 					refreshToken,
@@ -39,7 +39,7 @@ export const customBaseQuery: BaseQueryFn<
 		if (resRefresh.error) {
 			await baseQuery(
 				{
-					url: AUTH_API_MAP.logout,
+					url: API_MAP.auth.logout,
 				},
 				api,
 				extraOptions

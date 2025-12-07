@@ -1,4 +1,4 @@
-export { Modal } from "./modal";
+export { Modal, type ModalComponentProps } from "./modal";
 export { Input } from "./input";
 export { Icons } from "./icons";
 export { Dropdown } from "./dropdown";
@@ -11,6 +11,7 @@ export { Tab, TabPanel, TabList, Tabs } from "./tabs";
 export { FilterBlock } from "./filter-block";
 export { Checkbox, CheckboxGroup } from "./checkbox";
 export { Paginate } from "./paginate";
-export { Typography } from "./typography"
+export { Typography } from "./typography";
 export { IconButton } from "./icon-button";
 export { UploadImage } from "./upload-image";
+export { Checkmarks } from "./checkbox/";

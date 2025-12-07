@@ -9,7 +9,7 @@ export interface IDropdownRenderProp {
 export interface IDropdownProps<T> extends HTMLAttributes<HTMLDivElement> {
 	trigger: (props: IDropdownRenderProp) => ReactNode;
 	dataSource: T[];
-	renderItem: (data: T) => ReactNode;
+	renderItem: (data: T, close: () => void) => ReactNode;
 	showOn?: "hover";
 	closeOn?: "leave";
 	doCloseOnClickOutside?: boolean;

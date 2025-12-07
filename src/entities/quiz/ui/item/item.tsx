@@ -1,8 +1,8 @@
-import { Images } from "@/shared/ui";
+import { Images, Typography } from "@/shared/ui";
 import styles from "./item.module.css";
-import type { IQuizItemProps } from "./item.types";
+import type { QuizItemProps } from "./item.types";
 
-export function QuizItem(props: IQuizItemProps) {
+export function QuizItem(props: QuizItemProps) {
 	const { quiz, actions, isMy } = props;
 	return (
 		<div className={styles.item}>
@@ -15,14 +15,16 @@ export function QuizItem(props: IQuizItemProps) {
 					}
 					className={styles.coverImage}
 				/>
-				<p className={styles.dataTitle}>{quiz.title}</p>
+				<Typography.Body className={styles.dataTitle}>
+					{quiz.title}
+				</Typography.Body>
 			</div>
 			<p className={styles.dataDate}>{quiz.createdAt.toDateString()}</p>
 			<div className={styles.createdByBlock}>
 				<img
 					src={
-						quiz.createdBy.user.avatar
-							? quiz.createdBy.user.avatar
+						quiz.owner.user.avatar
+							? quiz.owner.user.avatar
 							: Images.defaultAvatar
 					}
 					className={styles.avatar}
@@ -30,7 +32,7 @@ export function QuizItem(props: IQuizItemProps) {
 				<span>
 					{isMy
 						? "Me"
-						: `${quiz.createdBy.user.firstName} ${quiz.createdBy.user.lastName}`}
+						: `${quiz.owner.user.firstName} ${quiz.owner.user.lastName}`}
 				</span>
 			</div>
 			<div className={styles.dataAdditionalButtons}>

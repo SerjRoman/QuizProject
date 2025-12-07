@@ -7,10 +7,10 @@ import type { IBaseLayoutProps } from "./base.types";
 export function BaseLayout({ bgImage, children }: IBaseLayoutProps) {
 	const dispatch = useAppDispatch();
 	useEffect(() => {
-		const token = localStorage.getItem("token");
+		const accessToken = localStorage.getItem("accessToken");
 		const refreshToken = localStorage.getItem("refreshToken");
-		if (!token || !refreshToken) return;
-		dispatch(setTokens({ token, refreshToken }));
+		if (!accessToken || !refreshToken) return;
+		dispatch(setTokens({ accessToken, refreshToken }));
 	}, [dispatch]);
 	return (
 		<div

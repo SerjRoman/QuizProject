@@ -1,0 +1,58 @@
+import { useState } from "react";
+import type { CustomModalProps } from "@/shared/lib";
+import { Icons, Images, Input, Modal } from "@/shared/ui";
+import { useGetAccessesQuery } from "../../api";
+import styles from "./edit-accessibility-modal.module.css";
+
+export function EditAccessibilityModal(
+	props: CustomModalProps<{ quizId: string }>
+) {
+	const { isOpen, onClose, quizId } = props;
+
+	const { data: accesses } = useGetAccessesQuery(
+		{ quizId },
+		{ skip: !quizId }
+	);
+	const [search, setSearch] = useState<string>("");
+	return (
+		<Modal
+			isOpen={isOpen}
+			onClose={onClose}
+			doCloseOnClickOutside
+			className={styles.modal}
+		>
+			<span className={styles.title}>Accessibility</span>
+			<Input
+				value={search}
+				onChange={(e) => setSearch(e.target.value)}
+				placeholder="Start typing username..."
+				iconRight={<Icons.Search />}
+			/>
+			<div>
+				<span>People with access</span>
+				<div className={styles.accesses}>
+					{accesses?.map((access) => {
+						const { user } = access.profile;
+						return (
+							<div className={styles.access}>
+								<div className={styles.userBlock}>
+									<img
+										src={
+											user.avatar ?? Images.defaultAvatar
+										}
+									/>
+									<span>
+										{user.firstName} {user.lastName}
+									</span>
+								</div>
+								<div className={styles.userAccess}>
+									{access.accessType}
+								</div>
+							</div>
+						);
+					})}
+				</div>
+			</div>
+		</Modal>
+	);
+}

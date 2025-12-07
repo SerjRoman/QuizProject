@@ -1,5 +1,4 @@
-import type { IconType } from "@/shared/ui/icons/icon.types";
-
+import type { IconType } from "@/shared/lib";
 export interface NavBarButton {
 	path: string;
 	title: string;

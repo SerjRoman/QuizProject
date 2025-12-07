@@ -1,2 +1,2 @@
 export { Icons } from "./icons";
-export type { IconType } from "./icon.types";
+export type { IconType } from "../../lib/types/icon.types";

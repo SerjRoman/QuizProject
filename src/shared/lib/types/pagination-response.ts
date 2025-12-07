@@ -4,9 +4,8 @@ export type PaginationResponse<T> = {
 };
 
 export type PaginationData = {
-	totalCount: number;
-	currentPage: number;
-	isFirstPage: boolean;
-	isLastPage: boolean;
-	pageCount: number;
+	total: number;
+	totalPages: number;
+	page: number;
+	perPage: number;
 };

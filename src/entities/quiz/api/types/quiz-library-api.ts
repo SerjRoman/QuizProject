@@ -9,11 +9,11 @@ import type {
 } from "../../model";
 
 export type QuizLibraryRequest = {
-	from?: "copied" | "favourite" | "created";
-	filters?: {
-		tagsIds: string[];
-		languagesIds: string[];
-		subjectId: string;
+	from?: "copied" | "favourite" | "created" | "all";
+	filters: {
+		tagIds: string[];
+		languageIds: string[];
+		subjectId: string | null;
 	};
 	search?: string;
 	page?: number;
@@ -21,8 +21,8 @@ export type QuizLibraryRequest = {
 		field: SortOptions;
 		order: OrderOptions;
 	};
-	visibility?: QuizVisibility[];
-	status?: QuizStatus[];
+	selectedVisiblities?: QuizVisibility[];
+	selectedStatuses?: QuizStatus[];
 };
 export type QuizLibraryAllResponse = PaginationResponse<QuizLibrary[]>;
 export type QuizLibraryAllResponseRaw = PaginationResponse<QuizLibrary[]>;
@@ -32,14 +32,14 @@ export interface DeleteQuizPayload {
 }
 export type DeleteQuizResponse = IQuiz;
 export interface CreateQuizPayload {
-    title: string;
-    visibility: QuizVisibility;
-    shuffleQuestions: boolean;
-    shuffleAnswers: boolean;
-    coverImage?: string;
-    subjectId: string;
-    tagsIds: string[];
-    languagesIds: string[];
+	title: string;
+	visibility: QuizVisibility;
+	shuffleQuestions: boolean;
+	shuffleAnswers: boolean;
+	coverImage?: string;
+	subjectId: string;
+	tagIds: string[];
+	languageIds: string[];
 }
 
-export type CreateQuizResponse = IQuiz
+export type CreateQuizResponse = IQuiz;

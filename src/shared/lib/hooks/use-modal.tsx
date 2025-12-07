@@ -3,20 +3,10 @@ import {
 	useState,
 	type FunctionComponent,
 	type JSX,
-	type ReactNode,
 } from "react";
-import { Modal } from "@/shared/ui";
-
-interface ModalProps {
-	children?: ReactNode;
-	doCloseOnClickOutside?: boolean;
-	className?: string;
-}
-type CustomModalProps<T> = ModalProps & {
-	isOpen: boolean;
-	onClose: () => void;
-} & T;
-interface ModalPropsWithCustomModal<T = object> extends ModalProps {
+import { Modal, type ModalComponentProps } from "@/shared/ui";
+import type { CustomModalProps } from "../types/custom-modal-props";
+interface ModalPropsWithCustomModal<T = object> extends Omit<ModalComponentProps, "isOpen" | "onClose"> {
 	ModalComponent?: FunctionComponent<CustomModalProps<T>>;
 }
 

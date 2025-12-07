@@ -1,22 +1,22 @@
 import type { UserProfile } from "../../model";
 
-export interface ILoginRequest {
+export interface LoginRequest {
 	email: string;
 	password: string;
 }
 
-export interface ILoginResponse {
-	token: string;
+export interface LoginResponse {
+	accessToken: string;
 	refreshToken: string;
 }
 
-export interface IRegisterRequest {
+export interface RegisterRequest {
 	email: string;
 	password: string;
 	role: UserProfile;
-    username: string
+	username: string;
 }
-export interface IRegisterResponse {
-	token: string;
+export interface RegisterResponse {
+	accessToken: string;
 	refreshToken: string;
 }

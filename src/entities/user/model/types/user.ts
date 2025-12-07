@@ -1,11 +1,12 @@
 export type UserProfile = "TEACHER" | "STUDENT";
 
-export interface IUser {
+export interface User {
 	id: string;
 	email: string;
-	role: UserProfile;
+	roles: UserProfile[];
 	username: string;
 	createdAt: Date;
 	firstName: string;
 	lastName: string;
+	avatar: string;
 }

@@ -1,7 +1,0 @@
-.checkboxFilters {
-	display: flex;
-	justify-content: space-around;
-}
-.vl {
-	border-left: 1px solid var(--grey1);
-}

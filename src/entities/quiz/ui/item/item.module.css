@@ -1,7 +1,7 @@
 .item {
 	display: grid;
 
-	grid-template-columns: 2fr 1fr 1fr 1fr;
+	grid-template-columns: minmax(80px, 2fr) 1fr 1fr 1fr;
 
 	grid-template-rows: auto;
 
@@ -19,7 +19,9 @@
 	font-family: "Kulim Park";
 }
 .dataTitle {
-	font-size: 20px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 .dataDate {
 	font-size: 18px;

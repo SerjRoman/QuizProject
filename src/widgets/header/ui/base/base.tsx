@@ -2,15 +2,15 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { ProfileBlock } from "@/entities/user";
 import { Dropdown, MenuButton } from "@/shared/ui";
 import styles from "./base.module.css";
-import type { IHeader } from "./base.types";
+import type { HeaderProps } from "./base.types";
 
-export function Header({ nav_bar_button }: IHeader) {
+export function Header({ navBarButtons }: HeaderProps) {
 	const location = useLocation();
 	const navigate = useNavigate();
 	return (
 		<header className={styles.main}>
 			<div className={styles.tabs}>
-				{nav_bar_button.map((tab) => {
+				{navBarButtons.map((tab) => {
 					return (
 						<Dropdown
 							key={tab.title}

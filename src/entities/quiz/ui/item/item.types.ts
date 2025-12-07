@@ -1,7 +1,7 @@
 import type { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
 import type { QuizLibrary } from "../../model";
 
-export interface IQuizItemProps
+export interface QuizItemProps
 	extends DetailedHTMLProps<
 		HTMLAttributes<HTMLTableElement>,
 		HTMLTableElement

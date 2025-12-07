@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Modal } from "@/shared/ui";
 import type { ApiErrorWithSubCode, ErrorMap } from "../../types";
 import { useModal } from "../use-modal";
@@ -60,8 +60,13 @@ export function useError(): UseErrorReturnType {
 	useEffect(() => {
 		if (error) open({ setError, error });
 	}, [error, open]);
-	const ModalError = error ? (
-		<ModalProvider ModalComponent={Modal.Error}></ModalProvider>
-	) : null;
+    
+	const ModalError = useMemo(
+		() =>
+			error ? (
+				<ModalProvider ModalComponent={Modal.Error}></ModalProvider>
+			) : null,
+		[ModalProvider, error]
+	);
 	return { ModalError, handleError, setError };
 }

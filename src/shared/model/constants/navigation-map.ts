@@ -1,5 +1,5 @@
 export const TEACHER_HEADER_NAVIGATION_MAP = {
-	libraries: "/teacher/dashboard/libraries",
+	libraries: "/teacher/dashboard/library",
 	reports: "/teacher/dashboard/reports",
 	classes: "/teacher/dashboard/classes",
 	community: "/teacher/dashboard/community",

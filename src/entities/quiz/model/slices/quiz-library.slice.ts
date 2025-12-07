@@ -5,39 +5,39 @@ import type {
 	QuizVisibility,
 	SortOptions,
 } from "../types";
-interface IQuizLibraryState {
+interface QuizLibraryState {
 	search: string;
 	sort: {
 		field: SortOptions;
 		order: OrderOptions;
 	};
 	filters: {
-		tagsIds: string[];
-		languagesIds: string[];
-		subjectId: string;
+		tagIds: string[];
+		languageIds: string[];
+		subjectId: string | null;
 	};
-	visibility: QuizVisibility[];
-	status: QuizStatus[];
+	selectedVisibilities: QuizVisibility[];
+	selectedStatuses: QuizStatus[];
 }
 
-const initialState: IQuizLibraryState = {
+const initialState: QuizLibraryState = {
 	search: "",
 	sort: {
 		field: "createdAt",
 		order: "desc",
 	},
 	filters: {
-		tagsIds: [],
-		languagesIds: [],
-		subjectId: "",
+		tagIds: [],
+		languageIds: [],
+		subjectId: null,
 	},
-	visibility: [],
-	status: [],
+	selectedVisibilities: [],
+	selectedStatuses: [],
 };
 
-export const quizLibrarySlice = createSlice({
+export const quizFiltersSlice = createSlice({
 	initialState,
-	name: "quizLlibrary",
+	name: "quizFilters",
 	reducers: {
 		setSort: (state, { payload }: PayloadAction<SortOptions>) => {
 			const isSameField = state.sort.field === payload;
@@ -58,61 +58,71 @@ export const quizLibrarySlice = createSlice({
 				payload,
 			}: PayloadAction<{
 				filters: {
-					tagsIds?: string[];
-					languagesIds?: string[];
+					tagIds?: string[];
+					languageIds?: string[];
 					subjectId?: string;
-					visibility?: QuizVisibility;
-					status?: QuizStatus;
+					selectedVisibilities?: QuizVisibility[];
+					selectedStatuses?: QuizStatus[];
 				};
 			}>
 		) => {
 			state.filters = { ...state.filters, ...payload.filters };
 		},
-		setVisibility: (state, { payload }: PayloadAction<QuizVisibility>) => {
-			if (state.visibility.includes(payload)) {
-				state.visibility = state.visibility.filter((v) => v != payload);
-			} else {
-				state.visibility = [...state.visibility, payload];
-			}
+		addVisibility: (state, { payload }: PayloadAction<QuizVisibility>) => {
+			if (state.selectedVisibilities.includes(payload)) return;
+			state.selectedVisibilities = [
+				...state.selectedVisibilities,
+				payload,
+			];
 		},
-		setStatus: (state, { payload }: PayloadAction<QuizStatus>) => {
-			if (state.status.includes(payload)) {
-				state.status = state.status.filter((s) => s != payload);
-			} else {
-				state.status = [...state.status, payload];
-			}
+		addStatus: (state, { payload }: PayloadAction<QuizStatus>) => {
+			if (state.selectedStatuses.includes(payload)) return;
+			state.selectedStatuses = [...state.selectedStatuses, payload];
+		},
+		removeVisibility(state, { payload }: PayloadAction<QuizVisibility>) {
+			state.selectedVisibilities = state.selectedVisibilities.filter(
+				(visibility) => visibility !== payload
+			);
+		},
+		removeStatus(state, { payload }: PayloadAction<QuizStatus>) {
+			state.selectedStatuses = state.selectedStatuses.filter(
+				(status) => status !== payload
+			);
 		},
 		clearFilters: (state) => {
-			state.filters = { tagsIds: [], languagesIds: [], subjectId: "" };
+			state.filters = { tagIds: [], languageIds: [], subjectId: "" };
 			state.search = "";
 			state.sort = {
 				field: "createdAt",
 				order: "desc",
 			};
-			state.status = [];
-			state.visibility = [];
+			state.selectedStatuses = [];
+			state.selectedVisibilities = [];
 		},
 		addTag(state, { payload }: PayloadAction<string>) {
-			state.filters.tagsIds = [...state.filters.tagsIds, payload];
+			if (state.filters.tagIds.includes(payload)) return;
+
+			state.filters.tagIds = [...state.filters.tagIds, payload];
 		},
 		removeTag(state, { payload }: PayloadAction<string>) {
-			state.filters.tagsIds = state.filters.tagsIds.filter(
+			state.filters.tagIds = state.filters.tagIds.filter(
 				(tagId) => tagId !== payload
 			);
 		},
 		addLanguage(state, { payload }: PayloadAction<string>) {
-			state.filters.languagesIds = [
-				...state.filters.languagesIds,
-				payload,
-			];
+			if (state.filters.languageIds.includes(payload)) return;
+			state.filters.languageIds = [...state.filters.languageIds, payload];
 		},
 		removeLanguage(state, { payload }: PayloadAction<string>) {
-			state.filters.languagesIds = state.filters.languagesIds.filter(
+			state.filters.languageIds = state.filters.languageIds.filter(
 				(languageId) => languageId !== payload
 			);
 		},
 		setSubject(state, { payload }: PayloadAction<string>) {
 			state.filters.subjectId = payload;
+		},
+		resetSubject(state) {
+			state.filters.subjectId = null;
 		},
 	},
 });
@@ -121,12 +131,15 @@ export const {
 	setSort,
 	setFilters,
 	setSearch,
-	setVisibility,
-	setStatus,
 	clearFilters,
 	addLanguage,
 	addTag,
 	removeLanguage,
 	removeTag,
 	setSubject,
-} = quizLibrarySlice.actions;
+	resetSubject,
+	addStatus,
+	addVisibility,
+	removeStatus,
+	removeVisibility,
+} = quizFiltersSlice.actions;
