@@ -1,0 +1,9 @@
+.header {
+    display: grid;
+    grid-template-columns: max-content auto auto;
+}
+
+.infoBlock {
+    display: flex;
+    flex-direction: column;
+}

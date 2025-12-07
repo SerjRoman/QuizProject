@@ -7,6 +7,7 @@ export const API_MAP = {
 		copy: "/quizzes/teacher/copy",
 		create: "/quizzes",
 		delete: "/quizzes",
+		id: (id: string) => `/quizzes/${id}`,
 	},
 	auth: {
 		login: "/auth/login",

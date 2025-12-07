@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { setFilters } from "@/entities/quiz";
 import { setTokens, useLoginMutation } from "@/entities/user";
 import { useAppDispatch } from "@/shared/lib";
-import { Dropdown, Icons, MenuButton } from "@/shared/ui";
+import { Dropdown, Icons, MenuButton, Popover } from "@/shared/ui";
 
 import styles from "./root.module.css";
 function App() {
@@ -79,6 +79,15 @@ function App() {
 					/>
 				}
 			/>
+			<Popover
+				showOn={"hover"}
+				positionOrigin={{ vertical: "top", horizontal: "left" }}
+			>
+				<Popover.Trigger style={{ display: "flex" }}>
+					Hello world!!!
+				</Popover.Trigger>
+				<Popover.Content>1234454</Popover.Content>
+			</Popover>
 		</>
 	);
 }

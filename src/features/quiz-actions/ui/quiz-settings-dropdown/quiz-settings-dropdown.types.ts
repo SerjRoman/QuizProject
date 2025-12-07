@@ -1,6 +1,6 @@
-import type { QuizLibrary } from "@/entities/quiz";
+import type { Quiz } from "@/entities/quiz";
 
 export interface QuizSettingsDropdownProps {
-	quiz: QuizLibrary;
-	isOwner: boolean;
+    quiz: Quiz;
+    isOwner: boolean;
 }

@@ -5,5 +5,4 @@ export type {
 	QuizVisibility,
 	QuizAccess,
 } from "./quiz-filters.ts";
-export type { IQuiz, QuizLibrary } from "./quiz.ts";
-export type { QuizSelect } from "./quiz-select.ts";
+export type { Quiz, QuizDetails } from "./quiz.ts";

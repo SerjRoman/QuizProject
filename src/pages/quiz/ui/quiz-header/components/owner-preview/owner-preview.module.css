@@ -1,0 +1,16 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	padding: 5px 10px;
+	gap: 5px;
+}
+
+.userInfoBlock {
+	display: flex;
+}
+
+.avatar {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+}

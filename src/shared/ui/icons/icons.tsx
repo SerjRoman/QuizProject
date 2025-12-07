@@ -4,7 +4,7 @@ import ArrowRight from "@assets/svg/arrow-right.svg";
 import ArrowUp from "@assets/svg/arrow-up.svg";
 import Bell from "@assets/svg/bell.svg";
 import Bin from "@assets/svg/bin.svg";
-import Cross from "@assets/svg/cross.svg"
+import Cross from "@assets/svg/cross.svg";
 import DotsVertical from "@assets/svg/dots-vertical.svg";
 import Edit from "@assets/svg/edit.svg";
 import Library from "@assets/svg/library.svg";
@@ -12,6 +12,7 @@ import Person from "@assets/svg/person.svg";
 import Plus from "@assets/svg/plus.svg";
 import Search from "@assets/svg/search.svg";
 import Star from "@assets/svg/star.svg";
+import Tag from "@assets/svg/tag.svg";
 import Users from "@assets/svg/users.svg";
 
 export const Icons = {
@@ -29,5 +30,6 @@ export const Icons = {
 	ArrowUp,
 	Person,
 	Users,
-	Cross
+	Cross,
+	Tag,
 };

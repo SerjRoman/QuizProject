@@ -15,3 +15,5 @@ export { Typography } from "./typography";
 export { IconButton } from "./icon-button";
 export { UploadImage } from "./upload-image";
 export { Checkmarks } from "./checkbox/";
+export { Popover } from "./popover";
+export { Chip } from "./chip";

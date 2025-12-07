@@ -1,4 +1,5 @@
 import type { RouteObject } from "react-router-dom";
+import { QuizPage } from "@/pages/quiz";
 import { TeacherLibraryPage } from "@/pages/teacher-library";
 import App from "../App";
 
@@ -46,5 +47,6 @@ export const TeacherRoutes: RouteObject = {
 				},
 			],
 		},
+		{ path: "quiz/:id", element: <QuizPage /> },
 	],
 };

@@ -1,8 +1,8 @@
 import type { PaginationResponse } from "@/shared/lib";
 
-export type FilterByResponse = {
+export type TaxonomyResponse = {
 	id: string;
 	name: string;
 	slug: string;
 };
-export type PaginatedTaxonomyResponse = PaginationResponse<FilterByResponse[]>;
+export type PaginatedTaxonomyResponse = PaginationResponse<TaxonomyResponse[]>;

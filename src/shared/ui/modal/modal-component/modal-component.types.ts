@@ -5,5 +5,6 @@ export interface ModalComponentProps {
 	isOpen: boolean;
 	onClose: () => void;
 	doCloseOnClickOutside?: boolean;
-	className?: string
+	className?: string;
+	container?: Element;
 }

@@ -3,6 +3,7 @@ import { resetSubject, setSubject } from "@/entities/quiz";
 import { useGetSubjectsQuery } from "@/shared/api";
 import { useAppDispatch, useAppSelector } from "@/shared/lib";
 import { Checkbox, CheckboxGroup, FilterBlock } from "@/shared/ui";
+import { FilterChip } from "../components";
 import styles from "./filter-by-subject.module.css";
 
 export function QuizFilterBySubjectBlock() {
@@ -42,8 +43,13 @@ export function QuizFilterBySubjectBlock() {
 					.map((subject) => (
 						<Checkbox
 							key={subject.id}
-							label={subject.name}
-							labelClassName={styles.label}
+							label={
+								<FilterChip
+									isActive={subject.id === subjectId}
+                                    variant={'pink'}
+									label={subject.name}
+								/>
+							}
 							checked={subject.id === subjectId}
 							value={subject.id}
 						/>

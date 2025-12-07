@@ -11,6 +11,7 @@ export function ModalComponent(props: ModalComponentProps) {
 		children,
 		className,
 		doCloseOnClickOutside = false,
+		container,
 	} = props;
 
 	const contentRef = useRef<HTMLDivElement | null>(null);
@@ -25,6 +26,6 @@ export function ModalComponent(props: ModalComponentProps) {
 				{children}
 			</div>
 		</div>,
-		document.body
+		container ? container : document.body
 	);
 }

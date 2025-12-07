@@ -1,12 +1,12 @@
 import { AccessButton } from "@/features/quiz-access";
 import { QuizSettingsDropdown } from "@/features/quiz-actions";
 import { ToggleFavouriteQuizButton } from "@/features/toggle-favourite-quiz";
-import type { QuizLibrary } from "@/entities/quiz";
+import type { Quiz } from "@/entities/quiz";
 import { useAppSelector } from "@/shared/lib";
 import styles from "./quiz-actions-group.module.css";
 
 interface QuizActionsGroupProps {
-	quiz: QuizLibrary;
+	quiz: Quiz;
 	onEditAccess: () => void;
 }
 

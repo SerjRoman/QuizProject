@@ -16,7 +16,7 @@ export interface ICheckboxProps
 		InputHTMLAttributes<HTMLInputElement>,
 		HTMLInputElement
 	> {
-	label: string;
+	label?: ReactNode;
 	isCheckboxVisible?: boolean;
 	labelClassName?: string;
 	checkmark?: ReactNode;

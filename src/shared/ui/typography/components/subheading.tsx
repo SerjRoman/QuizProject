@@ -6,7 +6,7 @@ import styles from "./styles.module.css";
 export function SubHeading({ className, ...restProps }: TypographyProps) {
 	return (
 		<Typography
-			className={clsx(styles.smallBody, className)}
+			className={clsx(styles.subHeading, className)}
 			{...restProps}
 		/>
 	);

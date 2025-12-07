@@ -1,9 +1,13 @@
-import type { ChangeEvent, InputHTMLAttributes, PropsWithChildren } from "react";
+import type {
+	ChangeEvent,
+	InputHTMLAttributes,
+	PropsWithChildren,
+	ReactNode,
+} from "react";
 import type { UseFormRegisterReturn } from "react-hook-form";
 
-export interface IRadioProps
-	extends InputHTMLAttributes<HTMLInputElement> {
-	label?: string;
+export interface IRadioProps extends InputHTMLAttributes<HTMLInputElement> {
+	label?: ReactNode;
 	isRadioVisible?: boolean;
 	labelClassName?: string;
 }

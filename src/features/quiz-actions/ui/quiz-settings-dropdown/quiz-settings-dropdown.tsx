@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useDeleteQuiz } from "@/entities/quiz";
 import { Dropdown, IconButton, Icons } from "@/shared/ui";
 import { useCopyQuiz } from "../../lib/hooks";
@@ -15,12 +16,15 @@ export function QuizSettingsDropdown({ quiz }: QuizSettingsDropdownProps) {
 		isLoading: copyLoading,
 		ModalError: ModalErrorCopy,
 	} = useCopyQuiz();
+	const navigate = useNavigate();
 
 	const ACTIONS = [
 		{
 			title: "Edit",
 			//! FIX NOOP
-			onClick: () => {},
+			onClick: () => {
+				navigate(`/teacher/quiz/${quiz.id}`);
+			},
 			loading: false,
 		},
 		{

@@ -1,12 +1,12 @@
 import type { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
-import type { QuizLibrary } from "../../model";
+import type { Quiz } from "../../model";
 
 export interface QuizItemProps
-	extends DetailedHTMLProps<
-		HTMLAttributes<HTMLTableElement>,
-		HTMLTableElement
-	> {
-	quiz: QuizLibrary;
-	isMy: boolean;
-	actions: ReactNode;
+    extends DetailedHTMLProps<
+        HTMLAttributes<HTMLTableElement>,
+        HTMLTableElement
+    > {
+    quiz: Quiz;
+    isMy: boolean;
+    actions: ReactNode;
 }
