@@ -29,10 +29,6 @@ export interface QuizLibrary {
 	coverImage: null | string;
 	shuffleAnswers: boolean;
 	shuffleQuestions: boolean;
-	creator: {
-		id: string;
-		user: User;
-	};
 	owner: {
 		id: string;
 		user: User;

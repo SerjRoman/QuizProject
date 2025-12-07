@@ -28,7 +28,7 @@ export function QuizList(props: QuizContentProps) {
 						key={quiz.id}
 						quiz={quiz}
 						actions={renderActions(quiz)}
-						isMy={userId === quiz.creator.user.id}
+						isMy={userId === quiz.owner.user.id}
 					/>
 				))}
 			</div>

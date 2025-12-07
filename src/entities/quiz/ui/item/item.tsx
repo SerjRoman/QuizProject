@@ -23,8 +23,8 @@ export function QuizItem(props: QuizItemProps) {
 			<div className={styles.createdByBlock}>
 				<img
 					src={
-						quiz.creator.user.avatar
-							? quiz.creator.user.avatar
+						quiz.owner.user.avatar
+							? quiz.owner.user.avatar
 							: Images.defaultAvatar
 					}
 					className={styles.avatar}
@@ -32,7 +32,7 @@ export function QuizItem(props: QuizItemProps) {
 				<span>
 					{isMy
 						? "Me"
-						: `${quiz.creator.user.firstName} ${quiz.creator.user.lastName}`}
+						: `${quiz.owner.user.firstName} ${quiz.owner.user.lastName}`}
 				</span>
 			</div>
 			<div className={styles.dataAdditionalButtons}>
